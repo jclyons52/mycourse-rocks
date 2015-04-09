@@ -18,24 +18,30 @@ Route::group(['middleware' => 'admin'], function()
 
     Route::resource('roles', 'RoleController');
 
-Route::get('roles/{id}/delete', [
-    'as' => 'roles.delete',
-    'uses' => 'RoleController@destroy',
-]);
+    Route::get('roles/{id}/delete', [
+        'as' => 'roles.delete',
+        'uses' => 'RoleController@destroy',
+    ]);
 
-Route::resource('users', 'UserAdminController');
+    Route::resource('users', 'UserAdminController');
 
-Route::get('users/{id}/delete', [
-    'as' => 'users.delete',
-    'uses' => 'UserAdminController@destroy',
-]);
+    Route::get('users/{id}/delete', [
+        'as' => 'users.delete',
+        'uses' => 'UserAdminController@destroy',
+    ]);
 
+    Route::resource('permissions', 'PermissionsController');
+
+    Route::get('permissions/{id}/delete', [
+        'as' => 'permissions.delete',
+        'uses' => 'PermissionsController@destroy',
+    ]);
 });
 
-// Route::group(['middleware' => 'auth'], function()
-// {
+Route::group(['middleware' => 'auth'], function()
+{
 
-// });
+});
 
 
 
@@ -47,4 +53,5 @@ Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
+
 

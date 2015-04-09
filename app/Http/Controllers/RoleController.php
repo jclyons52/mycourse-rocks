@@ -3,6 +3,7 @@
 use App\Http\Requests;
 use App\Http\Requests\CreateRoleRequest;
 use App\Models\Role;
+use App\Models\Permission;
 use Mitul\Controller\AppBaseController;
 use Response;
 use Flash;
@@ -79,6 +80,7 @@ class RoleController extends AppBaseController
 	public function edit($id)
 	{
 		$role = Role::find($id);
+        $permissions = Permission::lists('name', 'id');
 
 		if(empty($role))
 		{
@@ -86,7 +88,7 @@ class RoleController extends AppBaseController
 			return redirect(route('roles.index'));
 		}
 
-		return view('roles.edit')->with('role', $role);
+		return view('roles.edit', compact('role','permissions'));
 	}
 
 	/**
@@ -109,6 +111,7 @@ class RoleController extends AppBaseController
 		}
 
 		$role->fill($request->all());
+        $this->syncPermissions($role, $request->input('permissions'));
 		$role->save();
 
 		Flash::message('Role updated successfully.');
@@ -140,5 +143,10 @@ class RoleController extends AppBaseController
 
 		return redirect(route('roles.index'));
 	}
+
+    private function syncPermissions($role, $input)
+    {
+        $role->permissions()->sync($input);
+    }
 
 }

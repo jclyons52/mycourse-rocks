@@ -12,3 +12,10 @@
     {!! Form::close() !!}
 </div>
 @endsection
+
+@section('scripts')
+
+    <script type="text/javascript">
+        $('#role_permissions').select2();
+    </script>
+@endsection

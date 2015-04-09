@@ -16,6 +16,6 @@
 @section('scripts')
 
 <script type="text/javascript">
-  $('#user_roles').select2();
+    $('#user_roles').select2();
 </script>
 @endsection

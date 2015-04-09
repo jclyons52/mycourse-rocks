@@ -19,4 +19,9 @@ class Role extends Model
 	    "name" => "required"
 	];
 
+    public function permissions()
+    {
+        return $this->belongsToMany('App\Models\Permission');
+    }
+
 }
