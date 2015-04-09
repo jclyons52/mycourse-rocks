@@ -11,12 +11,31 @@
 |
 */
 
-Route::group(['middleware' => 'auth'], function()
+Route::group(['middleware' => 'admin'], function()
 {
 
     Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
+    Route::resource('roles', 'RoleController');
+
+Route::get('roles/{id}/delete', [
+    'as' => 'roles.delete',
+    'uses' => 'RoleController@destroy',
+]);
+
+Route::resource('users', 'UserAdminController');
+
+Route::get('users/{id}/delete', [
+    'as' => 'users.delete',
+    'uses' => 'UserAdminController@destroy',
+]);
+
 });
+
+// Route::group(['middleware' => 'auth'], function()
+// {
+
+// });
 
 
 

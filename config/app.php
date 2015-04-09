@@ -148,7 +148,8 @@ return [
         'Illuminate\View\ViewServiceProvider',
         'Illuminate\Html\HtmlServiceProvider',
         'Laracasts\Flash\FlashServiceProvider',
-        'Mitul\Generator\GeneratorServiceProvider'
+        'Mitul\Generator\GeneratorServiceProvider',
+        'Laracasts\Generators\GeneratorsServiceProvider'
 	],
 
 	/*

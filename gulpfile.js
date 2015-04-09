@@ -15,12 +15,16 @@ elixir(function(mix) {
     mix.less('app.less', 'resources/css');
 
     mix.styles([
-    	'libs/roboto.css'
+    	'libs/roboto.css',
+    	'libs/select2.min.css',
+    	'app.css'
 
     ]);
 
     mix.scripts([
-    	'libs/bootstrap.min.js',	
-    	'libs/jquery.min.js'
+    	'libs/jquery.min.js',
+    	'libs/bootstrap.min.js',
+    	'libs/select2.min.js'	
+    	
     ]);
 });

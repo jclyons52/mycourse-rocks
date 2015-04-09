@@ -31,4 +31,36 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 */
 	protected $hidden = ['password', 'remember_token'];
 
+	/**
+	 * User relationship with roles
+	 *
+	 *
+	 */
+
+
+	public function roles(){
+
+		return $this->belongsToMany('App\Models\Role');
+
+	}
+
+	/**
+     * Checks if the user has a Role by its name.
+     *
+     * @param string $name Role name.
+     *
+     * @return bool
+     */
+    public function hasRole($name)
+    {
+        foreach ($this->roles as $role) {
+            if ($role->name == $name) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
 }
