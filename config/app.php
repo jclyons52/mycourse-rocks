@@ -144,12 +144,14 @@ return [
 		'App\Providers\ConfigServiceProvider',
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
+        'App\providers\viewComposerServiceProvider',
         'Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider',
         'Illuminate\View\ViewServiceProvider',
         'Illuminate\Html\HtmlServiceProvider',
         'Laracasts\Flash\FlashServiceProvider',
         'Mitul\Generator\GeneratorServiceProvider',
-        'Laracasts\Generators\GeneratorsServiceProvider'
+        'Laracasts\Generators\GeneratorsServiceProvider',
+        'Laravel\Cashier\CashierServiceProvider',
 	],
 
 	/*

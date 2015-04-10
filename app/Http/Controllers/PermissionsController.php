@@ -2,7 +2,7 @@
 
 use App\Http\Requests;
 use App\Http\Requests\CreatePermissionsRequest;
-use App\Models\Permissions;
+use App\Models\Permission;
 use Mitul\Controller\AppBaseController;
 use Response;
 use Flash;
@@ -17,9 +17,9 @@ class PermissionsController extends AppBaseController
 	 */
 	public function index()
 	{
-		$permissions = Permissions::all();
+		$permissions = Permission::all();
 
-		return view('permissions.index')->with('permissions', $permissions);
+		return view('admin.permissions.index')->with('permissions', $permissions);
 	}
 
 	/**
@@ -29,7 +29,7 @@ class PermissionsController extends AppBaseController
 	 */
 	public function create()
 	{
-		return view('permissions.create');
+		return view('admin.permissions.create');
 	}
 
 	/**
@@ -43,11 +43,11 @@ class PermissionsController extends AppBaseController
 	{
         $input = $request->all();
 
-		$permissions = Permissions::create($input);
+		$permissions = Permission::create($input);
 
 		Flash::message('Permissions saved successfully.');
 
-		return redirect(route('permissions.index'));
+		return redirect(route('admin.permissions.index'));
 	}
 
 	/**
@@ -59,38 +59,38 @@ class PermissionsController extends AppBaseController
 	 */
 	public function show($id)
 	{
-		$permissions = Permissions::find($id);
+		$permissions = Permission::find($id);
 
 		if(empty($permissions))
 		{
 			Flash::error('Permissions not found');
-			return redirect(route('permissions.index'));
+			return redirect(route('admin.permissions.index'));
 		}
 
-		return view('permissions.show')->with('permissions', $permissions);
+		return view('admin.permissions.show')->with('permissions', $permissions);
 	}
 
 	/**
-	 * Show the form for editing the specified Permissions.
+	 * Show the form for editing the specified Permission.
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
 	public function edit($id)
 	{
-		$permissions = Permissions::find($id);
+		$permissions = Permission::find($id);
 
 		if(empty($permissions))
 		{
 			Flash::error('Permissions not found');
-			return redirect(route('permissions.index'));
+			return redirect(route('admin.permissions.index'));
 		}
 
-		return view('permissions.edit')->with('permissions', $permissions);
+		return view('admin.permissions.edit')->with('permissions', $permissions);
 	}
 
 	/**
-	 * Update the specified Permissions in storage.
+	 * Update the specified Permission in storage.
 	 *
 	 * @param  int    $id
 	 * @param CreatePermissionsRequest $request
@@ -99,25 +99,25 @@ class PermissionsController extends AppBaseController
 	 */
 	public function update($id, CreatePermissionsRequest $request)
 	{
-		/** @var Permissions $permissions */
-		$permissions = Permissions::find($id);
+		/** @var Permission $permissions */
+		$permission = Permission::find($id);
 
-		if(empty($permissions))
+		if(empty($permission))
 		{
 			Flash::error('Permissions not found');
-			return redirect(route('permissions.index'));
+			return redirect(route('admin.permissions.index'));
 		}
 
-		$permissions->fill($request->all());
-		$permissions->save();
+		$permission->fill($request->all());
+		$permission->save();
 
 		Flash::message('Permissions updated successfully.');
 
-		return redirect(route('permissions.index'));
+		return redirect(route('admin.permissions.index'));
 	}
 
 	/**
-	 * Remove the specified Permissions from storage.
+	 * Remove the specified Permission from storage.
 	 *
 	 * @param  int $id
 	 *
@@ -125,20 +125,20 @@ class PermissionsController extends AppBaseController
 	 */
 	public function destroy($id)
 	{
-		/** @var Permissions $permissions */
-		$permissions = Permissions::find($id);
+		/** @var Permission $permissions */
+		$permission = Permission::find($id);
 
-		if(empty($permissions))
+		if(empty($permission))
 		{
 			Flash::error('Permissions not found');
-			return redirect(route('permissions.index'));
+			return redirect(route('admin.permissions.index'));
 		}
 
-		$permissions->delete();
+		$permission->delete();
 
-		Flash::message('Permissions deleted successfully.');
+		Flash::message('Permission deleted successfully.');
 
-		return redirect(route('permissions.index'));
+		return redirect(route('admin.permissions.index'));
 	}
 
 }

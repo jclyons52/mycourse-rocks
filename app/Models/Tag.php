@@ -2,10 +2,10 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class Role extends Model
+class Tag extends Model
 {
 
-	public $table = "roles";
+	public $table = "tags";
 
 	public $primaryKey = "id";
 
@@ -19,14 +19,8 @@ class Role extends Model
 	    "name" => "required"
 	];
 
-    public function permissions()
+    public function products()
     {
-        return $this->belongsToMany('App\Models\Permission');
+        return $this->belongsToMany('\App\Models\Products');
     }
-
-    public function users()
-    {
-        return $this->belongsToMany('App\User');
-    }
-
 }

@@ -20,7 +20,7 @@ class RoleController extends AppBaseController
 	{
 		$roles = Role::all();
 
-		return view('roles.index')->with('roles', $roles);
+		return view('admin.roles.index')->with('roles', $roles);
 	}
 
 	/**
@@ -30,7 +30,7 @@ class RoleController extends AppBaseController
 	 */
 	public function create()
 	{
-		return view('roles.create');
+		return view('admin.roles.create');
 	}
 
 	/**
@@ -48,7 +48,7 @@ class RoleController extends AppBaseController
 
 		Flash::message('Role saved successfully.');
 
-		return redirect(route('roles.index'));
+		return redirect(route('admin.roles.index'));
 	}
 
 	/**
@@ -65,10 +65,10 @@ class RoleController extends AppBaseController
 		if(empty($role))
 		{
 			Flash::error('Role not found');
-			return redirect(route('roles.index'));
+			return redirect(route('admin.roles.index'));
 		}
 
-		return view('roles.show')->with('role', $role);
+		return view('admin.roles.show')->with('role', $role);
 	}
 
 	/**
@@ -80,15 +80,14 @@ class RoleController extends AppBaseController
 	public function edit($id)
 	{
 		$role = Role::find($id);
-        $permissions = Permission::lists('name', 'id');
 
 		if(empty($role))
 		{
 			Flash::error('Role not found');
-			return redirect(route('roles.index'));
+			return redirect(route('admin.roles.index'));
 		}
 
-		return view('roles.edit', compact('role','permissions'));
+		return view('admin.roles.edit', compact('role'));
 	}
 
 	/**
@@ -107,7 +106,7 @@ class RoleController extends AppBaseController
 		if(empty($role))
 		{
 			Flash::error('Role not found');
-			return redirect(route('roles.index'));
+			return redirect(route('admin.roles.index'));
 		}
 
 		$role->fill($request->all());
@@ -116,7 +115,7 @@ class RoleController extends AppBaseController
 
 		Flash::message('Role updated successfully.');
 
-		return redirect(route('roles.index'));
+		return redirect(route('admin.roles.index'));
 	}
 
 	/**
@@ -134,14 +133,14 @@ class RoleController extends AppBaseController
 		if(empty($role))
 		{
 			Flash::error('Role not found');
-			return redirect(route('roles.index'));
+			return redirect(route('admin.roles.index'));
 		}
 
 		$role->delete();
 
 		Flash::message('Role deleted successfully.');
 
-		return redirect(route('roles.index'));
+		return redirect(route('admin.roles.index'));
 	}
 
     private function syncPermissions($role, $input)

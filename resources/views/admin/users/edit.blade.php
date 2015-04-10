@@ -5,9 +5,9 @@
 
     @include('common.errors')
 
-    {!! Form::model($user, ['route' => ['users.update', $user->id], 'method' => 'patch']) !!}
+    {!! Form::model($user, ['route' => ['admin.users.update', $user->id], 'method' => 'patch']) !!}
 
-        @include('users.fields')
+        @include('admin.users.fields')
 
     {!! Form::close() !!}
 </div>

@@ -21,7 +21,7 @@ return [
 
 	'path_api_controller' => app_path('Http/Controllers/API/'),
 
-	'path_views' => base_path('resources/views'),
+	'path_views' => base_path('resources/views/'),
 
 	'path_request' => app_path('Http/Requests/'),
 

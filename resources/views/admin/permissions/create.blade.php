@@ -7,7 +7,7 @@
 
     {!! Form::open(['route' => 'permissions.store']) !!}
 
-        @include('permissions.fields')
+        @include('admin.permissions.fields')
 
     {!! Form::close() !!}
 </div>

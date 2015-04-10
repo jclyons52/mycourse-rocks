@@ -2,10 +2,10 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class Permission extends Model
+class Category extends Model
 {
 
-	public $table = "permissions";
+	public $table = "categories";
 
 	public $primaryKey = "id";
 
@@ -19,8 +19,7 @@ class Permission extends Model
 	    "name" => "required"
 	];
 
-    public function roles()
-    {
-        return $this->belongsToMany('\App\Models\Role');
+    public function products(){
+        return $this->hasMany('\App\Models\Product');
     }
 }

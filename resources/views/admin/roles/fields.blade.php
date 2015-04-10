@@ -6,7 +6,7 @@
 
 <div class="form-group">
     {!! Form::label('permissions', 'Permissions:') !!}
-    {!! Form::select('permissions[]', $permissions, $role->permissions->lists('id'), ['class' => 'form-control', 'multiple', 'id' => 'role_permissions']) !!}
+    {!! Form::select('permissions[]', $permissions, (isset($role) ? $role->permissions->lists('id') : null), ['class' => 'form-control', 'multiple', 'id' => 'role_permissions']) !!}
 </div>
 
 

@@ -19,7 +19,7 @@ class UserAdminController extends AppBaseController {
 	{
 		$users = User::all();
 
-		return view('users.index')->with('users', $users);
+		return view('admin.users.index')->with('users', $users);
 	}
 
 	/**
@@ -62,16 +62,15 @@ class UserAdminController extends AppBaseController {
 	public function edit($id)
 	{
 		$user = User::find($id);
-		$roles = Role::lists('name', 'id');
 
 
 		if(empty($user))
 		{
-			Flash::error('Role not found');
-			return redirect(route('users.index'));
+			Flash::error('User not found');
+			return redirect(route('admin.users.index'));
 		}
 
-		return view('users.edit', compact('user', 'roles'));
+		return view('admin.users.edit', compact('user'));
 	}
 
 	/**
@@ -91,7 +90,7 @@ class UserAdminController extends AppBaseController {
 		if(empty($user))
 		{
 			Flash::error('User not found');
-			return redirect(route('users.index'));
+			return redirect(route('admin.users.index'));
 		}
 
 		$user->fill($request->all());
@@ -100,7 +99,7 @@ class UserAdminController extends AppBaseController {
 
 		Flash::message('User updated successfully.');
 
-		return redirect(route('users.index'));
+		return redirect(route('admin.users.index'));
 	}
 
 	private function syncRoles(User $user, array $roles)

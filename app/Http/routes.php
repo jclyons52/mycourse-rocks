@@ -11,30 +11,79 @@
 |
 */
 
-Route::group(['middleware' => 'admin'], function()
+Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function()
 {
 
+    /**
+     * Log view route
+     */
+
     Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+
+    /**
+     *  Role management routes
+     */
 
     Route::resource('roles', 'RoleController');
 
     Route::get('roles/{id}/delete', [
-        'as' => 'roles.delete',
+        'as' => 'admin.roles.delete',
         'uses' => 'RoleController@destroy',
     ]);
+
+    /**
+     * User management routes
+     */
 
     Route::resource('users', 'UserAdminController');
 
     Route::get('users/{id}/delete', [
-        'as' => 'users.delete',
+        'as' => 'admin.users.delete',
         'uses' => 'UserAdminController@destroy',
     ]);
+
+    /**
+     * Permissions management routes
+     */
 
     Route::resource('permissions', 'PermissionsController');
 
     Route::get('permissions/{id}/delete', [
-        'as' => 'permissions.delete',
+        'as' => 'admin.permissions.delete',
         'uses' => 'PermissionsController@destroy',
+    ]);
+
+    /**
+     * Product management routes
+     */
+
+    Route::resource('products', 'ProductController');
+
+    Route::get('products/{id}/delete', [
+        'as' => 'admin.products.delete',
+        'uses' => 'ProductController@destroy',
+    ]);
+
+    /**
+     * Category management routes
+     */
+
+    Route::resource('categories', 'CategoryController');
+
+    Route::get('categories/{id}/delete', [
+        'as' => 'admin.categories.delete',
+        'uses' => 'CategoryController@destroy',
+    ]);
+
+    /**
+     * Tag management routes
+     */
+
+    Route::resource('tags', 'TagController');
+
+    Route::get('tags/{id}/delete', [
+        'as' => 'admin.tags.delete',
+        'uses' => 'TagController@destroy',
     ]);
 });
 
@@ -43,6 +92,11 @@ Route::group(['middleware' => 'auth'], function()
 
 });
 
+Route::get('fileentry', 'FileEntryController@index');
+Route::get('fileentry/get/{filename}', [
+    'as' => 'getentry', 'uses' => 'FileEntryController@get']);
+Route::post('fileentry/add',[
+    'as' => 'addentry', 'uses' => 'FileEntryController@add']);
 
 
 Route::get('/', 'WelcomeController@index');
