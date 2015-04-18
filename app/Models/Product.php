@@ -33,4 +33,13 @@ class Product extends Model
         return $this->belongsTo('\App\Models\Category');
     }
 
+    public function files(){
+
+        return $this->belongsToMany('\App\Fileentry');
+    }
+
+    public function comments(){
+        return $this->hasMany('\App\Models\Comment');
+    }
+
 }

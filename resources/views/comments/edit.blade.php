@@ -5,9 +5,9 @@
 
     @include('common.errors')
 
-    {!! Form::open(['route' => 'admin.products.store']) !!}
+    {!! Form::model($comment, ['route' => ['comments.update', $comment->id], 'method' => 'patch']) !!}
 
-        @include('admin.products.fields')
+        @include('comments.fields')
 
     {!! Form::close() !!}
 </div>

@@ -45,6 +45,13 @@ class ProductController extends AppBaseController
 
 		$product = Product::create($input);
 
+
+        $files = $request->input('files');
+
+        if($files) {
+            $this->syncFiles($product, $files);
+        }
+
 		Flash::message('Product saved successfully.');
 
 		return redirect(route('admin.products.index'));
@@ -110,6 +117,7 @@ class ProductController extends AppBaseController
 
 		$product->fill($request->all());
 		$product->save();
+        $this->syncFiles($product, $request->input('files'));
 
 		Flash::message('Product updated successfully.');
 
@@ -140,5 +148,10 @@ class ProductController extends AppBaseController
 
 		return redirect(route('admin.products.index'));
 	}
+
+    private function syncFiles($product, $input)
+    {
+        $product->files()->sync($input);
+    }
 
 }

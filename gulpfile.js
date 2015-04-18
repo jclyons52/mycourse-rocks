@@ -29,4 +29,8 @@ elixir(function(mix) {
         'libs/dropzone.js'
     	
     ]);
+
+    mix.browserify([
+        '../../node_modules/react-star-rating-input/index.js'
+    ])
 });

@@ -85,6 +85,16 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function()
         'as' => 'admin.tags.delete',
         'uses' => 'TagController@destroy',
     ]);
+
+    /**
+     * Lesson management routes
+     */
+    Route::resource('lessons', 'LessonController');
+
+    Route::get('lessons/{id}/delete', [
+        'as' => 'lessons.delete',
+        'uses' => 'LessonController@destroy',
+    ]);
 });
 
 Route::group(['middleware' => 'auth'], function()
@@ -99,8 +109,6 @@ Route::post('fileentry/add',[
     'as' => 'addentry', 'uses' => 'FileEntryController@add']);
 
 
-Route::get('/', 'WelcomeController@index');
-
 Route::get('home', 'HomeController@index');
 
 Route::controllers([
@@ -108,4 +116,16 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 ]);
 
+
+Route::resource('api/comments', 'API\CommentAPIController');
+
+Route::resource('comments', 'CommentController');
+
+Route::get('comments/{id}/delete', [
+    'as' => 'comments.delete',
+    'uses' => 'CommentController@destroy',
+]);
+
+Route::get('product/{id}', 'StoreController@product');
+Route::get('/', 'StoreController@index');
 

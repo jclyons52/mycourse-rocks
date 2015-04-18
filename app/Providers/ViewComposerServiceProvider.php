@@ -31,7 +31,8 @@ class ViewComposerServiceProvider extends ServiceProvider {
     {
         view()->composer('admin.products.fields', function ($view) {
             $view->with('categories', \App\Models\Category::lists('name', 'id'))
-                 ->with('tags', \App\Models\Tag::lists('name', 'id'));
+                 ->with('tags', \App\Models\Tag::lists('name', 'id'))
+                 ->with('files', \App\Fileentry::lists('original_filename', 'id'));
         });
     }
 
@@ -48,5 +49,6 @@ class ViewComposerServiceProvider extends ServiceProvider {
             $view->with('permissions', \App\Models\Permission::lists('name', 'id'));
         });
     }
+
 
 }

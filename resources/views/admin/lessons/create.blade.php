@@ -5,9 +5,9 @@
 
     @include('common.errors')
 
-    {!! Form::open(['route' => 'admin.products.store']) !!}
+    {!! Form::open(['route' => 'lessons.store']) !!}
 
-        @include('admin.products.fields')
+        @include('lessons.fields')
 
     {!! Form::close() !!}
 </div>

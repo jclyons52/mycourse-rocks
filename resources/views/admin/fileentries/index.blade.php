@@ -10,6 +10,7 @@
     <div class="row">
         <ul class="thumbnails">
             @foreach($entries as $entry)
+                {{$entry->filename}}
                 <div class="col-md-2">
                     <div class="thumbnail">
                         <img src="{{route('getentry', $entry->filename)}}" alt="ALT NAME" class="img-responsive" />

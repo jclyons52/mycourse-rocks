@@ -5,7 +5,7 @@
 
     @include('common.errors')
 
-    {!! Form::open(['route' => 'tags.store']) !!}
+    {!! Form::open(['route' => 'admin.tags.store']) !!}
 
         @include('admin.tags.fields')
 

@@ -30,6 +30,7 @@
                         </ul>
                     </li>
                     <li><a href="{{ url('fileentry') }}">Files</a></li>
+                    <li><a href="{{ url('admin/lessons') }}">Lessons</a></li>
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">

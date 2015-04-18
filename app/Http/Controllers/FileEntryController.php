@@ -2,8 +2,9 @@
 
 use App\Http\Controllers\Controller;
 use App\Fileentry;
+use Illuminate\Support\Facades\Queue;
 use Request;
-
+use App\Commands\GenerateThumbnailCommand;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Response;
@@ -26,6 +27,7 @@ class FileEntryController extends Controller {
 
         $file = Request::file('file');
         $extension = $file->getClientOriginalExtension();
+
         Storage::disk('local')->put($file->getFilename().'.'.$extension,  File::get($file));
         $entry = new Fileentry();
         $entry->mime = $file->getClientMimeType();
@@ -33,6 +35,10 @@ class FileEntryController extends Controller {
         $entry->filename = $file->getFilename().'.'.$extension;
 
         $entry->save();
+
+//        if($extension == 'pdf'){
+//            Queue::push( new GenerateThumbnailCommand($entry));
+//        }
 
         return redirect('fileentry');
 
