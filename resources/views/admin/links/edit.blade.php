@@ -5,9 +5,9 @@
 
     @include('common.errors')
 
-    {!! Form::open(['route' => 'admin.lessons.store']) !!}
+    {!! Form::model($link, ['route' => ['admin.links.update', $link->id], 'method' => 'patch']) !!}
 
-        @include('admin.lessons.fields')
+        @include('admin.links.fields')
 
     {!! Form::close() !!}
 </div>

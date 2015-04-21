@@ -3,9 +3,10 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Models\Quiz;
 use Illuminate\Http\Request;
 
-class LessonController extends Controller {
+class QuizController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -14,9 +15,9 @@ class LessonController extends Controller {
 	 */
 	public function index()
 	{
-        $lessons = Lesson::all();
+        $quizzes = Quiz::all();
 
-        return view('site.lessons.index')->with('lessons', $lessons);
+        return view('site.quizzes.index')->with('quizzes', $quizzes);
 	}
 
 	/**
@@ -47,15 +48,15 @@ class LessonController extends Controller {
 	 */
 	public function show($id)
 	{
-        $lesson = Lesson::find($id);
+        $quiz = Quiz::find($id);
 
-        if(empty($lesson))
+        if(empty($quiz))
         {
-            Flash::error('Lesson not found');
-            return redirect(route('admin.lessons.index'));
+            Flash::error('Quiz not found');
+            return redirect(route('admin.quizzes.index'));
         }
 
-        return view('site.lessons.show')->with('lesson', $lesson);
+        return view('admin.quizzes.show')->with('quiz', $quiz);
 	}
 
 	/**

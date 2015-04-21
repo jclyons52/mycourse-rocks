@@ -42,4 +42,8 @@ class Product extends Model
         return $this->hasMany('\App\Models\Comment');
     }
 
+    public function lessons(){
+        return $this->hasMany('App\Models\Lesson');
+    }
+
 }

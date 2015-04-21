@@ -3,6 +3,7 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
+use App\Models\Lesson;
 use App\Models\Product;
 use Response;
 use Flash;
@@ -54,5 +55,17 @@ class StoreController extends Controller {
             'one_star'     => $one_star
         ]);
 	}
+
+    public function lesson($id){
+
+        $lesson = Lesson::find($id);
+
+        if(empty($lesson))
+        {
+            Flash::error('Lesson not found');
+            return redirect('/');
+        }
+        return view('site.lessons.show')->with('lesson', $lesson);
+    }
 
 }

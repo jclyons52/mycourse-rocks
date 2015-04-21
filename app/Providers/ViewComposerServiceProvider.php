@@ -14,6 +14,7 @@ class ViewComposerServiceProvider extends ServiceProvider {
         $this->composeProductsForm();
         $this->composeUserForm();
         $this->composerRoleForm();
+        $this->composeLessonForm();
 
     }
 
@@ -47,6 +48,17 @@ class ViewComposerServiceProvider extends ServiceProvider {
     {
         view()->composer('admin.roles.fields', function ($view) {
             $view->with('permissions', \App\Models\Permission::lists('name', 'id'));
+        });
+    }
+
+    /**
+     *
+     */
+    private function composeLessonForm()
+    {
+        view()->composer('admin.lessons.fields', function ($view) {
+            $view->with('products', \App\Models\Product::lists('name', 'id'))
+                 ->with('links', \App\Models\Link::lists('name', 'id'));
         });
     }
 

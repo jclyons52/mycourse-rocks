@@ -8,7 +8,7 @@ use Mitul\Controller\AppBaseController;
 use Response;
 use Flash;
 
-class RoleController extends AppBaseController
+class AdminRoleController extends AppBaseController
 {
 
 	/**

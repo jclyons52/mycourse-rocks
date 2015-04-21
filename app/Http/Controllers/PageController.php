@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-class LessonController extends Controller {
+class PageController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -14,9 +14,7 @@ class LessonController extends Controller {
 	 */
 	public function index()
 	{
-        $lessons = Lesson::all();
-
-        return view('site.lessons.index')->with('lessons', $lessons);
+		//
 	}
 
 	/**
@@ -47,15 +45,7 @@ class LessonController extends Controller {
 	 */
 	public function show($id)
 	{
-        $lesson = Lesson::find($id);
-
-        if(empty($lesson))
-        {
-            Flash::error('Lesson not found');
-            return redirect(route('admin.lessons.index'));
-        }
-
-        return view('site.lessons.show')->with('lesson', $lesson);
+		//
 	}
 
 	/**

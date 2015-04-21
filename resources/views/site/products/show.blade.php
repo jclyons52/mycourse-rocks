@@ -1,39 +1,53 @@
 @extends('app')
 @section('content')
-
+<div class="container">
     <h1> {{$product->name}} </h1>
+    <hr/>
     <div class="row">
         <div class="col-sm-6">
-            {{$product->description}}
-            @foreach( $product->files as $file )
-                <div class="col-xs-6 col-md-3" >
-                    <a href="#" class="thumbnail">
-                        <img src="{{route('getentry', $file->filename)}}" alt="ALT NAME" class="img-responsive" />
-                    </a>
-                </div>
-
-            @endforeach
+           @include('partials.carousel', array('files' => $product->files))
         </div>
         <div class="col-sm-6">
-            @include('partials.ratings')
+            <div class="col-sm-12">
+                @include('partials.ratings')
+            </div>
         </div>
 
     </div>
+    <br/><br/><br/>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="col-sm-11">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Description</h3>
+                    </div>
+                    <div class="panel-body">
+                        {{$product->description}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-sm-8">
-            @include('partials.lessons')
+            @include('site.lessons.index')
         </div>
     </div>
     <hr>
     <h1>Comments</h1>
+    @if(Auth::check())
         @include('site.comments.comment_form')
+        @else
+        <p>Log in to comment</p>
+    @endif
 
         @foreach($product->comments as $comment)
 
-            @include('partials.comment')
+            @include('site.comments.show')
 
         @endforeach
-
+</div>
 @endsection
 
 @section('scripts')

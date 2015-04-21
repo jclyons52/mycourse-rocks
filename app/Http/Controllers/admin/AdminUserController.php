@@ -8,7 +8,7 @@ use Mitul\Controller\AppBaseController;
 use Response;
 use Flash;
 
-class UserAdminController extends AppBaseController {
+class AdminUserController extends AppBaseController {
 
 	/**
 	 * Display a listing of the resource.

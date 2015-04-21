@@ -23,7 +23,7 @@ class Lesson extends Model
 	public $fillable = [
 	    "name",
 		"description",
-        "links"
+        "product_id",
 	];
 
 	public static $rules = [
@@ -35,5 +35,12 @@ class Lesson extends Model
         return $this->belongsToMany('\App\Fileentry');
     }
 
+    public function links(){
+        return $this->belongsToMany('\App\Models\Link');
+    }
+
+    public function quizzes(){
+        return $this->hasMany('\App\Models\Quiz');
+    }
 
 }
