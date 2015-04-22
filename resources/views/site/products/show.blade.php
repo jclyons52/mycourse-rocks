@@ -16,13 +16,27 @@
     </div>
     <br/><br/><br/>
     <div class="row">
+        <div class="col-sm-2">
+            @if ($product->isFavoritedBy(Auth::user()))
+                <a class="btn btn-success btn-block" href="{!! route('favorites.delete', [$product->id]) !!}"><span class="fa fa-minus-circle"></span>Unfavorite {{ $product->name }}</a>
+            @else
+                {!! Form::open(['route' => 'favorites.store']) !!}
+                {!! Form::hidden('productIdToFavorite', $product->id) !!}
+                <button type="submit" class="btn btn-success btn-block"><span class="fa fa-plus-circle"></span>Favorite {{ $product->name }}</button>
+                {!! Form::close() !!}
+            @endif
+        </div>
+    </div>
+    <br/>
+    <div class="row">
         <div class="col-sm-12">
-            <div class="col-sm-11">
+            <div class="col-sm-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">Description</h3>
                     </div>
                     <div class="panel-body">
+
                         {{$product->description}}
                     </div>
                 </div>

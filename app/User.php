@@ -10,7 +10,7 @@ use Laravel\Cashier\Contracts\Billable as BillableContract;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract, BillableContract {
 
-	use Authenticatable, CanResetPassword, Billable;
+	use Authenticatable, CanResetPassword, Billable, FollowableTrait;
 
     /**
      * The non standard date fields that should be converted to Carbon instances
@@ -52,6 +52,12 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 	}
 
+    public function products(){
+
+        return $this->belongsToMany('App\Models\Product');
+
+    }
+
 	/**
      * Checks if the user has a Role by its name.
      *
@@ -70,5 +76,18 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return false;
     }
 
+    public function followerCount()
+    {
+        $count = $this->followers()->count();
+
+        return $count;
+    }
+
+    public function followsCount()
+    {
+        $count = $this->followedUsers()->count();
+
+        return $count;
+    }
 
 }

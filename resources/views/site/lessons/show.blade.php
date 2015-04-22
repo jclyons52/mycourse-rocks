@@ -6,7 +6,7 @@
                 <div class="col-md-2 sidebar">
                     <ul class="nav nav-pills nav-stacked">
                         <li class="active" ><a href="#content" role="tab" data-toggle="tab">content</a></li>
-                        <li ><a href="#quiz-list" role="tab" data-toggle="tab">quiz</a></li>
+                        <li ><a href="#quiz-main" role="tab" data-toggle="tab">quiz</a></li>
                     </ul>
                 </div>
                 <div class="container-fluid main-container">
@@ -31,7 +31,7 @@
                         </div>
                     </div>
                 <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane" id="quiz">
+                    <div role="tabpanel" class="tab-pane" id="quiz-main">
                         <div class="col-md-8 content">
                             <div class="panel panel-default">
                                 <div class="panel-heading">

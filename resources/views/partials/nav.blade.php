@@ -7,20 +7,15 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Laravel</a>
+				<a class="navbar-brand" href="#">Precocity</a>
 			</div>
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li><a href="{{ url('/') }}">Home</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Product Management<span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ url('admin/products') }}">products</a></li>
-                            <li><a href="{{ url('admin/categories') }}">Categories</a></li>
-                            <li><a href="{{ url('admin/tags') }}">Tags</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="{{ url('about') }}">About</a></li>
+                    <li><a href="{{ url('categories') }}">Categories</a></li>
+                    <li><a href="{{ url('popular') }}">Popular</a></li>
 
 				</ul>
 

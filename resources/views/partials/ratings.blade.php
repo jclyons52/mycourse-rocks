@@ -5,7 +5,7 @@
                 <div class="row">
                     <div class="col-xs-12 col-md-6 text-center">
                         <h1 class="rating-num">
-                            {{$avg_rating}}</h1>
+                            {{$product->rating()}}</h1>
                         <div class="rating">
                             <span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star">
                             </span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star">

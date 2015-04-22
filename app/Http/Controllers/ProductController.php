@@ -52,7 +52,6 @@ class ProductController extends Controller {
 	public function show($id)
 	{
         $product = Product::find($id);
-        $avg_rating = Comment::where('product_id', '=', $product->id)->avg('rating');
         $rating_cont = Comment::where('product_id', '=', $product->id)->count();
         $five_star = Comment::where('product_id', '=', $product->id)->where('rating', '=', '5')->count()*100/$rating_cont;
         $four_star = Comment::where('product_id', '=', $product->id)->where('rating', '=', '4')->count()*100/$rating_cont;
@@ -68,7 +67,6 @@ class ProductController extends Controller {
 
         return view('site.products.show')->with([
             'product'      => $product,
-            'avg_rating'   => $avg_rating,
             'rating_count' => $rating_cont,
             'five_star'    => $five_star,
             'four_star'    => $four_star,

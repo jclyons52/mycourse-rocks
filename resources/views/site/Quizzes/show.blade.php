@@ -1,8 +1,8 @@
-<div class="container-fluid bg-info">
+<div class="container-fluid bg-info" id="quiz-modal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h3><span class="label label-warning" id="qid">2</span> THREE is CORRECT</h3>
+                <h3>     <p id="question"></p> </h3>
             </div>
             <div class="modal-body">
                 <div class="col-xs-3 col-xs-offset-5">
@@ -19,10 +19,10 @@
                 </div>
 
                 <div class="quiz" id="quiz" data-toggle="buttons">
-                    <label class="element-animation1 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="1">1 One</label>
-                    <label class="element-animation2 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="2">2 Two</label>
-                    <label class="element-animation3 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="3">3 Three</label>
-                    <label class="element-animation4 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="4">4 Four</label>
+                    <label id="answer_1" class="element-animation1 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input id="input_1" type="radio" name="q_answer" value="1"></label>
+                    <label id="answer_2" class="element-animation2 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="2"></label>
+                    <label id="answer_3" class="element-animation3 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="3"></label>
+                    <label id="answer_4" class="element-animation4 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="4"></label>
                 </div>
             </div>
             <div class="modal-footer text-muted">
@@ -32,36 +32,94 @@
     </div>
 </div>
 
+<div class="container-fluid bg-info" id="quiz-complete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Quiz complete</h3>
+            </div>
+            <div class="modal-body">
+                score = <div id="total"></div>
+                {!! Form::open() !!}
+                <input type="hidden" name="total" id="upload-total"/>
+                <!--- Submit Field --->
+                <div class="form-group col-sm-12">
+                    {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
+                </div>
+                {!! Form::close() !!}
+            </div>
+            <div class="modal-footer text-muted">
+                <span id="total"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 @section('scripts')
     <script>
-        $(function(){
+        $(document).ready(function(){
+
+            var json = {!! json_encode($lesson->quizzes) !!};
+
+
+            $('#quiz-complete').hide();
+
             var loading = $('#loadbar').hide();
+
             $(document)
                     .ajaxStart(function () {
                         loading.show();
                     }).ajaxStop(function () {
                         loading.hide();
                     });
+             i = 0;
+            total = 0;
+            $('#question').html(json[i].question);
+            $('#answer_1').html(json[i].answer);
+            $('#answer_2').html(json[i].false_answer1);
+            $('#answer_3').html(json[i].false_answer2);
+            $('#answer_4').html(json[i].false_answer3);
 
             $("label.btn").on('click',function () {
-                var choice = $(this).find('input:radio').val();
+                var choice = $(this).html();
+                        console.log(choice);
                 $('#loadbar').show();
                 $('#quiz').fadeOut();
                 setTimeout(function(){
                     $( "#answer" ).html(  $(this).checking(choice) );
-                    $('#quiz').show();
-                    $('#loadbar').fadeOut();
+                    i++;
+                    if(i >= json.length){
+                        $('#loadbar').fadeOut();
+                        $('#quiz-modal').hide();
+                        $('#quiz-complete').show();
+                        $('#total').html(total+'/'+json.length);
+                        $('#upload-total').val(total);
+                    }else{
+                        $('#question').html(json[i].question);
+                        $('#answer_1').html(json[i].answer);
+                        $('#answer_2').html(json[i].false_answer1);
+                        $('#answer_3').html(json[i].false_answer2);
+                        $('#answer_4').html(json[i].false_answer3);
+                        $('#quiz').show();
+                        $('#loadbar').fadeOut();
+                    }
+
+
                     /* something else */
-                }, 1500);
+                }, 500);
             });
 
-            $ans = 3;
-
+            $ans = json[0].answer;
+            console.log($ans);
             $.fn.checking = function(ck) {
-                if (ck != $ans)
+                if (ck != $ans) {
                     return 'INCORRECT';
-                else
+                } else {
+                    total ++;
                     return 'CORRECT';
+                }
             };
         });
     </script>

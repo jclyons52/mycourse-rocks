@@ -38,6 +38,7 @@ Route::resource('products', 'ProductController');
 Route::resource('lessons', 'LessonController');
 Route::resource('categories', 'CategoryController');
 Route::resource('quizzes', 'QuizController');
+Route::resource('users', 'UserController');
 
 Route::resource('comments', 'CommentController');
 
@@ -46,10 +47,36 @@ Route::get('comments/{id}/delete', [
     'uses' => 'CommentController@destroy',
 ]);
 
+Route::get('about', 'PageController@about');
+Route::get('popular', 'PageController@popular');
+
 Route::get('product/{id}', 'StoreController@product');
 Route::get('/', 'CategoryController@index');
 
 Route::get('/lesson/{id}', 'StoreController@lesson');
+
+Route::post('follows', [
+    'as' => 'follows.store',
+    'uses' => 'FollowsController@store'
+]);
+
+Route::get('follows/{id}', [
+    'as' => 'follows.delete',
+    'uses' => 'FollowsController@destroy'
+]);
+
+/*
+ * favorites routes
+ */
+Route::post('favorites', [
+    'as' => 'favorites.store',
+    'uses' => 'FavoritesController@store'
+]);
+
+Route::get('favorites/{id}', [
+    'as' => 'favorites.delete',
+    'uses' => 'FavoritesController@destroy'
+]);
 
 
 
