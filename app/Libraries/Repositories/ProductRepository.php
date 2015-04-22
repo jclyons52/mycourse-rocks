@@ -25,9 +25,9 @@ class ProductRepository {
      * @param User $user
      * @return mixed
      */
-    public function unfollow($productIdToUnfavorite, User $user)
+    public function unFavorite($productIdToUnfavorite, User $user)
     {
-        return $user->followedUsers()->detach($productIdToUnfavorite);
+        return $user->products()->detach($productIdToUnfavorite);
     }
 
 }

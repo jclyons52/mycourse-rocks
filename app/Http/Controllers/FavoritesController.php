@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\Commands\FavoriteProductCommand;
+use App\Commands\UnfavoriteProductCommand;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -36,11 +37,11 @@ class FavoritesController extends Controller {
     public function destroy($productIdToUnfavorite)
     {
 
-//        $this->dispatch(new UnfavoriteProductCommand( Auth::id(), $productIdToUnfavorite ));
-//
-//        Flash::success('You have now unfollowed this user.');
-//
-//        return redirect()->back();
+        $this->dispatch(new UnfavoriteProductCommand( Auth::id(), $productIdToUnfavorite ));
+
+        Flash::success('You have now unfollowed this user.');
+
+        return redirect()->back();
     }
 
 }
