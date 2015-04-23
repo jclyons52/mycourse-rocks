@@ -4,22 +4,18 @@
     {!! Form::text('name', null, ['class' => 'form-control']) !!}
 </div>
 
-<!--- Price Field --->
-<div class="form-group col-sm-6 col-lg-4">
-    {!! Form::label('price', 'Price:') !!}
-    {!! Form::text('price', null, ['class' => 'form-control']) !!}
-</div>
-
 <!--- Description Field --->
 <div class="form-group col-sm-6 col-lg-4">
     {!! Form::label('description', 'Description:') !!}
     {!! Form::text('description', null, ['class' => 'form-control']) !!}
 </div>
 
+{!! Form::hidden('userId', Auth::user()->id) !!}
+
 <!--- Category Field --->
 <div class="form-group">
     {!! Form::label('category_id', 'Category:') !!}
-    {!! Form::select('category_id', $categories, null, ['class' => 'form-control', 'id' => 'product_category']) !!}
+    {!! Form::select('category_id', $categories, null, ['class' => 'form-control', 'id' => 'category_id']) !!}
 </div>
 
 <!--- Tags Field --->

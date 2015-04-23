@@ -3,34 +3,28 @@
         <div class="col-md-12">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <span class="glyphicon glyphicon-list"></span>Sortable Lists
-                    <div class="pull-right action-buttons">
-                        <div class="btn-group pull-right">
-                            <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                <span class="glyphicon glyphicon-cog" style="margin-right: 0px;"></span>
-                            </button>
-                            <ul class="dropdown-menu slidedown">
-                                <li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-pencil"></span>Watch later</a></li>
-                                <li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-trash"></span>Favorite</a></li>
-                                <li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-flag"></span>Flag</a></li>
-                            </ul>
-                        </div>
-                    </div>
+                    <span class="glyphicon glyphicon-list"></span> Lessons
+
                 </div>
                 <div class="panel-body">
                     <ul class="list-group">
-                        @foreach($product->lessons as $lesson)
+                        @if(Auth::check() && Auth::user()->hasRole('Product'.$product->id.'mod'))
                             <li class="list-group-item">
-                                <div class="checkbox">
-                                    <input type="checkbox" id="checkbox" />
-                                    <label for="checkbox">
-                                        {{$lesson->name}}
-                                    </label>
-                                </div>
+                                <a class="btn btn-primary action-buttons" href="{!! route('lessons.create',[$product->id]) !!}">Add New</a>
+                            </li>
+                        @endif
+                        @foreach($product->lessons as $lesson)
+                            <a href="{!! url('lesson/'. $lesson->id) !!}">
+                            <li class="list-group-item">
+                                {{$lesson->name}}
+                                @if(Auth::check() && Auth::user()->hasRole('Product'.$product->id.'mod'))
+                                    <a class="btn btn-primary action-buttons pull-right" href="{!! route('lessons.edit',[$product->id]) !!}">Edit Lesson</a>
+                                @endif
                                 <div class="pull-right action-buttons">
-                                    <a href="{!! url('lesson/'. $lesson->id) !!}"><span class="glyphicon glyphicon-arrow-right"></span></a>
+
                                 </div>
                             </li>
+                            </a>
                         @endforeach
                     </ul>
                 </div>

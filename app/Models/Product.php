@@ -17,12 +17,11 @@ class Product extends Model
 	    "name",
 		"price",
 		"description",
-		"category"
+		"category_id"
 	];
 
 	public static $rules = [
-	    "name" => "required",
-		"price" => "required"
+	    "name" => "required"
 	];
 
     public function tags(){
@@ -50,6 +49,7 @@ class Product extends Model
 
     public function rating()
     {
+
         return number_format(Comment::where('product_id', '=', $this->id)->avg('rating'), 2);
     }
 

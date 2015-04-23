@@ -17,7 +17,8 @@ class Quiz extends Model
 		"answer",
 		"false_answer1",
 		"false_answer2",
-		"false_answer3"
+		"false_answer3",
+        "lessson_id"
 	];
 
 	public static $rules = [

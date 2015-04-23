@@ -3,11 +3,14 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Http\Requests\CreateProductRequest;
 use App\Models\Comment;
 use App\Models\Product;
+use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Laracasts\Flash\Flash;
 use Response;
-use Flash;
 
 class ProductController extends Controller {
 
@@ -30,7 +33,7 @@ class ProductController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		return view('site.products.create');
 	}
 
 	/**
@@ -38,9 +41,25 @@ class ProductController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(CreateProductRequest $request)
 	{
-		//
+        $input = $request->all();
+
+        $product = Product::create($input);
+
+        $mod_role = Role::create(['name' => 'Product'.$product->id.'mod']);
+
+        Auth::user()->roles()->attach($mod_role->id);
+
+        $files = $request->input('files');
+
+        if($files) {
+            $this->syncFiles($product, $files);
+        }
+
+        Flash::message('Product saved successfully.');
+
+        return redirect(route('products.show', [$product->id]));
 	}
 
 	/**
@@ -53,11 +72,17 @@ class ProductController extends Controller {
 	{
         $product = Product::find($id);
         $rating_cont = Comment::where('product_id', '=', $product->id)->count();
-        $five_star = Comment::where('product_id', '=', $product->id)->where('rating', '=', '5')->count()*100/$rating_cont;
-        $four_star = Comment::where('product_id', '=', $product->id)->where('rating', '=', '4')->count()*100/$rating_cont;
-        $three_star = Comment::where('product_id', '=', $product->id)->where('rating', '=', '3')->count()*100/$rating_cont;
-        $two_star = Comment::where('product_id', '=', $product->id)->where('rating', '=', '2')->count()*100/$rating_cont;
-        $one_star = Comment::where('product_id', '=', $product->id)->where('rating', '=', '1')->count()*100/$rating_cont;
+        $checked_rating_count = ($rating_cont > 0 ? $rating_cont : 1);
+
+        $five_star = Comment::where('product_id', '=', $product->id)->where('rating', '=', '5')->count()*100/$checked_rating_count;
+
+        $four_star = Comment::where('product_id', '=', $product->id)->where('rating', '=', '4')->count()*100/$checked_rating_count;
+
+        $three_star = Comment::where('product_id', '=', $product->id)->where('rating', '=', '3')->count()*100/$checked_rating_count;
+
+        $two_star = Comment::where('product_id', '=', $product->id)->where('rating', '=', '2')->count()*100/$checked_rating_count;
+
+        $one_star = Comment::where('product_id', '=', $product->id)->where('rating', '=', '1')->count()*100/$checked_rating_count;
 
         if(empty($product))
         {
@@ -108,5 +133,10 @@ class ProductController extends Controller {
 	{
 		//
 	}
+
+    private function syncFiles($product, $input)
+    {
+        $product->files()->sync($input);
+    }
 
 }

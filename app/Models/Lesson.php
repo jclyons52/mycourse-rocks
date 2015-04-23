@@ -36,11 +36,15 @@ class Lesson extends Model
     }
 
     public function links(){
-        return $this->belongsToMany('\App\Models\Link');
+        return $this->hasMany('\App\Models\Link');
     }
 
     public function quizzes(){
         return $this->hasMany('\App\Models\Quiz');
+    }
+
+    public function product(){
+        return $this->belongsTo('\App\Models\Product');
     }
 
 }

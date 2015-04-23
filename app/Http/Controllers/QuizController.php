@@ -3,8 +3,10 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Http\Requests\CreateQuizRequest;
 use App\Models\Quiz;
 use Illuminate\Http\Request;
+use Laracasts\Flash\Flash;
 
 class QuizController extends Controller {
 
@@ -35,9 +37,15 @@ class QuizController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(CreateQuizRequest $request)
 	{
-		//
+        $input = $request->all();
+
+        $quiz = Quiz::create($input);
+
+        Flash::message('Quiz saved successfully.');
+
+        return redirect(route('lessons.edit', [$quiz->lesson_id]))->with('active_tab', 'quiz');
 	}
 
 	/**

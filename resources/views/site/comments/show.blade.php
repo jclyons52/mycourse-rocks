@@ -1,11 +1,8 @@
 <div class="row">
-    <div class="col-md-2 col-sm-2 hidden-xs">
-        <figure class="thumbnail">
+    <div class="col-md-1 col-sm-2 hidden-xs">
             <a href="{{route('users.show',[$comment->user->id])}}">
-            <img class="img-responsive" src="//www.gravatar.com/avatar/{{ md5($comment->user->email) }}" />
+            <img class="img-responsive img-circle" src="//www.gravatar.com/avatar/{{ md5($comment->user->email) }}" />
             </a>
-            <figcaption class="text-center"></figcaption>
-        </figure>
     </div>
     <div class="col-md-10 col-sm-10">
         <div class="panel panel-default arrow left">

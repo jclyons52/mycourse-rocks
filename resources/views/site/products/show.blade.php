@@ -4,9 +4,8 @@
     <h1> {{$product->name}} </h1>
     <hr/>
     <div class="row">
-        <div class="col-sm-6">
-           @include('partials.carousel', array('files' => $product->files))
-        </div>
+            @include('site.products.thumbnail')
+
         <div class="col-sm-6">
             <div class="col-sm-12">
                 @include('partials.ratings')
@@ -14,35 +13,8 @@
         </div>
 
     </div>
-    <br/><br/><br/>
-    <div class="row">
-        <div class="col-sm-2">
-            @if ($product->isFavoritedBy(Auth::user()))
-                <a class="btn btn-success btn-block" href="{!! route('favorites.delete', [$product->id]) !!}"><span class="fa fa-minus-circle"></span>Unfavorite {{ $product->name }}</a>
-            @else
-                {!! Form::open(['route' => 'favorites.store']) !!}
-                {!! Form::hidden('productIdToFavorite', $product->id) !!}
-                <button type="submit" class="btn btn-success btn-block"><span class="fa fa-plus-circle"></span>Favorite {{ $product->name }}</button>
-                {!! Form::close() !!}
-            @endif
-        </div>
-    </div>
-    <br/>
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="col-sm-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Description</h3>
-                    </div>
-                    <div class="panel-body">
+ <br/><br/>
 
-                        {{$product->description}}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="row">
         <div class="col-sm-8">
             @include('site.lessons.index')

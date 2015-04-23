@@ -11,9 +11,11 @@ class ViewComposerServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
+        $this->composeAdminProductsForm();
         $this->composeProductsForm();
         $this->composeUserForm();
         $this->composerRoleForm();
+        $this->composeAdminLessonForm();
         $this->composeLessonForm();
 
     }
@@ -28,9 +30,18 @@ class ViewComposerServiceProvider extends ServiceProvider {
 		//
 	}
 
-    public function composeProductsForm()
+    public function composeAdminProductsForm()
     {
         view()->composer('admin.products.fields', function ($view) {
+            $view->with('categories', \App\Models\Category::lists('name', 'id'))
+                ->with('tags', \App\Models\Tag::lists('name', 'id'))
+                ->with('files', \App\Fileentry::lists('original_filename', 'id'));
+        });
+    }
+
+    public function composeProductsForm()
+    {
+        view()->composer('site.products.fields', function ($view) {
             $view->with('categories', \App\Models\Category::lists('name', 'id'))
                  ->with('tags', \App\Models\Tag::lists('name', 'id'))
                  ->with('files', \App\Fileentry::lists('original_filename', 'id'));
@@ -54,9 +65,17 @@ class ViewComposerServiceProvider extends ServiceProvider {
     /**
      *
      */
-    private function composeLessonForm()
+    private function composeAdminLessonForm()
     {
         view()->composer('admin.lessons.fields', function ($view) {
+            $view->with('products', \App\Models\Product::lists('name', 'id'))
+                ->with('links', \App\Models\Link::lists('name', 'id'));
+        });
+    }
+
+    private function composeLessonForm()
+    {
+        view()->composer('site.lessons.fields', function ($view) {
             $view->with('products', \App\Models\Product::lists('name', 'id'))
                  ->with('links', \App\Models\Link::lists('name', 'id'));
         });

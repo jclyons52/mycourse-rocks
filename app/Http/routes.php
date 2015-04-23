@@ -36,9 +36,16 @@ Route::controllers([
 
 Route::resource('products', 'ProductController');
 Route::resource('lessons', 'LessonController');
+Route::get('lessons/create/{id}', [
+    'as' => 'lessons.create',
+    'uses' => 'LessonController@create'
+]);
+
+
 Route::resource('categories', 'CategoryController');
 Route::resource('quizzes', 'QuizController');
 Route::resource('users', 'UserController');
+Route::resource('links', 'LinksController');
 
 Route::resource('comments', 'CommentController');
 

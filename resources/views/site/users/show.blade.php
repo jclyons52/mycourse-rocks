@@ -14,7 +14,7 @@
                         </div>
                         <div class="col-xs-12 col-sm-4 text-center">
                             <figure>
-                                <img class="img-responsive img-circle" src="//www.gravatar.com/avatar/{{ md5($user->email) }}" />
+                                <img class="img-responsive img-circle" src="//www.gravatar.com/avatar/{{md5($user->email)}}" />
                                 <figcaption class="ratings">
                                     <p>Ratings
                                         <a href="#">

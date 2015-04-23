@@ -5,6 +5,9 @@
                 <a href="{!! route('products.show', [$product->id]) !!}" role="button">
                 <div class="col-md-6">
                     <img class="lib-img-show" src="{{route('getentry', $product->files[0]->filename)}}" alt="{{$product->name}}">
+                    <div class="fav-button">
+                        @include('site.products.partials.favorite-form')
+                    </div>
                     </div>
                 <div class="col-md-6">
                     <div class="lib-row lib-header">
@@ -12,16 +15,33 @@
                         <div class="lib-header-seperator"></div>
                     </div>
                     <div class="lib-row lib-desc">
-                        {{$product->description}}
+                        {{ Str::limit($product->description, 40) }}
+
                     </div>
                 </div>
+
                 </a>
             </div>
+
         </div>
     </div>
+</div>
+
+
+    @section('scripts')
+        <script>
+            $('.pull-down-thumbnail').each(function() {
+                $(this).css('margin-top', $(this).parent().height()-$(this).height())
+            });
+        </script>
+    @endsection
 
     @section('styles')
         <style>
+            .fav-button{
+                position: absolute;
+                bottom: 0;
+            }
             .lib-panel {
                 /*margin-bottom: 20Px;*/
             }

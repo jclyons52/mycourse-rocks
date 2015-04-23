@@ -13,7 +13,8 @@ class Link extends Model
 
 	public $fillable = [
 	    "url",
-		"name"
+		"name",
+        "lesson_id"
 	];
 
 	public static $rules = [

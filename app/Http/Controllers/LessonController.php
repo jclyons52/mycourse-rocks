@@ -3,7 +3,11 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Http\Requests\CreateLessonRequest;
+use App\Models\Lesson;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use Laracasts\Flash\Flash;
 
 class LessonController extends Controller {
 
@@ -24,9 +28,10 @@ class LessonController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function create($product_id)
 	{
-		//
+//        dd($product_id);
+        return view('site.lessons.create')->with('product_id', $product_id);
 	}
 
 	/**
@@ -34,9 +39,20 @@ class LessonController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(CreateLessonRequest $request)
 	{
-		//
+        $input = $request->all();
+        $lesson = Lesson::create($input);
+
+        $links = $request->input('links');
+
+        if($links) {
+            $this->sync($lesson, $links);
+        }
+
+        Flash::message('Lesson saved successfully.');
+
+        return redirect(route('lessons.edit',[$lesson->id]));
 	}
 
 	/**
@@ -64,9 +80,23 @@ class LessonController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit(Request $request ,$id)
 	{
-		//
+        if( null !== Session::get('active_tab'))
+        {
+            $active_tab = Session::get('active_tab');
+        }
+        else
+        {
+            $active_tab = 'links';
+        }
+
+        $lesson = Lesson::find($id);
+
+		return view('site.lessons.edit')
+            ->with('lesson', $lesson)
+            ->with('product_id', $lesson->product->id)
+            ->with('active_tab', $active_tab);
 	}
 
 	/**
