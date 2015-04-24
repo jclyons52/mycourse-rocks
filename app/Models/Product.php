@@ -22,9 +22,12 @@ class Product extends Model
 
 	];
 
-	public static $rules = [
-	    "name" => "required"
-	];
+    public static $rules = [
+        "name"         => "required",
+        "description"  => "required",
+        "category_id"  => "required",
+        "files" => "required"
+    ];
 
     public function tags(){
 
