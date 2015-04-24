@@ -52,8 +52,8 @@ class CommentController extends AppBaseController
 	public function store(CreateCommentRequest $request)
 	{
         $input = $request->all();
+//        dd($input);
         $input['user_id'] = Auth::user()->id;
-
 
 		$comment = $this->commentRepository->store($input);
 

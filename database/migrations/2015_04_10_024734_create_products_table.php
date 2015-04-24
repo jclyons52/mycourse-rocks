@@ -20,6 +20,7 @@ class CreateProductsTable extends Migration
 			$table->double('price');
 			$table->text('description');
 			$table->integer('category_id');
+            $table->integer('fileentry_id');
 			$table->timestamps();
 
 		});

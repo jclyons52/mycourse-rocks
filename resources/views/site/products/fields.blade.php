@@ -15,7 +15,7 @@
 <!--- Category Field --->
 <div class="form-group">
     {!! Form::label('category_id', 'Category:') !!}
-    {!! Form::select('category_id', $categories, null, ['class' => 'form-control', 'id' => 'category_id']) !!}
+    {!! Form::select('category_id', $categories, null, ['class' => 'form-control', 'id' => 'product_category']) !!}
 </div>
 
 <!--- Tags Field --->
@@ -27,7 +27,7 @@
 <!--- Tags Field --->
 <div class="form-group">
     {!! Form::label('files', 'Files:') !!}
-    {!! Form::select('files[]', $files, (isset($product) ? $product->files->lists('id') : null), ['class' => 'form-control', 'multiple', 'id' => 'prodecut_files']) !!}
+    {!! Form::file('files', (isset($product) ? $product->files->lists('id') : null), ['class' => 'form-control']) !!}
 </div>
 
 

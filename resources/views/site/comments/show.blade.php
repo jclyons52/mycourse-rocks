@@ -9,7 +9,14 @@
             <div class="panel-body">
                 <header class="text-left">
                     <div class="comment-user"><i class="fa fa-user"></i>{{$comment->user->name}}</div>
-                    <div id="stars" class="starrr" data-rating='{{$comment->rating}}'></div>
+                    <div>
+                        @for( $i = 0; $i < $comment->rating; $i++)
+                            <i class="glyphicon glyphicon-star"></i>
+                        @endfor
+                            @for( $i = 0; $i < (5 - $comment->rating); $i++)
+                                <i class="glyphicon glyphicon-star-empty"></i>
+                            @endfor
+                    </div>
                     <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i>{{$comment->created_at}}</time>
                 </header>
                 <div class="comment-post">

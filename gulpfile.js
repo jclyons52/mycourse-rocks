@@ -18,7 +18,9 @@ elixir(function(mix) {
     	'libs/roboto.css',
     	'libs/select2.min.css',
         'libs/dropzone.css',
-    	'app.css'
+        'libs/star-rating.min.css',
+    	'app.css',
+
 
     ]);
 
@@ -26,7 +28,8 @@ elixir(function(mix) {
     	'libs/jquery.min.js',
     	'libs/bootstrap.min.js',
     	'libs/select2.min.js',
-        'libs/dropzone.js'
+        'libs/dropzone.js',
+        'libs/star-rating.min.js'
     	
     ]);
 

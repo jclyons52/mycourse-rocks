@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\Fileentry;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -9,6 +10,8 @@ use App\Models\Product;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use Laracasts\Flash\Flash;
 use Response;
 
@@ -43,19 +46,20 @@ class ProductController extends Controller {
 	 */
 	public function store(CreateProductRequest $request)
 	{
+        $user = Auth::user();
         $input = $request->all();
+        $file = $input['files'];
+        $file_id = $this->addThumbnail($file);
+        $input['fileentry_id'] = $file_id;
 
         $product = Product::create($input);
+        $user->products()->save($product, ['owner' => '1']);
 
         $mod_role = Role::create(['name' => 'Product'.$product->id.'mod']);
 
-        Auth::user()->roles()->attach($mod_role->id);
+        $user->roles()->attach($mod_role->id);
 
-        $files = $request->input('files');
 
-        if($files) {
-            $this->syncFiles($product, $files);
-        }
 
         Flash::message('Product saved successfully.');
 
@@ -133,6 +137,22 @@ class ProductController extends Controller {
 	{
 		//
 	}
+
+    /**
+     * @param $file
+     */
+    public function addThumbnail($file)
+    {
+        $extension = $file->getClientOriginalExtension();
+
+        Storage::disk('local')->put($file->getFilename() . '.' . $extension, File::get($file));
+        $entry = new Fileentry();
+        $entry->mime = $file->getClientMimeType();
+        $entry->original_filename = $file->getClientOriginalName();
+        $entry->filename = $file->getFilename() . '.' . $extension;
+        $entry->save();
+        return $entry->id;
+    }
 
     private function syncFiles($product, $input)
     {

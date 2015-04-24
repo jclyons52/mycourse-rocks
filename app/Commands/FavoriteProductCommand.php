@@ -26,7 +26,7 @@ class FavoriteProductCommand extends Command {
     public function __construct($userId, $productIdToFavorite)
     {
         $this->userId = $userId;
-        $this->userIdToFollow = $productIdToFavorite;
+        $this->productIdToFavorite = $productIdToFavorite;
     }
 
 }

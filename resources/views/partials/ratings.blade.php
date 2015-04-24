@@ -6,10 +6,13 @@
                     <div class="col-xs-12 col-md-6 text-center">
                         <h1 class="rating-num">
                             {{$product->rating()}}</h1>
-                        <div class="rating">
-                            <span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star">
-                            </span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star">
-                            </span><span class="glyphicon glyphicon-star-empty"></span>
+                        <div>
+                            @for( $i = 0; $i < round($product->rating()); $i++)
+                                <i class="glyphicon glyphicon-star"></i>
+                            @endfor
+                            @for( $i = 0; $i < (5 - ($product->rating())); $i++)
+                                <i class="glyphicon glyphicon-star-empty"></i>
+                            @endfor
                         </div>
                         <div>
                             <span class="glyphicon glyphicon-user"></span>{{$rating_count}} total

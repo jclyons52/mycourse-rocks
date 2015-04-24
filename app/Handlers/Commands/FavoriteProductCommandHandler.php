@@ -38,7 +38,7 @@ class FavoriteProductCommandHandler {
 	{
         $user = $this->userRepo->findById($command->userId);
 
-        $this->productRepo->favorite($command->userIdToFollow, $user);
+        $this->productRepo->favorite($command->productIdToFavorite, $user);
 
         return $user;
 	}

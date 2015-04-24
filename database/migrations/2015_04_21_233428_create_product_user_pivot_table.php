@@ -18,6 +18,9 @@ class CreateProductUserPivotTable extends Migration {
 			$table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
 			$table->integer('user_id')->unsigned()->index();
 			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->boolean('favorite');
+            $table->boolean('owner');
+            $table->boolean('mod');
 
 		});
 	}

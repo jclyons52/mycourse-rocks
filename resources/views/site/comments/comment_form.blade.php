@@ -12,9 +12,7 @@
             <div class="panel-body">
                 <header class="text-left">
                     <div class="comment-user"><i class="fa fa-user">{{Auth::user()->name}}</i></div>
-                    <div id="stars" class="starrr">
-                        <input type="hidden" id="count" value="0" name="rating" />
-                    </div>
+                    <input id="input-id" type="text" name="rating" class="rating" min=0 max=5 step=1 data-size="xs" >
                 </header>
                 <div class="comment-post">
                     <label for="content">Comment</label>
@@ -27,3 +25,9 @@
     </div>
     {!! Form::close() !!}
 </div>
+
+@section('scripts')
+    <script>
+
+    </script>
+@endsection

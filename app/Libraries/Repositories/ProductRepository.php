@@ -15,7 +15,7 @@ class ProductRepository {
      */
     public function favorite($productIdToFavorite, User $user)
     {
-        return $user->products()->attach($productIdToFavorite);
+        return $user->products()->attach($productIdToFavorite, ['favorite' => '1']);
     }
 
     /**

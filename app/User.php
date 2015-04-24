@@ -54,7 +54,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     public function products(){
 
-        return $this->belongsToMany('App\Models\Product');
+        return $this->belongsToMany('App\Models\Product')->withPivot('favorite', 'owner', 'mod');
 
     }
 

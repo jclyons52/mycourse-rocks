@@ -17,7 +17,9 @@ class Product extends Model
 	    "name",
 		"price",
 		"description",
-		"category_id"
+		"category_id",
+        "fileentry_id"
+
 	];
 
 	public static $rules = [
@@ -34,16 +36,18 @@ class Product extends Model
         return $this->belongsTo('\App\Models\Category');
     }
 
-    public function files(){
+    public function file(){
 
-        return $this->belongsToMany('\App\Fileentry');
+        return $this->belongsTo('\App\Fileentry', 'fileentry_id');
     }
 
     public function comments(){
+
         return $this->hasMany('\App\Models\Comment');
     }
 
     public function lessons(){
+
         return $this->hasMany('App\Models\Lesson');
     }
 
@@ -63,9 +67,16 @@ class Product extends Model
 
     public function isFavoritedBy(User $user)
     {
-        $favorites = $user->products()->lists('product_id');
+        $favorites = $user->products()->wherePivot('favorite', '1')->lists('product_id');
 
         return in_array($this->id, $favorites);
+    }
+
+    public function isOwnedBy(User $user)
+    {
+        $owned = $user->products()->wherePivot('owner', '1')->lists('product_id');
+
+        return in_array($this->id, $owned);
     }
 
 

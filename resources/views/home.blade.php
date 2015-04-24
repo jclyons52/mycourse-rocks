@@ -38,23 +38,45 @@
             </div>
             </div>
         </div>
-		<div class="col-md-8">
+        <div class="col-md-8">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    My courses
+                    <div class="pull-right btn-group">
+                        <a href="{{route('products.create')}}" class="btn btn-primary">create a course</a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="panel-body">
+                    @foreach(Auth::user()->products as $product)
+                        @if($product->pivot->owner == true)
+                            @include('site.products.thumbnail')
+                        @endif
+                    @endforeach
+                </div>
+            </div>
+        </div>
+		<div class="col-md-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">Favorites</div>
 
 				<div class="panel-body">
                     @foreach(Auth::user()->products as $product)
-
-                        @include('site.products.thumbnail')
-
+                        @if($product->pivot->favorite == true)
+                            @include('site.products.thumbnail')
+                        @endif
                     @endforeach
 				</div>
 			</div>
 		</div>
+        </div>
+
 	</div>
     <div class="row">
         <div class="col-sm-4">
-            <a href="{{route('products.create')}}" class="btn btn-default">create a course</a>
+
         </div>
         <div class="col-sm-6">
         </div>
