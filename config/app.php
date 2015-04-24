@@ -144,7 +144,7 @@ return [
 		'App\Providers\ConfigServiceProvider',
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
-        'App\providers\ViewComposerServiceProvider',
+//        'App\providers\ViewComposerServiceProvider',
         'Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider',
         'Illuminate\View\ViewServiceProvider',
         'Illuminate\Html\HtmlServiceProvider',
