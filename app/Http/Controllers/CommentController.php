@@ -90,15 +90,15 @@ class CommentController extends AppBaseController
 	 */
 	public function edit($id)
 	{
-		$comment = $this->commentRepository->findCommentById($id);
-
-		if(empty($comment))
-		{
-			Flash::error('Comment not found');
-			return redirect(route('comments.index'));
-		}
-
-		return view('comments.edit')->with('comment', $comment);
+//		$comment = $this->commentRepository->findCommentById($id);
+//
+//		if(empty($comment))
+//		{
+//			Flash::error('Comment not found');
+//			return redirect(route('comments.index'));
+//		}
+//
+//		return view('comments.edit')->with('comment', $comment);
 	}
 
 	/**
@@ -111,19 +111,19 @@ class CommentController extends AppBaseController
 	 */
 	public function update($id, CreateCommentRequest $request)
 	{
-		$comment = $this->commentRepository->findCommentById($id);
-
-		if(empty($comment))
-		{
-			Flash::error('Comment not found');
-			return redirect(route('comments.index'));
-		}
-
-		$comment = $this->commentRepository->update($comment, $request->all());
-
-		Flash::message('Comment updated successfully.');
-
-		return redirect(route('comments.index'));
+//		$comment = $this->commentRepository->findCommentById($id);
+//
+//		if(empty($comment))
+//		{
+//			Flash::error('Comment not found');
+//			return redirect(route('comments.index'));
+//		}
+//
+//		$comment = $this->commentRepository->update($comment, $request->all());
+//
+//		Flash::message('Comment updated successfully.');
+//
+//		return redirect(route('comments.index'));
 	}
 
 	/**
@@ -135,19 +135,19 @@ class CommentController extends AppBaseController
 	 */
 	public function destroy($id)
 	{
-		$comment = $this->commentRepository->findCommentById($id);
-
-		if(empty($comment))
-		{
-			Flash::error('Comment not found');
-			return redirect(route('comments.index'));
-		}
-
-		$comment->delete();
-
-		Flash::message('Comment deleted successfully.');
-
-		return redirect(route('comments.index'));
+//		$comment = $this->commentRepository->findCommentById($id);
+//
+//		if(empty($comment))
+//		{
+//			Flash::error('Comment not found');
+//			return redirect(route('comments.index'));
+//		}
+//
+//		$comment->delete();
+//
+//		Flash::message('Comment deleted successfully.');
+//
+//		return redirect(route('comments.index'));
 	}
 
 }

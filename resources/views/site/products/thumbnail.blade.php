@@ -44,6 +44,21 @@
 
 @section('styles')
     <style>
+
+        @media(max-width:767px){
+            .lib-img-show{
+                height: 30em;
+            }
+        }
+        @media(min-width:768px){
+            .lib-img-show{
+                height: 15.3em;
+            }
+        }
+        *{
+            /*border: dashed red 1px;*/
+        }
+
         .fav-button{
             position: absolute;
             bottom: 0;
