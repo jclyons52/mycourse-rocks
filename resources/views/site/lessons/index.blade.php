@@ -32,7 +32,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <h6>
-                                Total Count <span class="label label-info">25</span></h6>
+                                Total Count <span class="label label-info">{{$product->lessons()->count()}}</span></h6>
                         </div>
                         <div class="col-md-6">
                         </div>

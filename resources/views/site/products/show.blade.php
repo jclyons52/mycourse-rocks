@@ -17,9 +17,9 @@
 
     <div class="row">
         <ol class="breadcrumb">
-            <li href="#" ><i class="glyphicon glyphicon-home"></i></li>
-            <li href="#" >{{{$product->category->name}}}</li>
-            <li href="#" >{{{ $product->name }}}</li>
+            <li><a href="/"><i class="glyphicon glyphicon-home"></i></a></li>
+            <li><a href="{{route('categories.show',[$product->category->id])}}"> {{{$product->category->name}}}</a></li>
+            <li>{{{ $product->name }}}</li>
         </ol>
     </div>
 
