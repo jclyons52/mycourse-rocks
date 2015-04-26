@@ -4,9 +4,9 @@
 
     @include('common.errors')
 
-    {!! Form::open(['route' => 'admin.lessons.store']) !!}
+    {!! Form::open(['route' => 'admin.posts.store']) !!}
 
-        @include('admin.lessons.fields')
+        @include('admin.posts.fields')
 
     {!! Form::close() !!}
 @endsection

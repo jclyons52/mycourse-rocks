@@ -1,6 +1,28 @@
 @extends('app')
+
+{{-- Web site Title --}}
+@section('title')
+    {{{ $product->name }}} ::
+    @parent
+@stop
+
+{{-- Update the Meta Title --}}
+@section('meta_title')
+    @parent
+
+@stop
+
 @section('content')
 <div class="container">
+
+    <div class="row">
+        <ol class="breadcrumb">
+            <li href="#" ><i class="glyphicon glyphicon-home"></i></li>
+            <li href="#" >{{{$product->category->name}}}</li>
+            <li href="#" >{{{ $product->name }}}</li>
+        </ol>
+    </div>
+
     <h1> {{$product->name}} </h1>
     <hr/>
     <div class="row">

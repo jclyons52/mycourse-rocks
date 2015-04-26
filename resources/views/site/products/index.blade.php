@@ -1,8 +1,4 @@
-
-@extends('app')
-@section('content')
-
-    <div class="container">
+<div class="container">
     <h1> Courses</h1>
 
 
@@ -14,9 +10,3 @@
             @endforeach
     </div>
     </div>
-
-@endsection
-
-@section('scripts')
-
-@endsection

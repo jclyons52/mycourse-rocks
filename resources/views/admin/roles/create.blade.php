@@ -1,7 +1,6 @@
-@extends('app')
+@extends('admin.layout')
 
 @section('content')
-<div class="container">
 
     @include('common.errors')
 
@@ -10,7 +9,6 @@
         @include('admin.roles.fields')
 
     {!! Form::close() !!}
-</div>
 @endsection
 
 @section('scripts')

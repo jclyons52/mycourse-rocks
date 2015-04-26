@@ -13,6 +13,7 @@ Route::group(['middleware' => 'admin'], function() {
 
 Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function()
 {
+    Route::get('/', 'PageController@adminDashboard');
 
     /**
      *  Role management routes
@@ -107,4 +108,11 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function()
 
     Route::post('fileentry/add',[
         'as' => 'addentry', 'uses' => 'FileEntryController@add']);
+
+    Route::resource('posts', 'AdminPostController');
+
+    Route::get('posts/{id}/delete', [
+        'as' => 'admin.posts.delete',
+        'uses' => 'AdminPostController@destroy',
+    ]);
 });

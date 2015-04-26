@@ -1,4 +1,4 @@
-@extends('app')
+@extends('admin.layout')
 @section('content')
 
     <form action="{{route('addentry', [])}}" method="post" class="dropzone" id="imgUpload" enctype="multipart/form-data">

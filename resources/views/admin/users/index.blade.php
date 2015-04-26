@@ -1,8 +1,7 @@
-@extends('app')
+@extends('admin.layout')
 
 @section('content')
 
-    <div class="container">
 
         @include('flash::message')
 
@@ -36,5 +35,4 @@
             @endif
         </div>
 
-    </div>
 @endsection

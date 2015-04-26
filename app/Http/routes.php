@@ -85,6 +85,8 @@ Route::get('favorites/{id}', [
     'uses' => 'FavoritesController@destroy'
 ]);
 
+Route::group(['prefix' => 'blog'], function()
+{
+    Route::resource('posts', 'BlogController');
 
-
-
+});

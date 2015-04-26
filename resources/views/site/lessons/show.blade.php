@@ -2,6 +2,16 @@
 
 @section('content')
 <div class="container">
+
+    <div class="row">
+        <ol class="breadcrumb">
+            <li href="#" ><i class="glyphicon glyphicon-home"></i></li>
+            <li href="#" >{{{$lesson->product->category->name}}}</li>
+            <li href="#" >{{{ $lesson->product->name }}}</li>
+            <li href="#" >{{{ $lesson->name }}}</li>
+        </ol>
+    </div>
+
             <div class="container-fluid main-container">
                 <div class="col-md-3 sidebar">
                     <ul class="nav nav-pills nav-stacked">

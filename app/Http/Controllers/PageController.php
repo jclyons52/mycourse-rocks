@@ -26,4 +26,9 @@ class PageController extends Controller {
 
     }
 
+    public function adminDashboard(){
+
+        return view('admin.dashboard');
+    }
+
 }

@@ -1365,16 +1365,16 @@
         },
         {
             "name": "rap2hpoutre/laravel-log-viewer",
-            "version": "v0.2.6",
+            "version": "v0.2.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rap2hpoutre/laravel-log-viewer.git",
-                "reference": "db0fc98590bce4a68443e06c552830f0d7a203b1"
+                "reference": "4c9d0f49efbf4a39e97f82928178bd0ad7b54916"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rap2hpoutre/laravel-log-viewer/zipball/db0fc98590bce4a68443e06c552830f0d7a203b1",
-                "reference": "db0fc98590bce4a68443e06c552830f0d7a203b1",
+                "url": "https://api.github.com/repos/rap2hpoutre/laravel-log-viewer/zipball/4c9d0f49efbf4a39e97f82928178bd0ad7b54916",
+                "reference": "4c9d0f49efbf4a39e97f82928178bd0ad7b54916",
                 "shasum": ""
             },
             "require": {
@@ -1407,7 +1407,7 @@
                 "log-viewer",
                 "logging"
             ],
-            "time": "2015-04-14 12:06:05"
+            "time": "2015-04-22 06:32:43"
         },
         {
             "name": "react/promise",
@@ -2761,16 +2761,16 @@
         },
         {
             "name": "mitulgolakiya/laravel-api-generator",
-            "version": "v1.2.3",
+            "version": "v1.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mitulgolakiya/laravel-api-generator.git",
-                "reference": "cb5280ea27503a2122bc422b4febc479afca6dd0"
+                "reference": "05bef8d2bf12d9f3ebd9e107a4b94dbe36eaff13"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mitulgolakiya/laravel-api-generator/zipball/cb5280ea27503a2122bc422b4febc479afca6dd0",
-                "reference": "cb5280ea27503a2122bc422b4febc479afca6dd0",
+                "url": "https://api.github.com/repos/mitulgolakiya/laravel-api-generator/zipball/05bef8d2bf12d9f3ebd9e107a4b94dbe36eaff13",
+                "reference": "05bef8d2bf12d9f3ebd9e107a4b94dbe36eaff13",
                 "shasum": ""
             },
             "require": {
@@ -2807,7 +2807,7 @@
                 "model",
                 "scaffold"
             ],
-            "time": "2015-04-11 08:25:06"
+            "time": "2015-04-25 08:57:04"
         },
         {
             "name": "phpdocumentor/reflection-docblock",
