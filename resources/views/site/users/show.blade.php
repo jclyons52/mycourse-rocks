@@ -10,28 +10,23 @@
                     <div class="col-sm-12">
                         <div class="col-xs-12 col-sm-8">
                             <h2>{{$user->name}}</h2>
-                            <p><strong>About: </strong> Web Designer / UI. </p>
+                            {{$user->productsCreated}}
                         </div>
                         <div class="col-xs-12 col-sm-4 text-center">
                             <figure>
                                 <img class="img-responsive img-circle" src="//www.gravatar.com/avatar/{{md5($user->email)}}" />
                                 <figcaption class="ratings">
                                     <p>Ratings
-                                        <a href="#">
-                                            <span class="fa fa-star"></span>
-                                        </a>
-                                        <a href="#">
-                                            <span class="fa fa-star"></span>
-                                        </a>
-                                        <a href="#">
-                                            <span class="fa fa-star"></span>
-                                        </a>
-                                        <a href="#">
-                                            <span class="fa fa-star"></span>
-                                        </a>
-                                        <a href="#">
-                                            <span class="fa fa-star-o"></span>
-                                        </a>
+                                        @for( $i = 0; $i < round($user->rating()); $i++)
+                                            <a href="#">
+                                                <span class="fa fa-star"></span>
+                                            </a>
+                                        @endfor
+                                        @for( $i = 0; $i < (5 - ($user->rating())); $i++)
+                                            <a href="#">
+                                                <span class="fa fa-star-o"></span>
+                                            </a>
+                                        @endfor
                                     </p>
                                 </figcaption>
                             </figure>
@@ -56,8 +51,8 @@
                             <button class="btn btn-info btn-block"><span class="fa fa-user"></span> View Profile </button>
                         </div>
                         <div class="col-xs-12 col-sm-4 emphasis">
-                            <h2><strong>43</strong></h2>
-                            <p><small>Snippets</small></p>
+                            <h2><strong>{{$user->owned_count()}}</strong></h2>
+                            <p><small>Courses Created</small></p>
                             <div class="btn-group dropup btn-block">
                                 <button type="button" class="btn btn-primary"><span class="fa fa-gear"></span> Options </button>
                                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">

@@ -33,16 +33,8 @@
     </div>
 </div>
 
-
-@section('scripts')
-    <script>
-        $('.pull-down-thumbnail').each(function() {
-            $(this).css('margin-top', $(this).parent().height()-$(this).height())
-        });
-    </script>
-@endsection
-
 @section('styles')
+    @parent
     <style>
 
         @media(max-width:767px){

@@ -23,9 +23,11 @@
                             <div class="row">
                                 @endif
                         <div class="col-sm-3">
+                            <a href="{!! route('categories.show', [$category->id]) !!}">
                             <button type="button" class="btn btn-default btn-circle btn-xl">
-                                <a href="{!! route('categories.show', [$category->id]) !!}">{!! $category->name !!}</a>
+                                {!! $category->name !!}
                             </button>
+                            </a>
                         </div>
 
                     @endforeach

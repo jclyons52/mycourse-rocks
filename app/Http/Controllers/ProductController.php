@@ -17,6 +17,7 @@ use Response;
 
 class ProductController extends Controller {
 
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -88,6 +89,10 @@ class ProductController extends Controller {
 
         $one_star = Comment::where('product_id', '=', $product->id)->where('rating', '=', '1')->count()*100/$checked_rating_count;
 
+        $owner = $product->owner();
+
+        $mods = $product->mods();
+
         if(empty($product))
         {
             Flash::error('Product not found');
@@ -101,7 +106,9 @@ class ProductController extends Controller {
             'four_star'    => $four_star,
             'three_star'   => $three_star,
             'two_star'     => $two_star,
-            'one_star'     => $one_star
+            'one_star'     => $one_star,
+            'owner'        => $owner,
+            'mods'         => $mods
         ]);
 	}
 

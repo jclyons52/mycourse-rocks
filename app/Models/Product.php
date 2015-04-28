@@ -51,7 +51,11 @@ class Product extends Model
 
     public function lessons(){
 
-        return $this->hasMany('App\Models\Lesson');
+        return $this->hasMany('\App\Models\Lesson');
+    }
+
+    public  function users(){
+        return $this->belongsToMany('\App\User');
     }
 
     public function rating()
@@ -80,6 +84,23 @@ class Product extends Model
         $owned = $user->products()->wherePivot('owner', '1')->lists('product_id');
 
         return in_array($this->id, $owned);
+    }
+
+    public function owner()
+    {
+        return $this->users()->wherePivot('owner', '1')->first();
+    }
+    public function mods()
+    {
+        return $this->users()->wherePivot('mod', '1')->get();
+    }
+
+    public function favorited_count()
+    {
+        $count = $this->users()->wherePivot('favorite', true)->count();
+
+        return $count;
+
     }
 
 

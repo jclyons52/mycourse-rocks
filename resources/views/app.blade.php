@@ -54,10 +54,17 @@
 
     @yield('content')
 
-
+<footer>
+    @include('partials.contact')
+</footer>
 	<!-- Scripts -->
     <script src="{{ asset('/js/all.js') }}"></script>
     <script src="{{ asset('/js/bundle.js') }}"></script>
+        <script>
+            $('.pull-down-thumbnail').each(function() {
+                $(this).css('margin-top', $(this).parent().height()-$(this).height())
+            });
+        </script>
 	@yield('scripts')
 </body>
 </html>

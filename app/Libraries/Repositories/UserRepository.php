@@ -72,4 +72,5 @@ class UserRepository {
         return $user->followedUsers()->detach($userIdToUnfollow);
     }
 
+
 }

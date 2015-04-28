@@ -90,4 +90,39 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $count;
     }
 
+    public function product_count()
+    {
+        $count = $this->products->count();
+
+        return $count;
+    }
+    public function rating()
+    {
+        $count = $this->product_count();
+        $total = 0;
+        foreach($this->products as $product)
+        {
+            $total += $product->rating();
+        }
+
+        $rating = $total/$count;
+
+        return $rating;
+    }
+
+    public function favorites_count()
+    {
+        $count = $this->products()->wherePivot('favorite', true)->count();
+
+        return $count;
+
+    }
+
+    public function owned_count()
+    {
+        $count = $this->products()->wherePivot('owner', true)->count();
+
+        return $count;
+
+    }
 }
