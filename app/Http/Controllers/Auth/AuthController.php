@@ -41,4 +41,7 @@ class AuthController extends Controller {
         return $authenticateUser->execute($request->all(), $this, $provider);
     }
 
+	public function userHasLoggedIn($user) {
+    return redirect('/home');
+}
 }

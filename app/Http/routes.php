@@ -28,12 +28,12 @@ Route::get('fileentry/get/{filename}', [
 
 Route::get('home', 'HomeController@index');
 
+Route::get('login/{provider?}', 'Auth\AuthController@login');
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
 
-Route::get('auth/login/{provider?}', 'Auth\AuthController@login');
 //Route::resource('api/comments', 'API\CommentAPIController');
 
 Route::resource('products', 'ProductController');
