@@ -34,4 +34,10 @@ return [
 		'secret' => env('STRIPE_API_SECRET'),
 	],
 
+    'twitter' => [
+        'client_id' => env('TWITTER_CLIENT_ID'),
+        'client_secret' => env('TWITTER_CLIENT_SECRET'),
+        'redirect' => 'http://mycourse.rocks/auth/login/twitter',
+    ]
+
 ];

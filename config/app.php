@@ -152,6 +152,7 @@ return [
         'Mitul\Generator\GeneratorServiceProvider',
         'Laracasts\Generators\GeneratorsServiceProvider',
         'Laravel\Cashier\CashierServiceProvider',
+        'Laravel\Socialite\SocialiteServiceProvider',
 	],
 
 	/*
@@ -202,7 +203,8 @@ return [
 		'View'      => 'Illuminate\Support\Facades\View',
         'Form'      => 'Illuminate\Html\FormFacade',
         'HTML'      => 'Illuminate\Html\HtmlFacade',
-        'Flash'     => 'Laracasts\Flash\Flash'
+        'Flash'     => 'Laracasts\Flash\Flash',
+        'Socialize' => 'Laravel\Socialite\Facades\Socialite',
 
 	],
 

@@ -32,7 +32,7 @@ Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
-
+Route::get('login/{provider?}', 'Auth\AuthController@login');
 
 //Route::resource('api/comments', 'API\CommentAPIController');
 
@@ -58,6 +58,10 @@ Route::get('comments/{id}/delete', [
 
 Route::get('about', 'PageController@about');
 Route::get('popular', 'PageController@popular');
+Route::post('contact', [
+    'as' => 'contact',
+    'uses' => 'PageController@contact'
+]);
 
 Route::get('product/{id}', 'StoreController@product');
 Route::get('/', 'CategoryController@index');

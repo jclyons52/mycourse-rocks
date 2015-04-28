@@ -1,11 +1,10 @@
-<div class="row">
-    <br/><br/><br/>
-    <a class="btn btn-primary btn-lg" data-toggle="modal" data-target="#vote" data-original-title>
-        Vote Now!
-    </a>
-    <a class="btn btn-primary btn-lg" data-toggle="modal" data-target="#contact" data-original-title>
-        Contact
-    </a>
+
+    <li><a class="" data-toggle="modal" data-target="#vote" data-original-title>
+            Vote Now!
+        </a></li>
+    <li><a class="" data-toggle="modal" data-target="#contact" data-original-title>
+            Contact
+        </a></li>
     <div class="modal fade" id="contact" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="panel panel-primary">
@@ -13,7 +12,8 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign"></span> Any questions? Feel free to contact us.</h4>
                 </div>
-                <form action="#" method="post" accept-charset="utf-8">
+                <form action="{{route('contact')}}" method="post" accept-charset="utf-8">
+                    <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
                     <div class="modal-body" style="padding: 5px;">
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 10px;">
@@ -163,7 +163,6 @@
             </div>
         </div>
     </div>
-</div>
 @section('styles')
     @parent
     <style>
