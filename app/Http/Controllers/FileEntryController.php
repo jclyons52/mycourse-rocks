@@ -44,7 +44,7 @@ class FileEntryController extends Controller {
 
     }
 
-    public function get($filename){
+    public function show($filename){
 
         $entry = Fileentry::where('filename', '=', $filename)->firstOrFail();
         $file = Storage::disk('local')->get($entry->filename);

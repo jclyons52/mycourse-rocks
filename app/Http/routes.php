@@ -21,7 +21,9 @@ Route::group(['middleware' => 'auth'], function()
 
 Route::get('fileentry', 'FileEntryController@index');
 Route::get('fileentry/get/{filename}', [
-    'as' => 'getentry', 'uses' => 'FileEntryController@get']);
+    'as' => 'getentry',
+    'uses' => 'FileEntryController@show'
+]);
 
 
 Route::get('home', 'HomeController@index');
