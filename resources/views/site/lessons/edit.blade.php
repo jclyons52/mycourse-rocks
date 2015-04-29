@@ -4,7 +4,15 @@
     <div class="container">
 
         @include('common.errors')
-{{$active_tab}}
+
+        <div class="row">
+            <ol class="breadcrumb">
+                <li><a href="/"><i class="glyphicon glyphicon-home"></i></a></li>
+                <li><a href="{{route('categories.show',[$lesson->product->category->id])}}">{{{$lesson->product->category->name}}}</a></li>
+                <li><a href="{{route('products.show',[$lesson->product->id])}}">{{{ $lesson->product->name }}}</a></li>
+                <li href="#" >{{{ $lesson->name }}}</li>
+            </ol>
+        </div>
 
         <div role="tabpanel">
 

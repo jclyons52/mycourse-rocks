@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 
 use App\Http\Requests\CreateLessonRequest;
 use App\Models\Lesson;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Laracasts\Flash\Flash;
@@ -30,8 +31,10 @@ class LessonController extends Controller {
 	 */
 	public function create($product_id)
 	{
-//        dd($product_id);
-        return view('site.lessons.create')->with('product_id', $product_id);
+        $product = Product::find($product_id);
+        return view('site.lessons.create')
+            ->with('product_id', $product_id)
+            ->with('product', $product);
 	}
 
 	/**
