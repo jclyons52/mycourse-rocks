@@ -12,9 +12,9 @@
 </div>
 
 <!--- Content Field --->
-<div class="form-group col-sm-6 col-lg-4">
+<div class="form-group col-sm-12">
     {!! Form::label('content', 'Content:') !!}
-    {!! Form::text('content', null, ['class' => 'form-control']) !!}
+    {!! Form::textarea('content', null, ['class' => 'form-control']) !!}
 </div>
 
 <!--- Meta_Title Field --->

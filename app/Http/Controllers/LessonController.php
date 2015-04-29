@@ -94,7 +94,7 @@ class LessonController extends Controller {
             $active_tab = 'links';
         }
 
-        $lesson = Lesson::find($id);
+        $lesson = Lesson::findOrFail($id);
 
 		return view('site.lessons.edit')
             ->with('lesson', $lesson)
