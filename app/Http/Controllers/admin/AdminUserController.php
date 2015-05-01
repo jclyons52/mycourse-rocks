@@ -115,7 +115,20 @@ class AdminUserController extends AppBaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+        /** @var User user */
+        $user = User::find($id);
+
+        if(empty($user))
+        {
+            Flash::error('User not found');
+            return redirect(route('admin.users.index'));
+        }
+
+        $user->delete();
+
+        Flash::message('Quiz deleted successfully.');
+
+        return redirect(route('admin.users.index'));
 	}
 
 }
