@@ -64,8 +64,12 @@
                                             <td>{!! $link->url !!}</td>
                                             <td>{!! $link->name !!}</td>
                                             <td>
-                                                {{--<a href="{!! route('links.edit', [$link->id]) !!}"><i class="glyphicon glyphicon-edit"></i></a>--}}
-                                                {{--<a href="{!! route('links.delete', [$link->id]) !!}" onclick="return confirm('Are you sure wants to delete this Link?')"><i class="glyphicon glyphicon-remove"></i></a>--}}
+                                                {!! Form::open(['route' => 'links.delete']) !!}
+                                                {!! Form::hidden('id', $link->id) !!}
+                                                <button type="submit" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure wants to delete this Link?')">
+                                                    <i class="glyphicon glyphicon-remove"></i>
+                                                </button>
+                                                {!! Form::close() !!}
                                             </td>
                                         </tr>
                                     @endforeach

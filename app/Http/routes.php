@@ -53,7 +53,10 @@ Route::resource('users', 'UserController');
 Route::post('links/textCrawler', 'LinksController@textCrawler');
 Route::get('links/highlighter', 'LinksController@highlighter');
 Route::resource('links', 'LinksController');
-
+Route::post('links/delete', [
+    'as' => 'links.delete',
+    'uses' => 'LinksController@destroy',
+]);
 
 Route::resource('comments', 'CommentController');
 

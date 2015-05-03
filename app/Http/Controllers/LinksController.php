@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Http\Requests\CreateLinkRequest;
+use App\Http\Requests\ModifyLinkRequest;
 use App\Libraries\Links\HighLight;
 use App\Libraries\Links\LinkPreview;
 use App\Libraries\Links\SetUp;
@@ -95,9 +96,23 @@ class LinksController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy(ModifyLinkRequest $request)
 	{
-		//
+        /** @var Link $link */
+        $link = Link::find($request->input('id'));
+
+        if(empty($link))
+        {
+            Flash::error('Link not found');
+            return redirect(route('admin.links.index'));
+        }
+
+        $link->delete();
+
+        Flash::message('Link deleted successfully.');
+
+        return redirect(route('lessons.edit', [$link->lesson_id]))->with('active_tab', 'links');
+
 	}
 
     public function textCrawler(Request $request)
