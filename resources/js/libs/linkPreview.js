@@ -469,7 +469,7 @@
                         description: $('#previewSpanDescription_' + selector).html(),
                         iframe: videoIframe,
                         _token: token,
-                        lesson_id: 2
+                        lesson_id: lesson_id
                     }, function (response) {
                         
                         // alert(response);

@@ -2222,7 +2222,7 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
                         description: $('#previewSpanDescription_' + selector).html(),
                         iframe: videoIframe,
                         _token: token,
-                        lesson_id: 2
+                        lesson_id: lesson_id
                     }, function (response) {
                         
                         // alert(response);
