@@ -62,7 +62,7 @@
                                     @foreach($lesson->links as $link)
                                         <tr>
                                             <td>{!! $link->url !!}</td>
-                                            <td>{!! $link->name !!}</td>
+                                            <td>{!! $link->title !!}</td>
                                             <td>
                                                 {!! Form::open(['route' => 'links.delete']) !!}
                                                 {!! Form::hidden('id', $link->id) !!}

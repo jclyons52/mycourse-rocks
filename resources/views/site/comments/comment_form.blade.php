@@ -1,11 +1,10 @@
 <div class="row">
     {!! Form::open(['route' => 'comments.store']) !!}
     {!! Form::hidden('product_id', $product->id) !!}
-    <div class="col-md-2 col-sm-2 hidden-xs">
-        <figure class="thumbnail">
-            <img class="img-responsive" src="http://www.keita-gaming.com/assets/profile/default-avatar-c5d8ec086224cb6fc4e395f4ba3018c2.jpg" />
-            <figcaption class="text-center"></figcaption>
-        </figure>
+    <div class="col-md-1 col-sm-2 hidden-xs">
+        <a href="{{route('users.show',[Auth::user()->id])}}">
+            <img class="img-responsive img-circle" src="//www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}" />
+        </a>
     </div>
     <div class="col-md-10 col-sm-10">
         <div class="panel panel-default arrow left">

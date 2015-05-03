@@ -56,7 +56,6 @@
 
 @section('scripts')
     @parent
-    @if($lesson->quizzes)
     <script>
         $(document).ready(function(){
 
@@ -131,7 +130,6 @@
         };
         });
     </script>
-    @endif
 @endsection
 
 @section('styles')
