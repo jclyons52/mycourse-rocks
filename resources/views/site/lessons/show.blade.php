@@ -15,37 +15,22 @@
             <div class="container-fluid main-container">
                 <div class="col-md-3 sidebar">
                     <ul class="nav nav-pills nav-stacked">
-                        <li class="active"><a href="#description" role="tab" data-toggle="tab">Lesson overview</a></li>
-                            <li class=""><a href="#content" role="tab" data-toggle="tab">Links</a></li>
+                            <li class="active"><a href="#content" role="tab" data-toggle="tab">Links</a></li>
                         <li ><a href="#quiz-main" role="tab" data-toggle="tab">quiz</a></li>
                     </ul>
                 </div>
                 <div class="container-fluid main-container">
                     <div class="col-md-9 sidebar">
                         <div class="tab-content">
-                                    <div role="tabpanel" class="tab-pane" id="content">
+                                    <div role="tabpanel" class="tab-pane active" id="content">
                                         <div class="col-md-12 content">
                                             <div class="panel panel-default">
                                                 <div class="panel-heading">
-                                                    {{$lesson->name}}
+                                                   Links
                                                 </div>
                                                 <div class="panel-body">
                                                     <div class="center">
                                                         <div id="retrieveFromDatabase" ></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div role="tabpanel" class="tab-pane active" id="description">
-                                        <div class="col-md-12 content">
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    Lesson Overview
-                                                </div>
-                                                <div class="panel-body">
-                                                    <div class="panel-body">
-                                                        {!! $lesson->description !!}
                                                     </div>
                                                 </div>
                                             </div>
@@ -59,7 +44,7 @@
                                         </div>
                                         <div class="panel-body">
                                             <div class="panel-body">
-                                                @if($lesson->quizzes)
+                                                @if(count($lesson->quizzes) > 0)
                                                     @include('site.quizzes.show')
                                                 @else
                                                     <h1>No quiz added</h1>
