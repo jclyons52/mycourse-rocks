@@ -4,12 +4,19 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Http\Requests\CreateLinkRequest;
+use App\Libraries\Links\HighLight;
+use App\Libraries\Links\LinkPreview;
+use App\Libraries\Links\SetUp;
 use App\Models\Link;
 use Illuminate\Http\Request;
 use Laracasts\Flash\Flash;
 
 class LinksController extends Controller {
 
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index','show']]);
+    }
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -39,14 +46,14 @@ class LinksController extends Controller {
 	{
         $input = $request->all();
 
-        $input = $this->format_url($input);
+//        $input = $this->format_url($input);
 
         $link = Link::create($input);
 
 
         Flash::message('Link saved successfully.');
 
-        return redirect(route('lessons.edit', [$link->lesson_id]));
+        return $link;
 	}
 
 	/**
@@ -92,6 +99,36 @@ class LinksController extends Controller {
 	{
 		//
 	}
+
+    public function textCrawler(Request $request)
+    {
+        SetUp::init();
+        $input = $request->all();
+        $text = $input["text"];
+        $imageQuantity = $_POST["imagequantity"];
+        $text = " " . str_replace("\n", " ", $text);
+        $header = "";
+
+        $linkPreview = new LinkPreview();
+        $answer = $linkPreview->crawl($text, $imageQuantity, $header);
+
+        SetUp::finish();
+        return $answer;
+    }
+
+    public function highlighter(Request $request){
+//        dd('test test test');
+        SetUp::init();
+
+        error_reporting(false);
+        $input = $request->all();
+        $text = $input["text"];
+        $description = $input["description"];
+
+        $answer = array("urls" => HighLight::url($text), "description" => HighLight::url($description));
+
+        return $answer;
+    }
 
     /**
      * @param $input

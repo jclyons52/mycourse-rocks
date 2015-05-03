@@ -331,6 +331,18 @@
                 $(this).css('margin-top', $(this).parent().height()-$(this).height())
             });
         </script>
+        <script>
+            var token = '{{ csrf_token() }}';
+            $(document).ready(function() {
+
+                $('#lp1').linkPreview();
+                // changing placeholder
+                $('#lp2').linkPreview({placeholder: "Second Field"});
+
+                // bind to a tag the results brought from database
+                $('#retrieveFromDatabase').linkPreviewRetrieve();
+            });
+        </script>
 	@yield('scripts')
 </body>
 </html>

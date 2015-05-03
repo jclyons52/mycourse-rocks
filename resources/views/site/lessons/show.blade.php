@@ -16,33 +16,27 @@
                 <div class="col-md-3 sidebar">
                     <ul class="nav nav-pills nav-stacked">
                         <li class="active"><a href="#description" role="tab" data-toggle="tab">Lesson overview</a></li>
-                        @foreach($lesson->links as $index => $link)
-                            <li class=""><a href="#content{{$link->id}}" role="tab" data-toggle="tab">{{$link->name}}</a></li>
-                        @endforeach
+                            <li class=""><a href="#content" role="tab" data-toggle="tab">Links</a></li>
                         <li ><a href="#quiz-main" role="tab" data-toggle="tab">quiz</a></li>
                     </ul>
                 </div>
                 <div class="container-fluid main-container">
                     <div class="col-md-9 sidebar">
                         <div class="tab-content">
-                                @foreach($lesson->links as $index => $link)
-                                    <div role="tabpanel" class="tab-pane" id="content{{$link->id}}">
+                                    <div role="tabpanel" class="tab-pane" id="content">
                                         <div class="col-md-12 content">
                                             <div class="panel panel-default">
                                                 <div class="panel-heading">
                                                     {{$lesson->name}}
                                                 </div>
                                                 <div class="panel-body">
-                                                    <div class="panel-body">
-                                                        <div class="embed-responsive embed-responsive-16by9">
-                                                            <iframe class="embed-responsive-item" src="{{$link->url}}"></iframe>
-                                                        </div>
+                                                    <div class="center">
+                                                        <div id="retrieveFromDatabase" ></div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                @endforeach
                                     <div role="tabpanel" class="tab-pane active" id="description">
                                         <div class="col-md-12 content">
                                             <div class="panel panel-default">
@@ -65,7 +59,12 @@
                                         </div>
                                         <div class="panel-body">
                                             <div class="panel-body">
-                                                @include('site.quizzes.show')
+                                                @if($lesson->quizzes)
+                                                    @include('site.quizzes.show')
+                                                @else
+                                                    <h1>No quiz added</h1>
+                                                @endif
+
                                             </div>
                                         </div>
                                     </div>
@@ -77,4 +76,9 @@
             </div>
 
 @endsection
-
+@section('scripts')
+    @parent
+        <script>
+            var lesson_id = '{{ $lesson->id }}';
+        </script>
+    @endsection

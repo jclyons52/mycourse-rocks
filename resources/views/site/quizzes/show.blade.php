@@ -39,17 +39,14 @@
                 <h3>Quiz complete</h3>
             </div>
             <div class="modal-body">
-                score = <div id="total"></div>
-                {!! Form::open() !!}
-                <input type="hidden" name="total" id="upload-total"/>
-                <!--- Submit Field --->
-                <div class="form-group col-sm-12">
-                    {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                </div>
-                {!! Form::close() !!}
-            </div>
-            <div class="modal-footer text-muted">
-                <span id="total"></span>
+                <h1>score:</h1> <h1 id="total"></h1>
+                {{--{!! Form::open() !!}--}}
+                {{--<input type="hidden" name="total" id="upload-total"/>--}}
+                {{--<!--- Submit Field --->--}}
+                {{--<div class="form-group col-sm-12">--}}
+                    {{--{!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}--}}
+                {{--</div>--}}
+                {{--{!! Form::close() !!}--}}
             </div>
         </div>
     </div>
@@ -58,6 +55,8 @@
 
 
 @section('scripts')
+    @parent
+    @if($lesson->quizzes)
     <script>
         $(document).ready(function(){
 
@@ -76,11 +75,15 @@
                     });
              i = 0;
             total = 0;
+
+        var quizNumbers = ['1','2','3','4'];
+        shuffle(quizNumbers);
+
             $('#question').html(json[i].question);
-            $('#answer_1').html(json[i].answer);
-            $('#answer_2').html(json[i].false_answer1);
-            $('#answer_3').html(json[i].false_answer2);
-            $('#answer_4').html(json[i].false_answer3);
+            $('#answer_'+quizNumbers[0]).html(json[i].answer);
+            $('#answer_'+quizNumbers[1]).html(json[i].false_answer1);
+            $('#answer_'+quizNumbers[2]).html(json[i].false_answer2);
+            $('#answer_'+quizNumbers[3]).html(json[i].false_answer3);
 
             $("label.btn").on('click',function () {
                 var choice = $(this).html();
@@ -97,11 +100,12 @@
                         $('#total').html(total+'/'+json.length);
                         $('#upload-total').val(total);
                     }else{
+                        shuffle(quizNumbers);
                         $('#question').html(json[i].question);
-                        $('#answer_1').html(json[i].answer);
-                        $('#answer_2').html(json[i].false_answer1);
-                        $('#answer_3').html(json[i].false_answer2);
-                        $('#answer_4').html(json[i].false_answer3);
+                        $('#answer_'+quizNumbers[0]).html(json[i].answer);
+                        $('#answer_'+quizNumbers[1]).html(json[i].false_answer1);
+                        $('#answer_'+quizNumbers[2]).html(json[i].false_answer2);
+                        $('#answer_'+quizNumbers[3]).html(json[i].false_answer3);
                         $('#quiz').show();
                         $('#loadbar').fadeOut();
                     }
@@ -121,8 +125,13 @@
                     return 'CORRECT';
                 }
             };
+        function shuffle(o){
+            for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+            return o;
+        };
         });
     </script>
+    @endif
 @endsection
 
 @section('styles')

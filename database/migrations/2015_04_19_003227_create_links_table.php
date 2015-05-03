@@ -17,7 +17,7 @@ class CreateLinksTable extends Migration
 		{
 			$table->increments('id');
             $table->integer('lesson_id')->unsigned()->index();
-			$table->string('url');
+			$table->string('url', 500);
 			$table->string('name');
 			$table->timestamps();
 

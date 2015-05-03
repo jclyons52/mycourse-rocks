@@ -14,11 +14,16 @@ class Link extends Model
 	public $fillable = [
 	    "url",
 		"name",
-        "lesson_id"
+        "lesson_id",
+        "text",
+        "title",
+        "canonicalUrl",
+        "description",
+        "image",
+        "iframe"
 	];
 
 	public static $rules = [
-	    "url" => "required"
 	];
 
 }

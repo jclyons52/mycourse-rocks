@@ -126,7 +126,7 @@ class AdminUserController extends AppBaseController {
 
         $user->delete();
 
-        Flash::message('Quiz deleted successfully.');
+        Flash::message('User deleted successfully.');
 
         return redirect(route('admin.users.index'));
 	}

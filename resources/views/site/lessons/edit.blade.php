@@ -32,11 +32,18 @@
                                 <div class="panel-heading">Links</div>
 
                                 <div class="panel-body">
-                                    {!! Form::open(['route' => 'links.store']) !!}
 
-                                    @include('site.links.fields')
+                                    <div class="center">
 
-                                    {!! Form::close() !!}
+                                        <div class="linkPreview" id="lp1"></div>
+
+                                        <div id="retrieveFromDatabase" ></div>
+                                    </div>
+                                    {{--{!! Form::open(['route' => 'links.store']) !!}--}}
+
+                                    {{--@include('site.links.fields')--}}
+
+                                    {{--{!! Form::close() !!}--}}
                                 </div>
                             </div>
                         </div>
@@ -141,4 +148,12 @@
 
 
 
+@endsection
+@section('styles')
+    @parent
+    <script>
+        var lesson_id = '{{ $lesson->id }}';
+    </script>
+    <script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
+    {{--<script>tinymce.init({selector:'textarea'});</script>--}}
 @endsection

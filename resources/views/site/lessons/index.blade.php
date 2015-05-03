@@ -18,11 +18,11 @@
                             <li class="list-group-item">
                                 {{$lesson->name}}
                                 @if(Auth::check() && Auth::user()->hasRole('Product'.$product->id.'mod'))
-                                    <a class="btn btn-primary action-buttons pull-right" href="{!! route('lessons.edit',[$lesson->id]) !!}">Edit Lesson</a>
-                                @endif
-                                <div class="pull-right action-buttons">
+                                    <div class="pull-right btn-group">
+                                        <a class="btn btn-primary btn-xs" href="{!! route('lessons.edit',[$lesson->id]) !!}">Edit Lesson</a>
+                                    </div>
 
-                                </div>
+                                @endif
                             </li>
                             </a>
                         @endforeach

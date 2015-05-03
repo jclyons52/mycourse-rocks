@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 
 use App\Http\Requests\CreateLessonRequest;
 use App\Models\Lesson;
+use App\Models\Link;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -123,5 +124,12 @@ class LessonController extends Controller {
 	{
 		//
 	}
+
+    public function links($id)
+    {
+        $links = Link::where('lesson_id','=', $id)->get();
+
+        return $links;
+    }
 
 }

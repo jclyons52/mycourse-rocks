@@ -10,5 +10,6 @@
         @include('admin.links.fields')
 
     {!! Form::close() !!}
+
 </div>
 @endsection

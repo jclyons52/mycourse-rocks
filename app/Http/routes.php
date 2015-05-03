@@ -37,7 +37,9 @@ Route::controllers([
 //Route::resource('api/comments', 'API\CommentAPIController');
 
 Route::resource('products', 'ProductController');
+
 Route::resource('lessons', 'LessonController');
+Route::get('lessons/{id}/links', 'LessonController@links');
 Route::get('lessons/create/{id}', [
     'as' => 'lessons.create',
     'uses' => 'LessonController@create'
@@ -47,7 +49,11 @@ Route::get('lessons/create/{id}', [
 Route::resource('categories', 'CategoryController');
 Route::resource('quizzes', 'QuizController');
 Route::resource('users', 'UserController');
+
+Route::post('links/textCrawler', 'LinksController@textCrawler');
+Route::get('links/highlighter', 'LinksController@highlighter');
 Route::resource('links', 'LinksController');
+
 
 Route::resource('comments', 'CommentController');
 

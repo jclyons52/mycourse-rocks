@@ -1,7 +1,9 @@
 <?php namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
+use App\Models\Lesson;
 use App\Models\Link;
+use Illuminate\Support\Facades\Auth;
 
 class CreateLinkRequest extends Request {
 
@@ -12,7 +14,15 @@ class CreateLinkRequest extends Request {
 	 */
 	public function authorize()
 	{
-		return true;
+        $lesson = Lesson::find($this->input('lesson_id'));
+
+        $product = $lesson->product;
+
+        $users = $product->owner()->lists('id');
+
+        return in_array(Auth::id(), $users);
+
+
 	}
 
 	/**

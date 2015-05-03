@@ -19,7 +19,8 @@ elixir(function(mix) {
     	'libs/select2.min.css',
         'libs/dropzone.css',
         'libs/star-rating.min.css',
-    	'app.css',
+        'libs/linkPreview.css',
+    	'app.css'
 
 
     ]);
@@ -29,11 +30,9 @@ elixir(function(mix) {
     	'libs/bootstrap.min.js',
     	'libs/select2.min.js',
         'libs/dropzone.js',
-        'libs/star-rating.min.js'
+        'libs/star-rating.min.js',
+        'libs/linkPreview.js',
+        'libs/linkPreviewRetrieve.js'
     	
     ]);
-
-    mix.browserify([
-        '../../node_modules/react-star-rating-input/index.js'
-    ])
 });
