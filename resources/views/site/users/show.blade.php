@@ -14,7 +14,11 @@
                         </div>
                         <div class="col-xs-12 col-sm-4 text-center">
                             <figure>
-                                <img class="img-responsive img-circle" src="//www.gravatar.com/avatar/{{md5($user->email)}}" />
+                                @if(isset($user->avatar))
+                                    <img class="img-responsive img-circle" src="{{ $user->avatar }}" />
+                                @else
+                                    <img class="img-responsive img-circle" src="//www.gravatar.com/avatar/{{ md5($user->email) }}" />
+                                @endif
                                 <figcaption class="ratings">
                                     <p>Ratings
                                         @for( $i = 0; $i < round($user->rating()); $i++)

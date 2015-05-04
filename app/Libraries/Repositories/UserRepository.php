@@ -12,6 +12,7 @@ class UserRepository {
                 'provider_id' => $userData->id,
                 'name' => $userData->name,
                 'email' => $userData->email,
+                'avatar' => $userData->avatar,
             ]);
         }
 
@@ -24,15 +25,18 @@ class UserRepository {
         $socialData = [
             'email' => $userData->email,
             'name' => $userData->name,
+            'avatar' => $userData->avatar,
         ];
         $dbData = [
             'email' => $user->email,
             'name' => $user->name,
+            'avatar' => $userData->avatar,
         ];
 
         if (!empty(array_diff($socialData, $dbData))) {
             $user->email = $userData->email;
             $user->name = $userData->name;
+            $user->avatar = $userData->avatar;
             $user->save();
         }
     }
