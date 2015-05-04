@@ -21,13 +21,18 @@
 
 
                         <div class="col-xs-12 divider text-center">
-                            <div class="col-xs-12 col-sm-4 emphasis">
-                                <h2><strong> {{$user->followerCount()}} </strong></h2>
-                                <p><small>Followers</small></p>
-                            </div>
+
+                                <div class="col-xs-12 col-sm-4 emphasis">
+                                    <h2><strong> {{$user->followerCount()}} </strong></h2>
+                                    <a href="{{url('followers')}}" class="btn btn-default">
+                                    <p><small>Followers</small></p>
+                                    </a>
+                                </div>
                             <div class="col-xs-12 col-sm-4 emphasis">
                                 <h2><strong>{{$user->followerCount()}}</strong></h2>
+                                <a href="{{url('followers')}}" class="btn btn-default">
                                 <p><small>Following</small></p>
+                                    </a>
                             </div>
                             <div class="col-xs-12 col-sm-4 emphasis">
                                 <h2><strong>{{Auth::user()->favorites_count()}}</strong></h2>

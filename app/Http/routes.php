@@ -25,15 +25,6 @@ Route::get('fileentry/get/{filename}', [
     'uses' => 'FileEntryController@show'
 ]);
 
-
-Route::get('home', 'HomeController@index');
-
-Route::get('login/{provider?}', 'Auth\AuthController@login');
-Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-]);
-
 //Route::resource('api/comments', 'API\CommentAPIController');
 
 Route::resource('products', 'ProductController');
@@ -48,7 +39,18 @@ Route::get('lessons/create/{id}', [
 
 Route::resource('categories', 'CategoryController');
 Route::resource('quizzes', 'QuizController');
+
+/*
+ * User Routes
+ */
+
+Route::get('followers', 'UserController@followers');
+Route::get('followers', 'UserController@followers');
 Route::resource('users', 'UserController');
+
+/*
+ * Links Routes
+ */
 
 Route::post('links/textCrawler', 'LinksController@textCrawler');
 Route::get('links/highlighter', 'LinksController@highlighter');
@@ -57,6 +59,18 @@ Route::post('links/delete', [
     'as' => 'links.delete',
     'uses' => 'LinksController@destroy',
 ]);
+
+Route::get('home', 'HomeController@index');
+
+Route::get('login/{provider?}', 'Auth\AuthController@login');
+Route::controllers([
+    'auth' => 'Auth\AuthController',
+    'password' => 'Auth\PasswordController',
+]);
+
+/*
+ * Comments Routes
+ */
 
 Route::resource('comments', 'CommentController');
 

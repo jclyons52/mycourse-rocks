@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Libraries\Repositories\UserRepository;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller {
 
@@ -107,6 +108,18 @@ class UserController extends Controller {
 	{
 		//
 	}
+
+    public function followers(){
+
+        $users = Auth::user()->followers()->get();
+        return view('site.users.index')->with('users', $users);
+    }
+
+    public function follows(){
+
+        $users = Auth::user()->followedUsers()->get();
+        return view('site.users.index')->with('users', $users);
+    }
 
     private function syncPermissions($role, $input)
     {

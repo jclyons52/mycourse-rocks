@@ -23,9 +23,12 @@
             <div class="row">
                 @endif
                 <div class="col-sm-3">
-                    <a href="{{route('users.show',[$user->id])}}">
-                        <img class="img-responsive img-circle" src="//www.gravatar.com/avatar/{{ md5($user->email) }}" />
-                    </a>
+                    <div class="panel panel-body">
+                        <a href="{{route('users.show',[$user->id])}}">
+                                <img class="img-responsive img-circle" src="//www.gravatar.com/avatar/{{ md5($user->email) }}" />
+                                    <h3>{{$user->name}}</h3>
+                        </a>
+                    </div>
                 </div>
 
                 @endforeach
