@@ -5,8 +5,8 @@ use App\User;
 class UserRepository {
 
 
-    public function findByUserNameOrCreate($userData) {
-        $user = User::where('provider_id', '=', $userData->id)->first();
+    public function findByEmailOrCreate($userData) {
+        $user = User::where('email', '=', $userData->email)->first();
         if(!$user) {
             $user = User::create([
                 'provider_id' => $userData->id,
