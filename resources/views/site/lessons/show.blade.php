@@ -11,7 +11,7 @@
                     <ul class="nav" id="collapseSidenav">
                         @foreach($lesson->links as $index => $link)
                             <li>
-                                <a href="#link-panel{{$index}}">{{$link->title}}</a>
+                                <a href="#link-panel{{$index}}">{!! $link->title !!}</a>
                             </li>
                         @endforeach
                     </ul>

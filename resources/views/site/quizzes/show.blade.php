@@ -115,7 +115,6 @@
                 }, 500);
             });
 
-            console.log(ans);
             $.fn.checking = function(ck, ans) {
                 if (ck != ans) {
                     return 'INCORRECT';
