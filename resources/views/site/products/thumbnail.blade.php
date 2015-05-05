@@ -8,7 +8,7 @@
                         <div class="fav-button">
                             @if (Auth::check())
                                 @if ($product->isOwnedBy(Auth::user()))
-                                    <a class="btn btn-success btn-block" href="#">My course</a>
+                                    <a class="btn btn-info btn-block btn-xs" href="#">My course</a>
                                 @else
                                     @include('site.products.partials.favorite-form')
                                 @endif

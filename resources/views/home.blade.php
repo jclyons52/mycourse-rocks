@@ -24,13 +24,13 @@
 
                                 <div class="col-xs-12 col-sm-4 emphasis">
                                     <h2><strong> {{$user->followerCount()}} </strong></h2>
-                                    <a href="{{url('followers')}}" class="btn btn-default">
+                                    <a href="{{url('followers')}}" class="btn btn-default btn-xs">
                                     <p><small>Followers</small></p>
                                     </a>
                                 </div>
                             <div class="col-xs-12 col-sm-4 emphasis">
                                 <h2><strong>{{$user->followerCount()}}</strong></h2>
-                                <a href="{{url('followers')}}" class="btn btn-default">
+                                <a href="{{url('followers')}}" class="btn btn-default btn-xs">
                                 <p><small>Following</small></p>
                                     </a>
                             </div>
@@ -49,7 +49,7 @@
                         <div class="panel-heading">
                             My courses {{Auth::user()->owned_count()}}
                             <div class="pull-right btn-group">
-                                <a href="{{route('products.create')}}" class="btn btn-primary">create a course</a>
+                                <a href="{{route('products.create')}}" class="btn btn-primary btn-sm">create a course</a>
                             </div>
                             <div class="clearfix"></div>
                         </div>
