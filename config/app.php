@@ -152,7 +152,7 @@ return [
         'Mitul\Generator\GeneratorServiceProvider',
         'Laracasts\Generators\GeneratorsServiceProvider',
         'Laravel\Cashier\CashierServiceProvider',
-        'Laravel\Socialite\SocialiteServiceProvider',
+        'SocialiteProviders\Manager\ServiceProvider',
 	],
 
 	/*
