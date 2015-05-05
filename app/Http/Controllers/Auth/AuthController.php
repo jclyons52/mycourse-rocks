@@ -42,6 +42,6 @@ class AuthController extends Controller {
     }
 
     public function userHasLoggedIn($user) {
-        return redirect('/home');
+        return redirect()->intended();
     }
 }
