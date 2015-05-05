@@ -24,7 +24,7 @@
                                 @endif
                         <div class="col-sm-3">
                             <a href="{!! route('categories.show', [$category->id]) !!}">
-                            <button type="button" class="btn btn-default btn-circle btn-xl">
+                            <button type="button" class="btn btn-info btn-circle btn-xl">
                                 {!! $category->name !!}
                             </button>
                             </a>
