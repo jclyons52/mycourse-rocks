@@ -87,10 +87,11 @@
             $("label.btn").on('click',function () {
                 var choice = $(this).html();
                         console.log(choice);
+                        console.log(json[i].answer);
                 $('#loadbar').show();
                 $('#quiz').fadeOut();
                 setTimeout(function(){
-                    $( "#answer" ).html(  $(this).checking(choice) );
+                    $( "#answer" ).html(  $(this).checking(choice, json[i].answer) );
                     i++;
                     if(i >= json.length){
                         $('#loadbar').fadeOut();
@@ -114,10 +115,9 @@
                 }, 500);
             });
 
-            $ans = json[0].answer;
-            console.log($ans);
-            $.fn.checking = function(ck) {
-                if (ck != $ans) {
+            console.log(ans);
+            $.fn.checking = function(ck, ans) {
+                if (ck != ans) {
                     return 'INCORRECT';
                 } else {
                     total ++;
