@@ -19,20 +19,20 @@
                                 @else
                                     <img class="img-responsive img-circle" src="//www.gravatar.com/avatar/{{ md5($user->email) }}" />
                                 @endif
-                                <figcaption class="ratings">
-                                    <p>Ratings
-                                        @for( $i = 0; $i < round($user->rating()); $i++)
-                                            <a href="#">
-                                                <span class="fa fa-star"></span>
-                                            </a>
-                                        @endfor
-                                        @for( $i = 0; $i < (5 - ($user->rating())); $i++)
-                                            <a href="#">
-                                                <span class="fa fa-star-o"></span>
-                                            </a>
-                                        @endfor
-                                    </p>
-                                </figcaption>
+                                {{--<figcaption class="ratings">--}}
+                                    {{--<p>Ratings--}}
+                                        {{--@for( $i = 0; $i < round($user->rating()); $i++)--}}
+                                            {{--<a href="#">--}}
+                                                {{--<span class="fa fa-star"></span>--}}
+                                            {{--</a>--}}
+                                        {{--@endfor--}}
+                                        {{--@for( $i = 0; $i < (5 - ($user->rating())); $i++)--}}
+                                            {{--<a href="#">--}}
+                                                {{--<span class="fa fa-star-o"></span>--}}
+                                            {{--</a>--}}
+                                        {{--@endfor--}}
+                                    {{--</p>--}}
+                                {{--</figcaption>--}}
                             </figure>
                         </div>
                     </div>
