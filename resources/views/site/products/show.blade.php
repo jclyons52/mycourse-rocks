@@ -39,26 +39,47 @@
             </ol>
         </div>
         <div class="row">
-            <div class="col-sm-9">
-                <h1> {{$product->name}} </h1>
-            </div>
-            <div class="col-sm-3">
-                <h2> Favorited {{$product->favorited_count()}} times</h2>
-            </div>
-        </div>
-        <hr>
-        <div class="row">
-            @include('site.products.thumbnail')
-            <div class="col-sm-6">
-                <div class="col-sm-12">
-                    @include('partials.ratings')
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="col-sm-6">
+                        <img class=" img product-thumbnail" src="{{route('getentry',$product->file->filename )}}" alt="{{$product->name}}">
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="caption-full">
+                            <h4 class="pull-right">
+                                <div class="col-sm-6">
+                                    @include('site.products.partials.favorite-form')
+                                </div>
+                                <div class="col-sm-6">
+                                    {{$product->favorited_count()}}
+                                </div>
+                            </h4>
+                            <h4><a href="#">{{$product->name}}</a>
+                            </h4>
+                            <p>{{$product->description}}</p>
+                        </div>
+                        <div class="ratings">
+                            <p class="pull-right">{{$product->comments()->count()}} reviews</p>
+                            <p>
+                            <p>Ratings
+                                @for( $i = 0; $i < round($product->rating()); $i++)
+                                    <span class="fa fa-star"></span>
+                                @endfor
+                                @for( $i = 0; $i < (5 - ($product->rating())); $i++)
+                                    <span class="fa fa-star-o"></span>
+                                @endfor
+                            </p>
+                            {{$product->rating()}} stars
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
         <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#lessons"  role="tab" data-toggle="tab">Lessons</a></li>
-            <li role="presentation" ><a href="#reviews" aria-controls="profile" role="tab" data-toggle="tab">Reviews</a></li>
+            <li role="presentation" class="active"><a href="#lessons"  role="tab" data-toggle="tab">Lessons ({{$product->lessons()->count()}})</a></li>
+            <li role="presentation" ><a href="#reviews" aria-controls="profile" role="tab" data-toggle="tab">Reviews ({{$product->comments()->count()}})</a></li>
             <li role="presentation" ><a href="#mods" aria-controls="profile" role="tab" data-toggle="tab">Mods</a></li>
         </ul>
         <div class="tab-content">
@@ -70,48 +91,86 @@
                 </div>
             </div>
             <div role="tabpanel" class="tab-pane" id="mods">
-                <div class="row">
-                    <div class="col-sm-3">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">Creator</div>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        @if(Auth::check() && ($product->isOwnedBy(Auth::user()) or $product->isModeratedBy(Auth::user()) ))
+                            <div class="row">
+                                {!! Form::open() !!}
+                                <!--- Tags Field --->
+                                <div class="form-group">
+                                    {!! Form::label('users', 'Users:') !!}
+                                    {!! Form::select('users[]', Auth::user()->followers()->lists('name','id'), $product->mods()->lists('id'), ['class' => 'form-control', 'multiple', 'id' => 'product_mods']) !!}
+                                </div>
+                                <!--- Submit Field --->
+                                <div class="form-group col-sm-12">
+                                    {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
+                                </div>
 
-                            <div class="panel-body">
-                                <div class="col-sm-12">
+                                {!! Form::close() !!}
+                            </div>
+                        @endif
+                        <div class="row">
+                            <div class="col-sm-3">
+                                @include('site.users.thumbnail', ['user' => $owner])
+                            </div>
+                            @foreach($mods as $user)
+                                <div class="col-sm-3">
                                     @include('site.users.thumbnail', ['user' => $owner])
                                 </div>
+                            @endforeach
 
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-9">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">Moderators</div>
 
-                            <div class="panel-body">
-                                <div class="col-sm-3">
-                                    @foreach($mods as $user)
-                                        @include('site.users.thumbnail', ['user' => $owner])
-                                    @endforeach
-                                </div>
-
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div role="tabpanel" class="tab-pane" id="reviews">
-                @if(Auth::check())
-                    @include('site.comments.comment_form')
-                @else
-                    <p>Log in to comment</p>
-                @endif
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                @include('partials.ratings')
+                            </div>
+                            <div class="col-sm-6">
+                                @if(Auth::check())
+                                    @include('site.comments.comment_form')
+                                @else
+                                    <p>Log in to comment</p>
+                                @endif
+                            </div>
+                        </div>
 
-                @foreach($product->comments as $comment)
+                        @foreach($product->comments as $comment)
 
-                    @include('site.comments.show')
+                            @include('site.comments.show')
 
-                @endforeach
+                        @endforeach
+                    </div>
+                </div>
             </div>
 
+        </div>
     </div>
+@endsection
+@section('scripts')
+    @parent
+    <script type="text/javascript">
+        $('#product_mods').select2();
+    </script>
+
+@endsection
+@section('styles')
+    @parent
+    <style>
+        @media(max-width:767px){
+            .product-thumbnail{
+                max-height: 300px;
+            }
+        }
+        @media(min-width:768px){
+            .product-thumbnail{
+                max-height: 300px;
+            }
+        }
+    </style>
 @endsection

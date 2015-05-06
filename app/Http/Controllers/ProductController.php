@@ -56,12 +56,6 @@ class ProductController extends Controller {
         $product = Product::create($input);
         $user->products()->save($product, ['owner' => '1']);
 
-        $mod_role = Role::create(['name' => 'Product'.$product->id.'mod']);
-
-        $user->roles()->attach($mod_role->id);
-
-
-
         Flash::message('Product saved successfully.');
 
         return redirect(route('products.show', [$product->id]));

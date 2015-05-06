@@ -16,13 +16,11 @@ class FavoritesController extends Controller {
      *
      * @return Response
      */
-    public function store(Request $request)
+    public function store($productIdToFavorite)
     {
-        $input = $request->all();
+        Auth::user()->products()->attach($productIdToFavorite, ['favorite' => '1']);
 
-        $this->dispatch(new FavoriteProductCommand(Auth::id(),$input['productIdToFavorite'] ));
-
-        Flash::success('You are now following this user.');
+        Flash::success('This is now in your favorites');
 
         return redirect()->back();
     }

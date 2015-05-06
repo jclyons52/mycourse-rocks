@@ -86,6 +86,18 @@ class Product extends Model
         return in_array($this->id, $owned);
     }
 
+    /**
+     * check if user is listed as a mod in the pivot table between users and products (courses)
+     * @param User $user
+     * @return bool
+     */
+    public function isModeratedBy(User $user)
+    {
+        $owned = $user->products()->wherePivot('mod', '1')->lists('product_id');
+
+        return in_array($this->id, $owned);
+    }
+
     public function owner()
     {
         return $this->users()->wherePivot('owner', '1')->first();
@@ -102,6 +114,8 @@ class Product extends Model
         return $count;
 
     }
+
+
 
 
 }

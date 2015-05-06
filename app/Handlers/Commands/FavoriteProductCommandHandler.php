@@ -37,7 +37,7 @@ class FavoriteProductCommandHandler {
 	public function handle(FavoriteProductCommand $command)
 	{
         $user = $this->userRepo->findById($command->userId);
-
+        dd($user);
         $this->productRepo->favorite($command->productIdToFavorite, $user);
 
         return $user;

@@ -109,12 +109,12 @@ Route::get('follows/{id}', [
 /*
  * favorites routes
  */
-Route::post('favorites', [
+Route::get('favorite/{id}', [
     'as' => 'favorites.store',
     'uses' => 'FavoritesController@store'
 ]);
 
-Route::get('favorites/{id}', [
+Route::get('unfavorite/{id}', [
     'as' => 'favorites.delete',
     'uses' => 'FavoritesController@destroy'
 ]);
