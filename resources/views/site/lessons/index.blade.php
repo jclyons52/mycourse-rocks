@@ -1,7 +1,8 @@
 <div class="container">
     <div class="row">
         @if($product->lessons->isEmpty())
-            <div class="well text-center">No Lessons found.</div>
+            <div class="well text-center">No Lessons found. <a class="btn btn-primary btn-xs"  href="{!! route('lessons.create',[$product->id]) !!}"><i class="glyphicon glyphicon-plus" ></i> Add New</a></div>
+
         @else
             <table class="table">
                 <thead>
@@ -33,6 +34,7 @@
 
                 @endif
                 </tbody>
+
             </table>
         @endif
     </div>
