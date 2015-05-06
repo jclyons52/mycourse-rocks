@@ -40,13 +40,14 @@
             </div>
             <div class="modal-body">
                 <h1>score:</h1> <h1 id="total"></h1>
-                {{--{!! Form::open() !!}--}}
-                {{--<input type="hidden" name="total" id="upload-total"/>--}}
-                {{--<!--- Submit Field --->--}}
-                {{--<div class="form-group col-sm-12">--}}
-                    {{--{!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}--}}
-                {{--</div>--}}
-                {{--{!! Form::close() !!}--}}
+                {!! Form::open(['route' => 'results.store']) !!}
+                <input type="hidden" name="quiz_result" id="upload-total"/>
+                <input type="hidden" name="lesson_id" value="{{$lesson->id}}"/>
+                <!--- Submit Field --->
+                <div class="form-group col-sm-12">
+                    {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
+                </div>
+                {!! Form::close() !!}
             </div>
         </div>
     </div>

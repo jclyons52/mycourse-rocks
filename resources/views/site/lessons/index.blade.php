@@ -1,58 +1,43 @@
 <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <span class="glyphicon glyphicon-list"></span> Lessons
-
-                </div>
-                <div class="panel-body">
-                    <ul class="list-group">
-                        @if(Auth::check() && Auth::user()->hasRole('Product'.$product->id.'mod'))
-                            <li class="list-group-item">
-                                <a class="btn btn-primary action-buttons" href="{!! route('lessons.create',[$product->id]) !!}">Add New</a>
-                            </li>
-                        @endif
-                        @foreach($product->lessons as $lesson)
-                            <a href="{!! url('lesson/'. $lesson->id) !!}">
-                            <li class="list-group-item">
-                                {{$lesson->name}}
-                                @if(Auth::check() && Auth::user()->hasRole('Product'.$product->id.'mod'))
-                                    <div class="pull-right btn-group">
-                                        <a class="btn btn-primary btn-xs" href="{!! route('lessons.edit',[$lesson->id]) !!}">Edit Lesson</a>
-                                    </div>
-
-                                @endif
-                            </li>
-                            </a>
-                        @endforeach
-                    </ul>
-                </div>
-                <div class="panel-footer">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h6>
-                                Total Count <span class="label label-info">{{$product->lessons()->count()}}</span></h6>
-                        </div>
-                        <div class="col-md-6">
-                        </div>
-                    </div>
-                </div>
-            </div>
+    @if(Auth::check() && Auth::user()->hasRole('Product'.$product->id.'mod'))
+        <div class="row">
+            <a class="btn btn-primary" style="margin-top: 25px" href="{!! route('lessons.create',[$product->id]) !!}">Add New</a>
         </div>
-    </div>
-</div>
+    @endif
+    <div class="row">
+        @if($product->lessons->isEmpty())
+            <div class="well text-center">No Lessons found.</div>
+        @else
+            <table class="table">
+                <thead>
+                <th>Name</th>
+                <th>Score</th>
+                <th width="50px">Action</th>
+                </thead>
+                <tbody>
+                @foreach($product->lessons as $lesson)
+                    <tr>
 
-@section('styles')
-    <style>
-        .trash { color:rgb(209, 91, 71); }
-        .flag { color:rgb(248, 148, 6); }
-        .panel-body { padding:0px; }
-        .panel-footer .pagination { margin: 0; }
-        .panel .glyphicon,.list-group-item .glyphicon { margin-right:5px; }
-        .panel-body .radio, .checkbox { display:inline-block;margin:0px; }
-        .panel-body input[type=checkbox]:checked + label { text-decoration: line-through;color: rgb(128, 144, 160); }
-        .list-group-item:hover, a.list-group-item:focus {text-decoration: none;background-color: rgb(245, 245, 245);}
-        .list-group { margin-bottom:0px; }
-    </style>
-@endsection
+                        <td> <a href="{!! url('lesson/'. $lesson->id) !!}" class="btn btn-xs btn-primary">{!! $lesson->name !!} <i class="glyphicon glyphicon-arrow-right"></i> </a></td>
+
+                        <td>{{$lesson->userScore(Auth::id())}} / {{$lesson->quizzes->count()}}</td>
+                        <td>
+                            @if(Auth::check() && Auth::user()->hasRole('Product'.$product->id.'mod'))
+                                <a href="{!! route('lessons.edit', [$lesson->id]) !!}"><i class="glyphicon glyphicon-edit"></i></a>
+                                {{--<a href="{!! route('lessons.delete', [$lesson->id]) !!}" onclick="return confirm('Are you sure wants to delete this Lesson?')"><i class="glyphicon glyphicon-remove"></i></a>--}}
+                            @endif
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+                <tfooter>
+                    <h6>
+                        Total Count <span class="label label-info">{{$product->lessons()->count()}}</span>
+                    </h6>
+                    <hr/>
+                </tfooter>
+            </table>
+        @endif
+    </div>
+
+</div>

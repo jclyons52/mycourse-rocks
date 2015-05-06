@@ -29,6 +29,11 @@ Route::get('fileentry/get/{filename}', [
 
 Route::resource('products', 'ProductController');
 
+
+Route::post('results/store', [
+    'as' => 'results.store',
+    'uses' => 'UserLessonResultController@store'
+]);
 Route::resource('lessons', 'LessonController');
 Route::get('lessons/{id}/links', 'LessonController@links');
 Route::get('lessons/create/{id}', [

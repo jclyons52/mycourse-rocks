@@ -47,4 +47,20 @@ class Lesson extends Model
         return $this->belongsTo('\App\Models\Product');
     }
 
+    public function users()
+    {
+        return $this->belongsToMany('App\User')->withPivot('score');
+    }
+
+    public function userScore($userId)
+    {
+       $user = $this->users()->where('id', $userId)->first();
+        if(isset($user->pivot->score)){
+            $result = $user->pivot->score;
+        }else{
+            $result = 0;
+        }
+        return $result;
+    }
+
 }
