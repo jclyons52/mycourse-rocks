@@ -1,4 +1,4 @@
-@if($product->isOwnedBy(Auth::user()))
+@if(Auth::check() && $product->isOwnedBy(Auth::user()))
     <i class="glyphicon glyphicon-heart"></i>
 @elseif(Auth::check())
     @if ($product->isFavoritedBy(Auth::user()))
@@ -6,4 +6,6 @@
     @else
         <a class="glyphicon glyphicon-heart-empty" href="{!! route('favorites.store', [$product->id]) !!}"></a>
     @endif
+@else
+    <i class="glyphicon glyphicon-heart"></i>
 @endif
