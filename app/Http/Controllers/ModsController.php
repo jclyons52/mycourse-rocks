@@ -17,7 +17,7 @@ class ModsController extends Controller {
 	{
         $input = $request->all();
 
-        $this->dispatch(new AddModCommand($input['user_id'],$input['product_id'] ));
+        $this->dispatch(new AddModCommand($input['users'],$input['product_id'] ));
 
         Flash::success('Moderator Added');
 

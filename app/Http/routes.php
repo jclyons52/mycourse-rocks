@@ -106,6 +106,16 @@ Route::get('follows/{id}', [
     'uses' => 'FollowsController@destroy'
 ]);
 
+Route::post('add_moderator', [
+    'as' => 'mods.store',
+    'uses' => 'ModsController@store'
+]);
+
+Route::post('remove_moderator', [
+    'as' => 'mods.delete',
+    'uses' => 'ModsController@destroy'
+]);
+
 /*
  * favorites routes
  */

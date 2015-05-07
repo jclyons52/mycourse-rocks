@@ -95,7 +95,8 @@
                     <div class="panel-body">
                         @if(Auth::check() && ($product->isOwnedBy(Auth::user()) or $product->isModeratedBy(Auth::user()) ))
                             <div class="row">
-                                {!! Form::open() !!}
+                                {!! Form::open(['route' => 'mods.store']) !!}
+                                <input type="hidden" name="product_id" value="{{$product->id}}"/>
                                 <!--- Tags Field --->
                                 <div class="form-group">
                                     {!! Form::label('users', 'Users:') !!}
@@ -115,7 +116,7 @@
                             </div>
                             @foreach($mods as $user)
                                 <div class="col-sm-3">
-                                    @include('site.users.thumbnail', ['user' => $owner])
+                                    @include('site.users.thumbnail', ['user' => $user])
                                 </div>
                             @endforeach
 

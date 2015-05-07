@@ -1,7 +1,8 @@
 <div class="container">
-    <h1> Courses</h1>
-
-
+    <div class="row">
+        <h1 class="pull-left"> Courses</h1> <a href="{{route('products.create')}}" class="btn btn-primary pull-right" style="margin-top: 15px">create a course</a>
+    </div>
+    <hr/>
     <div class="row">
             @foreach($products as $product)
 

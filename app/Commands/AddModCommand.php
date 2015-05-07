@@ -30,10 +30,10 @@ class AddModCommand extends Command implements SelfHandling {
 	 */
 	public function handle()
 	{
-        $user = User::find($this->userId);
+        $user = User::find($this->userId)->first();
         $product = Product::find($this->productId);
-
-        $user->lessons()->save($product, ['mod' => '1']);
+//        dd($user, $product);
+        $user->products()->save($product, ['mod' => '1']);
 	}
 
 }
