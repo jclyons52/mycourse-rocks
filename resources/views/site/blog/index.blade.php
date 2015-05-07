@@ -9,7 +9,7 @@
                     <!-- Post Title -->
                     <div class="row">
                         <div class="col-md-8">
-                            <h4><strong><a href="{{{ $post->url() }}}">{{ ($post->title) }}</a></strong></h4>
+                            <h4><strong><a href="{{ route('blog.posts.show', [$post->id]) }}">{{ ($post->title) }}</a></strong></h4>
                         </div>
                     </div>
                     <!-- ./ post title -->

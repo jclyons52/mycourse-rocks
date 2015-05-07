@@ -7,7 +7,7 @@
             <div class="center" id="scrolll">
                 <ul class="nav bs-docs-sidenav">
                     <hr/>
-                        <a href="#content" role="tab" data-toggle="tab">{{$lesson->name}}</a>
+                    <a href="#content" role="tab" data-toggle="tab">{{$lesson->name}}</a>
                     <ul class="nav" id="collapseSidenav">
                         @foreach($lesson->links as $index => $link)
                             <li>
@@ -43,7 +43,63 @@
                                 </div>
                                 <div class="panel-body">
                                     <div class="center">
-                                        <div id="retrieveFromDatabase" ></div>
+                                        @foreach($lesson->links as $index => $link)
+                                            @if($link->iframe != "")
+
+                                                <div class="previewPosted" style="" id="link-panel{{$index}}" >
+                                                    <div class="previewTextPosted"> {{$link->text}}
+                                                    </div> {!! $link->iframe !!}
+                                                    <div class="previewImagesPosted">
+                                                        <div class="previewImagePosted">
+                                                            <img id="img_{{$link->iframe_id()}}" src="{{$link->image}}" class="imgIframe" style="width: 130px; height: auto; float: left;">
+			                                                <span class="videoPostPlay">
+			                                                </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="previewContentPosted">
+                                                        <div class="previewTitlePosted" id="pTP_{{$link->iframe_id()}}" style="width: 355px">{{$link->title}}
+                                                        </div>
+                                                        <div class="previewUrlPosted">{{$link->canonicalUrl}}
+                                                        </div>
+                                                        <div class="previewDescriptionPosted" id="pDP_{{$link->iframe_id()}}" style="width: 355px">
+		                                                    <span id="previewSpanDescription">{{$link->description}}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div style="clear: both">
+                                                    </div>
+                                                </div>
+                                            @else
+                                                <div class="previewPosted" style="" id="link-panel{{$index}}" >
+                                                    <div class="previewTextPosted"> {{$link->text}}
+                                                    </div>
+                                                    <div class="previewImagesPosted">
+                                                        <div class="previewImagePosted">
+                                                            <a href="{{$link->url}}" target="_blank">
+                                                                <img src="{{$link->image}}" style="width: 130px; height: auto; float: left;">
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="previewContentPosted">
+                                                        <div class="previewTitlePosted" >
+                                                            <a href="{{$link->url}}" target="_blank">
+				                                                <span id="previewSpanTitle">{{$link->title}}
+				                                                </span>
+                                                            </a>
+                                                        </div>
+                                                        <div class="previewUrlPosted">{{$link->canonicalUrl}}
+                                                        </div>
+                                                        <div class="previewDescriptionPosted"  >
+			                                                <span id="previewSpanDescription">{{$link->description}}
+			                                                </span>
+                                                        </div>
+                                                        <div style="clear: both">
+                                                        </div>
+                                                    </div>
+                                                    </div>
+
+                                            @endif
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
@@ -72,7 +128,7 @@
             </div>
         </div>
     </div>
-</div>
+    </div>
 @endsection
 @section('scripts')
     @parent
