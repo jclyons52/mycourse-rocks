@@ -69,7 +69,7 @@ class ProductController extends Controller {
 	 */
 	public function show($id)
 	{
-        $product = Product::find($id);
+        $product = Product::findOrFail($id);
         $rating_cont = Comment::where('product_id', '=', $product->id)->count();
         $checked_rating_count = ($rating_cont > 0 ? $rating_cont : 1);
 

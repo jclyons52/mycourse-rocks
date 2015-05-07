@@ -5,15 +5,6 @@
                 <a href="{!! route('products.show', [$product->id]) !!}" role="button">
                     <div class="col-md-6">
                         <img class="lib-img-show" src="{{route('getentry',$product->file->filename )}}" alt="{{$product->name}}">
-                        <div class="fav-button">
-                            @if (Auth::check())
-                                @if ($product->isOwnedBy(Auth::user()))
-                                    <a class="btn btn-info btn-block btn-xs" href="#">My course</a>
-                                @else
-                                    @include('site.products.partials.favorite-form')
-                                @endif
-                            @endif
-                        </div>
                     </div>
                     <div class="col-md-6">
                         <div class="lib-row lib-header">
