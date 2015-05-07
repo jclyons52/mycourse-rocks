@@ -26,4 +26,13 @@ class Link extends Model
 	public static $rules = [
 	];
 
+    public function iframe_id()
+    {
+        $re = "/id=([\",'])(.*?)\\g{1}/";
+        $str = $this->iframe;
+        preg_match($re, $str, $matches);
+
+        return $matches[2];
+    }
+
 }
