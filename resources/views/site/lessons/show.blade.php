@@ -57,7 +57,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="previewContentPosted">
-                                                        <div class="previewTitlePosted" id="pTP_{{$link->iframe_id()}}" style="width: 355px">{{$link->title}}
+                                                        <div class="previewTitlePosted" id="pTP_{{$link->iframe_id()}}" style="width: 355px">{!! $link->title !!}
                                                         </div>
                                                         <div class="previewUrlPosted">{{$link->canonicalUrl}}
                                                         </div>
@@ -83,7 +83,7 @@
                                                     <div class="previewContentPosted">
                                                         <div class="previewTitlePosted" >
                                                             <a href="{{$link->url}}" target="_blank">
-				                                                <span id="previewSpanTitle">{{$link->title}}
+				                                                <span id="previewSpanTitle">{!! $link->title !!}
 				                                                </span>
                                                             </a>
                                                         </div>
