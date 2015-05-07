@@ -7,5 +7,5 @@
         <a class="glyphicon glyphicon-heart-empty" href="{!! route('favorites.store', [$product->id]) !!}"></a>
     @endif
 @else
-    <i class="glyphicon glyphicon-heart"></i>
+    <a class="glyphicon glyphicon-heart-empty" href="{!! route('favorites.store', [$product->id]) !!}"></a>
 @endif

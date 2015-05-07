@@ -47,10 +47,10 @@
                     <div class="col-sm-6">
                         <div class="caption-full">
                             <h4 class="pull-right">
-                                <div class="col-sm-6">
+                                <div class="col-xs-6">
                                     @include('site.products.partials.favorite-form')
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-xs-6">
                                     {{$product->favorited_count()}}
                                 </div>
                             </h4>
