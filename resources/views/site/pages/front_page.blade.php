@@ -3,7 +3,7 @@
 @section('content')
 
     <!-- Header -->
-    <header>
+    <header class="landing-page">
         <div class="container">
             <div class="intro-text">
                 <div class="intro-lead-in">Welcome To My Course Rocks!</div>
