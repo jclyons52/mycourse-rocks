@@ -85,14 +85,16 @@ Route::get('comments/{id}/delete', [
 ]);
 
 Route::get('about', 'PageController@about');
+Route::get('front_page', 'PageController@frontPage');
 Route::get('popular', 'PageController@popular');
 Route::post('contact', [
     'as' => 'contact',
     'uses' => 'PageController@contact'
 ]);
 
+
 Route::get('product/{id}', 'StoreController@product');
-Route::get('/', 'CategoryController@index');
+Route::get('/', 'PageController@frontPage');
 
 Route::get('/lesson/{id}', 'StoreController@lesson');
 

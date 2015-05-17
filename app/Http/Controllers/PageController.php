@@ -24,7 +24,18 @@ class PageController extends Controller {
 
     }
 
+    public function frontPage(){
+
+        $products = Product::popular()->paginate(10);
+
+        return view('site.pages.front_page')->with('products', $products);
+    }
+
     public function newProducts(){
+
+        $products = Product::orderBy('created_at', 'desc')->limit(10);
+
+        return view('site.pages.popular')->with('products', $products);
 
     }
 

@@ -15,7 +15,7 @@ elixir(function(mix) {
     mix.less('app.less', 'resources/css');
 
     mix.styles([
-    	'libs/roboto.css',
+    	//'libs/roboto.css',
     	'libs/select2.min.css',
         'libs/dropzone.css',
         'libs/star-rating.min.css',

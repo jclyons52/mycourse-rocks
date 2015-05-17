@@ -9,7 +9,7 @@
     $.fn.linkPreview = function (options) {
 
         var defaults = {
-            placeholder: "What's in your mind",
+            placeholder: "Add a link",
             imageQuantity: -1 // illimited
         };
 

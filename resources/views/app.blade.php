@@ -313,7 +313,6 @@
     {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js"></script>--}}
 </head>
 <body>
-
 	    @include('partials.nav')
 
 <div class="main-section">
