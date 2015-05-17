@@ -17,7 +17,7 @@
 
         <div class="row">
             <ol class="breadcrumb">
-                <li><a href="/"><i class="glyphicon glyphicon-home"></i></a></li>
+                <li><a href="{{ url('home') }}"><i class="glyphicon glyphicon-home"></i></a></li>
                 <li href="#" >{{{$category->name}}}</li>
             </ol>
         </div>
