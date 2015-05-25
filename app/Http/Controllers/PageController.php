@@ -44,6 +44,10 @@ class PageController extends Controller {
         return view('admin.dashboard');
     }
 
+    public function userDashboard(){
+        return view('site.pages.dashboard');
+    }
+
     public function contact(Request $request){
 
         $input = $request->all();

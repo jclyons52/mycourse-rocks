@@ -32,7 +32,8 @@ elixir(function(mix) {
         'libs/dropzone.js',
         'libs/star-rating.min.js',
         'libs/linkPreview.js',
-        'libs/linkPreviewRetrieve.js'
+        'libs/linkPreviewRetrieve.js',
+        'googleAnalytics.js'
     	
     ]);
 });

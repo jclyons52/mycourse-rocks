@@ -133,6 +133,7 @@
 @endsection
 
 @section('styles')
+    @parent
     <style>
         #qid {
             padding: 10px 15px;

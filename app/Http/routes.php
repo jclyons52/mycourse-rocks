@@ -85,6 +85,7 @@ Route::get('comments/{id}/delete', [
 ]);
 
 Route::get('about', 'PageController@about');
+Route::get('dashboard', 'PageController@userDashboard');
 Route::get('front_page', 'PageController@frontPage');
 Route::get('popular', 'PageController@popular');
 Route::post('contact', [
