@@ -29,23 +29,27 @@
 
                         <!-- Nav tabs -->
                         <ul class="pagination pagination-sm" role="tablist">
+                            <?php $count = 0; ?>
                             @foreach($lesson->links as $index => $link)
                                 @if($link->iframe != "")
-                                    <li role="presentation"><a href="#iframe-link-panel{{$index}}" aria-controls="iframe-link-panel{{$index}}" role="tab" data-toggle="tab">{{$index}}</a></li>
+
+                                    <li role="presentation" class="{{($count == 0 ? 'active' : null )}}"><a href="#iframe-link-panel{{$index}}" aria-controls="iframe-link-panel{{$index}}" role="tab" data-toggle="tab">{{$count}}</a></li>
+                                    <?php $count++ ?>
                                 @endif
                             @endforeach
                         </ul>
 
                         <!-- Tab panes -->
                         <div class="tab-content">
-
+                            <?php $count = 0; ?>
                             @foreach($lesson->links as $index => $link)
                                 @if($link->iframe != "")
-                                    <div role="tabpanel" class="tab-pane" id="iframe-link-panel{{$index}}">
+                                    <div role="tabpanel" class="tab-pane {{($count == 0 ? 'active' : null )}}" id="iframe-link-panel{{$index}}">
                                         <div class="col-sm-12">
                                             {!! $link->iframe !!}
                                         </div>
                                     </div>
+                                        <?php $count++ ?>
                                 @endif
                             @endforeach
                         </div>
