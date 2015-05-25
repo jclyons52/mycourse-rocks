@@ -163,10 +163,13 @@
     @parent
     <script>
         var lesson_id = '{{ $lesson->id }}';
-        $('body').scrollspy({ target: '#scrolll' });
-        $('iframe').each(function(){
-            this.css('display','inline');
+        $( document). ready(function(){
+            $('body').scrollspy({ target: '#scrolll' });
+            $('iframe').each(function(){
+                $(this).css('display','inline');
+            });
         });
+
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/0.11.10/vue.min.js"></script>
     <script>
