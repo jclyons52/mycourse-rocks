@@ -63,6 +63,10 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->belongsToMany('App\Models\Lesson')->withPivot('score');
     }
 
+    public function notes(){
+        return $this->hasMany('App\Models\Note');
+    }
+
 	/**
      * Checks if the user has a Role by its name.
      *

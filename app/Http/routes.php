@@ -137,3 +137,11 @@ Route::group(['prefix' => 'blog'], function()
     Route::resource('posts', 'BlogController');
 
 });
+
+
+Route::resource('api/notes', 'API\NoteAPIController');
+
+Route::get('api/notes/{id}/delete', [
+    'as' => 'api.notes.delete',
+    'uses' => 'API\NoteAPIController@destroy',
+]);

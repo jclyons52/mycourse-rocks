@@ -28,6 +28,7 @@ elixir(function(mix) {
     mix.scripts([
     	'libs/jquery.min.js',
     	'libs/bootstrap.min.js',
+        'libs/vue.min.js',
     	'libs/select2.min.js',
         'libs/dropzone.js',
         'libs/star-rating.min.js',

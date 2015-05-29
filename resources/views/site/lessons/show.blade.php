@@ -49,19 +49,19 @@
                                             {!! $link->iframe !!}
                                         </div>
                                     </div>
-                                        <?php $count++ ?>
+                                    <?php $count++ ?>
                                 @endif
                             @endforeach
                         </div>
 
                     </div>
-                        <nav>
-                            <ul class="pagination pagination-sm">
-                            </ul>
-                        </nav>
-                        <div class="tab-content">
+                    <nav>
+                        <ul class="pagination pagination-sm">
+                        </ul>
+                    </nav>
+                    <div class="tab-content">
 
-                        </div>
+                    </div>
 
                 </div>
                 <div role="tabpanel" class="col-xs-10 tab-pane" id="notes-tab">
@@ -99,49 +99,49 @@
                 </div>
                 <div role="tabpanel" class="col-xs-10 tab-pane" id="quiz-tab">
                     <div class="tab-content">
-                    @if(count($lesson->quizzes) > 0)
-                        @include('site.quizzes.show')
-                    @else
-                        <h1>No quiz added</h1>
-                    @endif
-                        </div>
+                        @if(count($lesson->quizzes) > 0)
+                            @include('site.quizzes.show')
+                        @else
+                            <h1>No quiz added</h1>
+                        @endif
+                    </div>
                 </div>
                 <div role="tabpanel" class="col-xs-10 tab-pane" id="resources-tab">
-                   <div class="panel panel-default">
-                      <div class="panel-body">
-                          @foreach($lesson->links as $index => $link)
-                              @if($link->iframe == "")
-                                  <div class="previewPosted" style="" id="link-panel{{$index}}" >
-                                      <div class="previewTextPosted"> {{$link->text}}
-                                      </div>
-                                      <div class="previewImagesPosted">
-                                          <div class="previewImagePosted">
-                                              <a href="{{$link->url}}" target="_blank">
-                                                  <img src="{{$link->image}}" style="width: 130px; height: auto; float: left;">
-                                              </a>
-                                          </div>
-                                      </div>
-                                      <div class="previewContentPosted">
-                                          <div class="previewTitlePosted" >
-                                              <a href="{{$link->url}}" target="_blank">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            @foreach($lesson->links as $index => $link)
+                                @if($link->iframe == "")
+                                    <div class="previewPosted" style="" id="link-panel{{$index}}" >
+                                        <div class="previewTextPosted"> {{$link->text}}
+                                        </div>
+                                        <div class="previewImagesPosted">
+                                            <div class="previewImagePosted">
+                                                <a href="{{$link->url}}" target="_blank">
+                                                    <img src="{{$link->image}}" style="width: 130px; height: auto; float: left;">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="previewContentPosted">
+                                            <div class="previewTitlePosted" >
+                                                <a href="{{$link->url}}" target="_blank">
 				                                                <span id="previewSpanTitle">{!! $link->title !!}
 				                                                </span>
-                                              </a>
-                                          </div>
-                                          <div class="previewUrlPosted">{{$link->canonicalUrl}}
-                                          </div>
-                                          <div class="previewDescriptionPosted"  >
+                                                </a>
+                                            </div>
+                                            <div class="previewUrlPosted">{{$link->canonicalUrl}}
+                                            </div>
+                                            <div class="previewDescriptionPosted"  >
 			                                                <span id="previewSpanDescription">{{$link->description}}
 			                                                </span>
-                                          </div>
-                                          <div style="clear: both">
-                                          </div>
-                                      </div>
-                                  </div>
-                              @endif
-                          @endforeach
-                      </div>
-                   </div>
+                                            </div>
+                                            <div style="clear: both">
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+                            @endforeach
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -167,15 +167,17 @@
     @parent
     <script>
         var lesson_id = '{{ $lesson->id }}';
+        var notes_data = [];
+
         $( document). ready(function(){
             $('body').scrollspy({ target: '#scrolll' });
             $('iframe').each(function(){
                 $(this).css('display','inline');
             });
+//            $.get( "/api/notes", function( data ) {if(data.flag == true){console.log( data.data)}});
         });
 
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/0.11.10/vue.min.js"></script>
     <script>
         new Vue({
 
@@ -184,21 +186,60 @@
                 notes: [],
                 newNote: ''
             },
+
+            ready: function(){
+                that = this;
+                    console.log('fire!');
+                    $.get( "/api/notes",{lesson_id: lesson_id, user_id: '{{ Auth::id() }}' } , function( data ) {
+                        notes_data = data.data;
+                        for(var i=0; i< notes_data.length; i++){
+                            that.notes.push({
+                                body: notes_data[i].body,
+                                id: notes_data[i].id
+                            });
+                        }
+                    });
+            },
+
             methods: {
+
+
+
                 addNote: function(e){
                     e.preventDefault();
 
                     if ( ! this.newNote) return;
 
                     this.notes.push({
-                        body: this.newNote
+                        body: this.newNote,
+                        lesson_id: lesson_id,
+                        user_id: '{{ Auth::id() }}'
                     });
 
+                    $.post(
+                            '/api/notes',
+                            {
+                                body: this.newNote,
+                                lesson_id: lesson_id,
+                                user_id: '{{ Auth::id() }}',
+                                _token: token
+                            },
+                            function( data ){
+                                console.log(data);
+                            }
+                    );
+
                     this.newNote = '';
+
 
                 },
                 removeNote: function(note){
                     this.notes.$remove(note);
+                    $.get( "/api/notes/"+note.id+"/delete", function( data ) {
+                            console.log(data);
+
+                    });
+
                 }
             }
 

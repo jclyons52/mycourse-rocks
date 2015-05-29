@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePostsTable extends Migration
+class CreateNotesTable extends Migration
 {
 
 	/**
@@ -13,16 +13,12 @@ class CreatePostsTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('posts', function(Blueprint $table)
+		Schema::create('notes', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->integer('user_id')->index();
-			$table->string('title');
-			$table->string('slug');
-			$table->text('content');
-			$table->string('meta_title');
-			$table->string('meta_description');
-			$table->string('meta_keywords');
+			$table->integer('lesson_id')->index();
+			$table->text('body');
 			$table->timestamps();
 		});
 	}
@@ -34,7 +30,7 @@ class CreatePostsTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('posts');
+		Schema::drop('notes');
 	}
 
 }
