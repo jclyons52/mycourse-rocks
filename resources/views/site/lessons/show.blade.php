@@ -25,33 +25,62 @@
             </div>
             <div class="col-sm-10 tab-content">
                 <div role="tabpanel" class="col-xs-10 tab-pane active" id="video-tab">
-                    <div role="tabpanel">
+                    <div role="tabpanel" id="videos">
 
-                        <!-- Nav tabs -->
-                        <ul class="pagination pagination-sm" role="tablist">
-                            <?php $count = 0; ?>
-                            @foreach($lesson->links as $index => $link)
-                                @if($link->iframe != "")
+                        <div class="row">
+                            <!-- Nav tabs -->
+                            <ul class="pagination pagination-sm" role="tablist">
+                                <?php $count = 0; ?>
+                                @foreach($lesson->links as $index => $link)
+                                    @if($link->iframe != "")
 
-                                    <li role="presentation" class="{{($count == 0 ? 'active' : null )}}"><a href="#iframe-link-panel{{$index}}" aria-controls="iframe-link-panel{{$index}}" role="tab" data-toggle="tab">{{$count}}</a></li>
-                                    <?php $count++ ?>
-                                @endif
-                            @endforeach
-                        </ul>
-
-                        <!-- Tab panes -->
-                        <div class="tab-content">
-                            <?php $count = 0; ?>
-                            @foreach($lesson->links as $index => $link)
-                                @if($link->iframe != "")
-                                    <div role="tabpanel" class="tab-pane {{($count == 0 ? 'active' : null )}}" id="iframe-link-panel{{$index}}">
-                                        <div class="col-sm-12">
-                                            {!! $link->iframe !!}
-                                        </div>
+                                        <li role="presentation" class="{{($count == 0 ? 'active' : null )}}"><a href="#iframe-link-panel{{$index}}" aria-controls="iframe-link-panel{{$index}}" role="tab" data-toggle="tab">{{$count}}</a></li>
+                                        <?php $count++ ?>
+                                    @endif
+                                @endforeach
+                            </ul>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-1">
+                                <div class="row">
+                                    <i class="glyphicon glyphicon-plus"></i>
+                                </div>
+                                <div class="row">
+                                    <div class="range">
+                                        <input
+                                                v-model="zoom"
+                                                type="range"
+                                                name="range"
+                                                min="1"
+                                                max="7"
+                                                v-on="change: changeZoom"
+                                                orient="vertical">
                                     </div>
-                                    <?php $count++ ?>
-                                @endif
-                            @endforeach
+                                </div>
+                                <div class="row">
+                                    <i class="glyphicon glyphicon-minus"></i>
+                                </div>
+
+
+
+                            </div>
+
+                           <div class="col-xs-11">
+                               <!-- Tab panes -->
+                               <div class="tab-content">
+                                   <?php $count = 0; ?>
+                                   @foreach($lesson->links as $index => $link)
+                                       @if($link->iframe != "")
+                                           <div role="tabpanel" class="tab-pane {{($count == 0 ? 'active' : null )}}" id="iframe-link-panel{{$index}}">
+                                               <div class="col-sm-12">
+                                                   {!! $link->iframe !!}
+                                               </div>
+                                           </div>
+                                           <?php $count++ ?>
+                                       @endif
+                                   @endforeach
+                               </div>
+                           </div>
                         </div>
 
                     </div>
@@ -160,6 +189,14 @@
         .bottom-border{
             border-bottom: thin solid black;
         }
+        input[type=range][orient=vertical]
+        {
+            writing-mode: bt-lr; /* IE */
+            -webkit-appearance: slider-vertical; /* WebKit */
+            width: 8px;
+            height: 175px;
+            padding: 0 5px;
+        }
     </style>
 
 @endsection
@@ -180,6 +217,24 @@
     </script>
     <script>
         new Vue({
+            el: '#videos',
+            data: {
+                zoom: 4
+            },
+            methods: {
+                changeZoom: function(){
+                    that = this;
+                    $('iframe').each(function(){
+                        var height = that.zoom * 315/3;
+                        var width = that.zoom * 560/3;
+                        $(this).css('height', height);
+                        $(this).css('width',width);
+                    });
+                }
+            }
+        });
+
+        new Vue({
 
             el: '#notes',
             data: {
@@ -189,16 +244,16 @@
 
             ready: function(){
                 that = this;
-                    console.log('fire!');
-                    $.get( "/api/notes",{lesson_id: lesson_id, user_id: '{{ Auth::id() }}' } , function( data ) {
-                        notes_data = data.data;
-                        for(var i=0; i< notes_data.length; i++){
-                            that.notes.push({
-                                body: notes_data[i].body,
-                                id: notes_data[i].id
-                            });
-                        }
-                    });
+                console.log('fire!');
+                $.get( "/api/notes",{lesson_id: lesson_id, user_id: '{{ Auth::id() }}' } , function( data ) {
+                    notes_data = data.data;
+                    for(var i=0; i< notes_data.length; i++){
+                        that.notes.push({
+                            body: notes_data[i].body,
+                            id: notes_data[i].id
+                        });
+                    }
+                });
             },
 
             methods: {
@@ -236,7 +291,7 @@
                 removeNote: function(note){
                     this.notes.$remove(note);
                     $.get( "/api/notes/"+note.id+"/delete", function( data ) {
-                            console.log(data);
+                        console.log(data);
 
                     });
 
