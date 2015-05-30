@@ -95,13 +95,14 @@
                 </div>
                 <div role="tabpanel" class="col-xs-10 tab-pane" id="notes-tab">
                     <div id="notes">
-
+                        <br/>
                         <!-- The Form to Add a New Task -->
                         <form v-on="submit: addNote">
                             <div class="form-group">
-                                <input v-model="newNote"
+                                <textarea v-model="newNote"
                                        v-el="newNote"
-                                       class="form-control"></input>
+                                       class="form-control"
+                                        rows="3" ></textarea>
                             </div>
 
                             <button class="btn btn-primary">
