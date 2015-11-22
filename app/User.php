@@ -1,56 +1,75 @@
-<?php namespace App;
+<?php
 
-use Illuminate\Auth\Authenticatable;
+namespace App;
+
+use Laravel\Cashier\Billable;
+use Laravel\Spark\Teams\CanJoinTeams;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
-use Laravel\Cashier\Billable;
+use Illuminate\Foundation\Auth\Access\Authorizable;
 use Laravel\Cashier\Contracts\Billable as BillableContract;
+use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Laravel\Spark\Auth\TwoFactor\Authenticatable as TwoFactorAuthenticatable;
+use Laravel\Spark\Contracts\Auth\TwoFactor\Authenticatable as TwoFactorAuthenticatableContract;
 
-class User extends Model implements AuthenticatableContract, CanResetPasswordContract, BillableContract {
-
-	use Authenticatable, CanResetPassword, Billable, FollowableTrait;
+class User extends Model implements AuthorizableContract,
+    BillableContract,
+    CanResetPasswordContract,
+    TwoFactorAuthenticatableContract
+{
+    use Authorizable, Billable, CanResetPassword, TwoFactorAuthenticatable, CanJoinTeams, FollowableTrait;
 
     /**
-     * The non standard date fields that should be converted to Carbon instances
+     * The attributes that are mass assignable.
+     *
      * @var array
      */
-    protected $dates = ['trial_ends_at', 'subscription_ends_at'];
+    protected $fillable = [
+        'email',
+        'name',
+        'password',
+    ];
 
-	/**
-	 * The database table used by the model.
-	 *
-	 * @var string
-	 */
-	protected $table = 'users';
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'using_two_factor_auth'
+    ];
 
-	/**
-	 * The attributes that are mass assignable.
-	 *
-	 * @var array
-	 */
-	protected $fillable = ['name', 'email', 'password'];
+    /**
+     * The attributes excluded from the model's JSON form.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'extra_billing_info',
+        'last_four',
+        'password',
+        'remember_token',
+        'stripe_id',
+        'stripe_subscription',
+        'two_factor_options',
+    ];
 
-	/**
-	 * The attributes excluded from the model's JSON form.
-	 *
-	 * @var array
-	 */
-	protected $hidden = ['password', 'remember_token'];
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'subscription_ends_at',
+        'trial_ends_at',
+    ];
 
-	/**
-	 * User relationship with roles
-	 *
-	 *
-	 */
+    public function roles(){
 
+        return $this->belongsToMany('App\Models\Role');
 
-	public function roles(){
-
-		return $this->belongsToMany('App\Models\Role');
-
-	}
+    }
 
     public function products(){
 
@@ -67,7 +86,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->hasMany('App\Models\Note');
     }
 
-	/**
+    /**
      * Checks if the user has a Role by its name.
      *
      * @param string $name Role name.
@@ -134,5 +153,4 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $count;
 
     }
-
 }

@@ -11,6 +11,11 @@
 |
 */
 
+Route::get('/', function () {
+	return view('spark::welcome');
+});
+
+
 include __DIR__.'/adminRoutes.php';
 
 
@@ -21,8 +26,8 @@ Route::group(['middleware' => 'auth'], function()
 
 Route::get('fileentry', 'FileEntryController@index');
 Route::get('fileentry/get/{filename}', [
-    'as' => 'getentry',
-    'uses' => 'FileEntryController@show'
+		'as' => 'getentry',
+		'uses' => 'FileEntryController@show'
 ]);
 
 //Route::resource('api/comments', 'API\CommentAPIController');
@@ -31,14 +36,14 @@ Route::resource('products', 'ProductController');
 
 
 Route::post('results/store', [
-    'as' => 'results.store',
-    'uses' => 'UserLessonResultController@store'
+		'as' => 'results.store',
+		'uses' => 'UserLessonResultController@store'
 ]);
 Route::resource('lessons', 'LessonController');
 Route::get('lessons/{id}/links', 'LessonController@links');
 Route::get('lessons/create/{id}', [
-    'as' => 'lessons.create',
-    'uses' => 'LessonController@create'
+		'as' => 'lessons.create',
+		'uses' => 'LessonController@create'
 ]);
 
 
@@ -61,16 +66,16 @@ Route::post('links/textCrawler', 'LinksController@textCrawler');
 Route::get('links/highlighter', 'LinksController@highlighter');
 Route::resource('links', 'LinksController');
 Route::post('links/delete', [
-    'as' => 'links.delete',
-    'uses' => 'LinksController@destroy',
+		'as' => 'links.delete',
+		'uses' => 'LinksController@destroy',
 ]);
 
 Route::get('home', 'HomeController@index');
 
 Route::get('login/{provider?}', 'Auth\AuthController@login');
 Route::controllers([
-    'auth' => 'Auth\AuthController',
-    'password' => 'Auth\PasswordController',
+		'auth' => 'Auth\AuthController',
+		'password' => 'Auth\PasswordController',
 ]);
 
 /*
@@ -80,8 +85,8 @@ Route::controllers([
 Route::resource('comments', 'CommentController');
 
 Route::get('comments/{id}/delete', [
-    'as' => 'comments.delete',
-    'uses' => 'CommentController@destroy',
+		'as' => 'comments.delete',
+		'uses' => 'CommentController@destroy',
 ]);
 
 Route::get('about', 'PageController@about');
@@ -89,52 +94,51 @@ Route::get('dashboard', 'PageController@userDashboard');
 Route::get('front_page', 'PageController@frontPage');
 Route::get('popular', 'PageController@popular');
 Route::post('contact', [
-    'as' => 'contact',
-    'uses' => 'PageController@contact'
+		'as' => 'contact',
+		'uses' => 'PageController@contact'
 ]);
 
 
 Route::get('product/{id}', 'StoreController@product');
-Route::get('/', 'PageController@frontPage');
 
 Route::get('/lesson/{id}', 'StoreController@lesson');
 
 Route::post('follows', [
-    'as' => 'follows.store',
-    'uses' => 'FollowsController@store'
+		'as' => 'follows.store',
+		'uses' => 'FollowsController@store'
 ]);
 
 Route::get('follows/{id}', [
-    'as' => 'follows.delete',
-    'uses' => 'FollowsController@destroy'
+		'as' => 'follows.delete',
+		'uses' => 'FollowsController@destroy'
 ]);
 
 Route::post('add_moderator', [
-    'as' => 'mods.store',
-    'uses' => 'ModsController@store'
+		'as' => 'mods.store',
+		'uses' => 'ModsController@store'
 ]);
 
 Route::post('remove_moderator', [
-    'as' => 'mods.delete',
-    'uses' => 'ModsController@destroy'
+		'as' => 'mods.delete',
+		'uses' => 'ModsController@destroy'
 ]);
 
 /*
  * favorites routes
  */
 Route::get('favorite/{id}', [
-    'as' => 'favorites.store',
-    'uses' => 'FavoritesController@store'
+		'as' => 'favorites.store',
+		'uses' => 'FavoritesController@store'
 ]);
 
 Route::get('unfavorite/{id}', [
-    'as' => 'favorites.delete',
-    'uses' => 'FavoritesController@destroy'
+		'as' => 'favorites.delete',
+		'uses' => 'FavoritesController@destroy'
 ]);
 
 Route::group(['prefix' => 'blog'], function()
 {
-    Route::resource('posts', 'BlogController');
+	Route::resource('posts', 'BlogController');
 
 });
 
@@ -142,6 +146,6 @@ Route::group(['prefix' => 'blog'], function()
 Route::resource('api/notes', 'API\NoteAPIController');
 
 Route::get('api/notes/{id}/delete', [
-    'as' => 'api.notes.delete',
-    'uses' => 'API\NoteAPIController@destroy',
+		'as' => 'api.notes.delete',
+		'uses' => 'API\NoteAPIController@destroy',
 ]);
