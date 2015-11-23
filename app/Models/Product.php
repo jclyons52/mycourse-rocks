@@ -82,8 +82,11 @@ class Product extends Model
     public function isOwnedBy(User $user)
     {
         $owned = $user->products()->wherePivot('owner', '1')->lists('product_id');
+        if(is_array($owned)){
+            return in_array($this->id, $owned);
+        }
 
-        return in_array($this->id, $owned);
+        return $this->id == $owned[0] ? true : false;
     }
 
     /**

@@ -21,7 +21,7 @@
                         </div>
                         <div class="col-md-6">
                             <p>
-                                {{ (Str::limit($post->content, 200)) }}
+                                {{ (str_limit($post->content, 200)) }}
                             </p>
                             <p><a class="btn btn-mini btn-default" href="{{{ route('blog.posts.show', [$post->id]) }}}">Read more</a></p>
                         </div>

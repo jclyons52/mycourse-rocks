@@ -72,12 +72,6 @@ Route::post('links/delete', [
 
 Route::get('home', 'HomeController@index');
 
-Route::get('login/{provider?}', 'Auth\AuthController@login');
-Route::controllers([
-		'auth' => 'Auth\AuthController',
-		'password' => 'Auth\PasswordController',
-]);
-
 /*
  * Comments Routes
  */

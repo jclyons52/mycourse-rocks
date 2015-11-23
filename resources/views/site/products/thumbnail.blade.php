@@ -12,7 +12,7 @@
                             <div class="lib-header-seperator"></div>
                         </div>
                         <div class="lib-row lib-desc">
-                            {{ Str::limit($product->description, 35) }}
+                            {{ str_limit($product->description, 35) }}
 
                         </div>
                     </div>

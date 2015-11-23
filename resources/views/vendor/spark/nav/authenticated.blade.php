@@ -12,7 +12,7 @@
 
 			<!-- Branding Image -->
 			<a class="navbar-brand" href="/" style="padding-top: 19px;">
-				<i class="fa fa-btn fa-sun-o"></i>Spark
+				<i class="fa fa-btn fa-university"></i>MCR
 			</a>
 		</div>
 
@@ -20,6 +20,9 @@
 			<!-- Left Side Of Navbar -->
 			<ul class="nav navbar-nav">
 				<li><a href="/home">Home</a></li>
+				<li><a href="{{ url('categories') }}">Categories</a></li>
+				<li><a href="{{ url('popular') }}">Popular</a></li>
+				<li><a href="{{ url('blog/posts') }}">blog</a></li>
 			</ul>
 
 			<!-- Right Side Of Navbar -->

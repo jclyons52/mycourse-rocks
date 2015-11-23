@@ -42,7 +42,7 @@
 				<div class="col-sm-6 col-sm-offset-4">
 					<div class="checkbox">
 						<label>
-							<input type="checkbox" v-model="forms.registration.terms"> I Accept The <a href="/terms" target="_blank">Terms Of Service</a>
+							<input type="checkbox" name="terms" v-model="forms.registration.terms"> I Accept The <a href="/terms" target="_blank">Terms Of Service</a>
 
                             <span class="help-block" v-show="forms.registration.errors.has('terms')">
                                 <strong>@{{ forms.registration.errors.get('terms') }}</strong>

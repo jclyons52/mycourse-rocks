@@ -18,9 +18,12 @@ class CreateLinkRequest extends Request {
 
         $product = $lesson->product;
 
-        $users = $product->owner()->lists('id');
+        $users = $product->owner()->lists('id')->toArray();
 
-        return in_array(Auth::id(), $users);
+		return in_array(Auth::id(), $users);
+
+
+
 
 
 	}

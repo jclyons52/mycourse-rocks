@@ -28,7 +28,7 @@
         <div class="row splash-nav">
             <div class="col-md-10 col-md-offset-1">
                 <div class="pull-left splash-brand">
-                    <i class="fa fa-btn fa-sun-o"></i>Laravel Spark
+                    <i class="fa fa-btn fa-sun-o"></i>My Course Rocks
                 </div>
 
                 <div class="navbar-header">
@@ -57,12 +57,12 @@
         <div class="row splash-inspiration-row">
             <div class="col-md-4 col-md-offset-1">
                 <div id="splash-inspiration-heading">
-                    Create Amazing Experiences.
+                    Create Online courses
                 </div>
 
                 <div id="splash-inspiration-text">
-                    Spark provides the perfect starting point for your next big idea. Forget all the
-                    boilerplate and focus on what matters: your application.
+                    MCR gives you the tools to view create or contribute
+                    to online courses. Sign up as an individual or a class
                 </div>
             </div>
 
@@ -99,11 +99,11 @@
                     </div>
 
                     <div class="splash-feature-heading">
-                        Authentication Included
+                        create a syllabus
                     </div>
 
                     <div class="splash-feature-text">
-                        No sweat authentication. Authentication and registration views are included out of the box.
+                       collect resources into a logical course.
                     </div>
                 </div>
 
@@ -113,11 +113,11 @@
                     </div>
 
                     <div class="splash-feature-heading">
-                        Painless Subscriptions
+                        favorite courses and track your progress
                     </div>
 
                     <div class="splash-feature-text">
-                        Just define subscriptions and promotions for your application and Spark will do the rest.
+                        Browse courses by popularity or category.
                     </div>
                 </div>
 
@@ -127,11 +127,11 @@
                     </div>
 
                     <div class="splash-feature-heading">
-                        Two-Factor Security
+                        add quizzes and track student performance
                     </div>
 
                     <div class="splash-feature-text">
-                        Enable two-factor authentication with a single line of code. It really doesn't get any easier.
+                        Keep track of student performance.
                     </div>
                 </div>
             </div>
@@ -265,57 +265,27 @@
         <!-- Customers Heading -->
         <div class="row">
             <div class="col-md-10 col-md-offset-1 splash-row-heading">
-                What Our Customers Say
+                Try out a course
             </div>
         </div>
 
         <!-- Customer Testimonials -->
         <div class="row splash-customer-row">
-            <div class="col-md-10 col-md-offset-1 text-center">
-                <div class="col-md-4 splash-customer">
-                    <div class="splash-customer-avatar">
-                        <img src="https://s3.amazonaws.com/uifaces/faces/twitter/msurguy/128.jpg">
-                    </div>
+            <div class="col-md-12  text-center">
+                @foreach(App\Models\Product::popular()->get()->take(3) as $product)
+                        <div class="col-sm-6 col-md-4">
+                            <div class="thumbnail">
+                                <img src="{{route('getentry',$product->file->filename )}}" class="img img-responsive" style="height:200px;" alt="...">
+                                <div class="caption">
+                                    <h3>{{$product->name}} - Rating: {{$product->rating()}}</h3>
+                                    <p>{{ str_limit($product->description, 35) }}</p>
+                                    <p><a href="{!! route('products.show', [$product->id]) !!}" class="btn btn-primary" role="button">Button</a></p>
+                                </div>
+                            </div>
+                        </div>
 
-                    <div class="splash-customer-quote">
-                        This is an inspiring testimonial about your application.
-                    </div>
+                @endforeach
 
-                    <div class="splash-customer-identity">
-                        <div class="splash-customer-name">Maksim Surguy</div>
-                        <div class="splash-customer-title">CEO, Company</div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 splash-customer">
-                    <div class="splash-customer-avatar">
-                        <img src="https://s3.amazonaws.com/uifaces/faces/twitter/allisongrayce/128.jpg">
-                    </div>
-
-                    <div class="splash-customer-quote">
-                        This is an inspiring testimonial about your application.
-                    </div>
-
-                    <div class="splash-customer-identity">
-                        <div class="splash-customer-name">Allison Grayce</div>
-                        <div class="splash-customer-title">CEO, Company</div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 splash-customer">
-                    <div class="splash-customer-avatar">
-                        <img src="https://s3.amazonaws.com/uifaces/faces/twitter/richcsmith/128.jpg">
-                    </div>
-
-                    <div class="splash-customer-quote">
-                        This is an inspiring testimonial about your application.
-                    </div>
-
-                    <div class="splash-customer-identity">
-                        <div class="splash-customer-name">Rich Smith</div>
-                        <div class="splash-customer-title">CEO, Company</div>
-                    </div>
-                </div>
             </div>
         </div>
 
