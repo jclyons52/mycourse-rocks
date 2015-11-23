@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>My Course Resources</title>
 
     <!-- Fonts -->
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
@@ -28,7 +28,7 @@
         <div class="row splash-nav">
             <div class="col-md-10 col-md-offset-1">
                 <div class="pull-left splash-brand">
-                    <i class="fa fa-btn fa-sun-o"></i>My Course Rocks
+                    <i class="fa fa-btn fa-university"></i>My Course Rocks
                 </div>
 
                 <div class="navbar-header">
@@ -279,7 +279,7 @@
                                 <div class="caption">
                                     <h3>{{$product->name}} - Rating: {{$product->rating()}}</h3>
                                     <p>{{ str_limit($product->description, 35) }}</p>
-                                    <p><a href="{!! route('products.show', [$product->id]) !!}" class="btn btn-primary" role="button">Button</a></p>
+                                    <p><a href="{!! route('products.show', [$product->id]) !!}" class="btn btn-primary" role="button">View</a></p>
                                 </div>
                             </div>
                         </div>
