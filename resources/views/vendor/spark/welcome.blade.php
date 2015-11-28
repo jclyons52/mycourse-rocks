@@ -137,53 +137,6 @@
             </div>
         </div>
 
-        <!-- Feature Icons -->
-        <div class="row splash-features-icon-row">
-            <div class="col-md-10 col-md-offset-1 text-center">
-                <div class="col-md-4 splash-features-feature">
-                    <div class="splash-feature-icon">
-                        <i class="fa fa-users"></i>
-                    </div>
-
-                    <div class="splash-feature-heading">
-                        Join Your Team
-                    </div>
-
-                    <div class="splash-feature-text">
-                        Spark provides simple, built-in support for creating and managing teams and invitations.
-                    </div>
-                </div>
-
-                <div class="col-md-4 splash-features-feature">
-                    <div class="splash-feature-icon">
-                        <i class="fa fa-cubes"></i>
-                    </div>
-
-                    <div class="splash-feature-heading">
-                        Make It Your Own
-                    </div>
-
-                    <div class="splash-feature-text">
-                        Customize or replace any of the views provided with Spark and make the design your own.
-                    </div>
-                </div>
-
-                <div class="col-md-4 splash-features-feature">
-                    <div class="splash-feature-icon">
-                        <i class="fa fa-clock-o"></i>
-                    </div>
-
-                    <div class="splash-feature-heading">
-                        Save Weeks Of Work
-                    </div>
-
-                    <div class="splash-feature-text">
-                        Get started writing what's unique: your application. Don't worry about subscription and authentication logic.
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <!-- Pricing Variables -->
         <?php $plans = Spark::plans()->monthly()->active(); ?>
 

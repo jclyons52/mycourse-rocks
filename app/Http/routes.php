@@ -95,7 +95,6 @@ Route::post('contact', [
 
 Route::get('product/{id}', 'StoreController@product');
 
-Route::get('/lesson/{id}', 'StoreController@lesson');
 
 Route::post('follows', [
 		'as' => 'follows.store',
@@ -138,6 +137,8 @@ Route::group(['prefix' => 'blog'], function()
 
 
 Route::resource('api/notes', 'API\NoteAPIController');
+
+Route::resource('api/lessons', 'API\LessonsAPIController');
 
 Route::get('api/notes/{id}/delete', [
 		'as' => 'api.notes.delete',

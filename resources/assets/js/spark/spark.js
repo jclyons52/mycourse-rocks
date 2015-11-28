@@ -15,6 +15,8 @@ require('./core/components');
 module.exports = {
     el: '#spark-app',
 
+    components: require('../components/components'),
+
     /*
      * Bootstrap the application. Load the initial data.
      */

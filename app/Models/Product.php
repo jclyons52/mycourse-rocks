@@ -76,17 +76,17 @@ class Product extends Model
     {
         $favorites = $user->products()->wherePivot('favorite', '1')->lists('product_id');
 
-        return in_array($this->id, $favorites);
+        return $favorites->contains($this->id);
+
     }
 
     public function isOwnedBy(User $user)
     {
         $owned = $user->products()->wherePivot('owner', '1')->lists('product_id');
-        if(is_array($owned)){
-            return in_array($this->id, $owned);
-        }
 
-        return $this->id == $owned[0] ? true : false;
+        return $owned->contains($this->id);
+
+
     }
 
     /**
@@ -98,7 +98,8 @@ class Product extends Model
     {
         $owned = $user->products()->wherePivot('mod', '1')->lists('product_id');
 
-        return in_array($this->id, $owned);
+        return $owned->contains($this->id);
+
     }
 
     public function owner()

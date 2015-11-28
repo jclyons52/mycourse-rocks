@@ -23,16 +23,16 @@
                 <!-- Fonts -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
         <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
-
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
         <!-- Styles -->
-        <link href="{{ elixir('css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         @yield('styles', '')
 
                 <!-- Spark Globals -->
         @include('spark::scripts.globals')
 
                 <!-- Injected Scripts -->
-        @yield('scripts', '')
+        {{--@yield('scripts', '')--}}
 
                 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -58,7 +58,28 @@
     @include('spark::common.footer')
 
             <!-- JavaScript Application -->
-    <script src="{{ elixir('js/app.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+    <!-- Scripts -->
+    <script src="{{ asset('/js/all.js') }}"></script>
+
+    <script>
+        $('.pull-down-thumbnail').each(function() {
+            $(this).css('margin-top', $(this).parent().height()-$(this).height())
+        });
+    </script>
+    <script>
+        {{--var token = '{{ csrf_token() }}';--}}
+        {{--$(document).ready(function() {--}}
+
+            {{--$('#lp1').linkPreview();--}}
+            {{--// changing placeholder--}}
+            {{--$('#lp2').linkPreview({placeholder: "Second Field"});--}}
+
+            {{--// bind to a tag the results brought from database--}}
+            {{--$('#retrieveFromDatabase').linkPreviewRetrieve();--}}
+        {{--});--}}
+    </script>
+    @yield('scripts')
 </div>
 </body>
 </html>

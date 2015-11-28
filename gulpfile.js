@@ -1,5 +1,7 @@
 var elixir = require('laravel-elixir');
 
+require('laravel-elixir-vueify');
+
 /*
  |--------------------------------------------------------------------------
  | Elixir Asset Management
@@ -14,7 +16,30 @@ var elixir = require('laravel-elixir');
 elixir(function(mix) {
     mix.sass('app.scss')
        .browserify('app.js')
-       .version(['css/app.css', 'js/app.js']);
+    .styles([
+        //'libs/roboto.css',
+        'libs/select2.min.css',
+        'libs/dropzone.css',
+        'libs/star-rating.min.css',
+        'libs/linkPreview.css',
+        'app.css'
+
+
+    ])
+
+    .scripts([
+        'libs/jquery.min.js',
+        'libs/bootstrap.min.js',
+        'libs/vue.min.js',
+        'libs/select2.min.js',
+        'libs/dropzone.js',
+        'libs/star-rating.min.js',
+        'libs/linkPreview.js',
+        'libs/linkPreviewRetrieve.js',
+        'googleAnalytics.js'
+
+    ])
+       //.version(['css/app.css', 'js/app.js']);
         //.phpUnit();
 
 });

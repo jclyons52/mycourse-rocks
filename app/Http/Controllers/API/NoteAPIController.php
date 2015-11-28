@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers\API;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
 use Mitul\Controller\AppBaseController;
 use Mitul\Generator\Exceptions\AppValidationException;
 use Mitul\Generator\Exceptions\RecordNotFoundException;
@@ -29,6 +30,7 @@ class NoteAPIController extends AppBaseController
 	public function index(Request $request)
 	{
         $input = $request->all();
+		$input['user_id'] = Auth::id();
 
         $result = $this->noteRepository->search($input);
 
@@ -60,6 +62,7 @@ class NoteAPIController extends AppBaseController
             $this->validateRequest($request, Note::$rules);
 
         $input = $request->all();
+		$input['user_id'] = Auth::id();
 
 		$note = $this->noteRepository->store($input);
 

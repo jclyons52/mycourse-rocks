@@ -6,8 +6,11 @@
   "dependencies": {
     "bootstrap-sass": "^3.0.0",
     "jquery": "^2.1.4",
+    "jquery.mousewheel": "^3.1.9",
     "laravel-elixir": "^3.0.0",
     "laravel-spark": "^1.0.0",
-    "smokejs": "^2.2.4"
+    "smokejs": "^2.2.4",
+    "vueify": "^6.0.0",
+    "vueify-insert-css": "^1.0.0"
   }
 }

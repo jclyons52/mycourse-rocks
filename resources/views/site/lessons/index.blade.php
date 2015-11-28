@@ -7,27 +7,34 @@
 
                 @foreach($product->lessons as $lesson)
                     <div class="row">
-                        <div class="col-sm-4 text-center">
+                        <div class="col-sm-6 col-sm-offset-3">
                             <div class="row">
-                                <h3>{!! $lesson->name.' ' !!}</h3>
+                                <h3></h3>
                             </div>
                             <div class="row">
-                                {{$lesson->userScore(Auth::id())}} / {{$lesson->quizzes->count()}}
-
-                                    @if(Auth::check() && ($product->isOwnedBy(Auth::user()) or $product->isModeratedBy(Auth::user()) ))
-                                        <a href="{!! route('lessons.edit', [$lesson->id]) !!}"><i class="glyphicon glyphicon-edit"></i></a>
-                                        {{--<a href="{!! route('lessons.delete', [$lesson->id]) !!}" onclick="return confirm('Are you sure wants to delete this Lesson?')"><i class="glyphicon glyphicon-remove"></i></a>--}}
-                                    @endif
 
 
                             </div>
-
-                        </div>
-                        <div class="col-sm-8">
                             <br/>
+                            <ul class="list-group">
+                                <a href="{!! url('lessons/'. $lesson->id) !!}" class="list-group-item active">
+                                    <h4 class="list-group-item-heading">{!! $lesson->name.' ' !!}</h4>
+                                    <p class="list-group-item-text">
+                                        {{$lesson->userScore(Auth::id())}} / {{$lesson->quizzes->count()}}
+                                        @if(Auth::check() && ($product->isOwnedBy(Auth::user()) or $product->isModeratedBy(Auth::user()) ))
+                                            <a href="{!! route('lessons.edit', [$lesson->id]) !!}"><i class="glyphicon glyphicon-edit"></i></a>
+                                            {{--<a href="{!! route('lessons.delete', [$lesson->id]) !!}" onclick="return confirm('Are you sure wants to delete this Lesson?')"><i class="glyphicon glyphicon-remove"></i></a>--}}
+                                        @endif
+                                    </p>
+                                </a>
                                 @foreach($lesson->links as $link)
-                                    <div class="col-sm-6"><a href="{!! url('lesson/'. $lesson->id.'?'.$link->id) !!}" >{!! $link->title !!}</a></div>
+                                    <li class="list-group-item">
+                                        <a href="{!! url('lessons/'. $lesson->id.'?'.$link->id) !!}" >{!! $link->title !!}</a>
+                                    </li>
+
+
                                 @endforeach
+                            </ul>
                         </div>
                     </div>
                 <hr/>

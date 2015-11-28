@@ -67,15 +67,31 @@ class LessonController extends Controller {
 	 */
 	public function show($id)
 	{
-        $lesson = Lesson::find($id);
+		$links = Link::all();
 
-        if(empty($lesson))
-        {
-            Flash::error('Lesson not found');
-            return redirect(route('admin.lessons.index'));
-        }
+//		foreach($links as $link){
+//			$re = "/src=\\\"(.*?)\\\"/";
+//			preg_match($re, $link->iframe, $matches);
+// 			if($matches){
+//				$link->iframe = $matches[1];
+//				$link->save();
+//			}
+//			array_push($all, $matches) ;
+//		}
 
-        return view('site.lessons.show')->with('lesson', $lesson);
+
+        $lesson = Lesson::findOrFail($id);
+
+		$videos = $lesson->links->filter(function($item){
+			if($item->iframe == "") {
+				return;
+			}
+
+			return $item;
+		});
+
+
+        return view('site.lessons.show')->with(['lesson' => $lesson, 'videos' => $videos]);
 	}
 
 	/**
