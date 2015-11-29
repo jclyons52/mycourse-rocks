@@ -1,13 +1,17 @@
-@extends('app')
+@extends('spark::layouts.app')
 
 <!-- Scripts -->
 @section('scripts')
+	<script>
+		TEAM_ID = {{ $team->id }};
+	</script>
+
 	<script src="//cdnjs.cloudflare.com/ajax/libs/URI.js/1.15.2/URI.min.js"></script>
 @append
 
 <!-- Main Content -->
 @section('content')
-<spark-team-settings-screen :team-id="{{ $team->id }}" inline-template>
+<spark-team-settings-screen inline-template>
 	<div id="spark-team-settings-screen" class="container spark-screen">
 		<div class="row">
 			<!-- Tabs -->
@@ -17,7 +21,7 @@
 						Team Settings (@{{ team.name }})
 					</div>
 
-					<div class="panel-heading" v-else>
+					<div class="panel-heading" v-if=" ! team">
 						Loading &nbsp;&nbsp; <i class="fa fa-spinner fa-spin"></i>
 					</div>
 

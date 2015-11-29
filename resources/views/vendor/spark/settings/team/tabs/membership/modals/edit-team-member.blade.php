@@ -8,15 +8,15 @@
 				</div>
 
 				<div class="modal-body">
-            		<spark-error-alert :form="forms.updateTeamMember"></spark-error-alert>
+            		<spark-error-alert :form="updateTeamMemberForm"></spark-error-alert>
 
 					<!-- Edit Team Member Form -->
 					<form class="form-horizontal" role="form">
 		                <spark-select :display="'Role'"
-		                              :form="forms.updateTeamMember"
+		                              :form="updateTeamMemberForm"
 		                              :name="'role'"
 		                              :items="assignableRoles"
-		                              :input.sync="forms.updateTeamMember.role">
+		                              :input.sync="updateTeamMemberForm.role">
 		                </spark-select>
 					</form>
 				</div>
@@ -24,8 +24,8 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 
-					<button type="button" class="btn btn-primary" @click.prevent="updateTeamMember" :disabled="forms.updateTeamMember.busy">
-						<span v-if="forms.updateTeamMember.busy">
+					<button type="button" class="btn btn-primary" @click.prevent="updateTeamMember" :disabled="updateTeamMemberForm.busy">
+						<span v-if="updateTeamMemberForm.busy">
 							<i class="fa fa-btn fa-spinner fa-spin"></i> Updating
 						</span>
 

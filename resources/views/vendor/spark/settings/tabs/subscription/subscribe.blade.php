@@ -1,5 +1,5 @@
 <!-- Subscribe Plan Selector -->
-<div class="panel panel-default" v-if=" ! user.stripe_active && ! userIsOnGracePeriod && ! forms.subscribe.plan">
+<div class="panel panel-default" v-if=" ! user.stripe_active && ! userIsOnGracePeriod && ! subscribeForm.plan">
     <div class="panel-heading">Subscribe</div>
 
     <div class="panel-body">
@@ -8,7 +8,7 @@
 </div>
 
 <!-- Plan Is Selected -->
-<div v-if=" ! user.stripe_active && ! userIsOnGracePeriod && forms.subscribe.plan">
+<div v-if=" ! user.stripe_active && ! userIsOnGracePeriod && subscribeForm.plan">
     <!-- Selected Plan / Select Another Plan -->
     <div class="panel panel-default">
         <div class="panel-heading">Your Plan</div>
@@ -36,18 +36,18 @@
         </div>
 
         <div class="panel-body">
-            <spark-error-alert :form="forms.subscribe"></spark-error-alert>
-            <spark-error-alert :form="forms.card"></spark-error-alert>
+            <spark-error-alert :form="subscribeForm"></spark-error-alert>
+            <spark-error-alert :form="cardForm"></spark-error-alert>
 
             <form class="form-horizontal" role="form">
-                <div class="form-group" :class="{'has-error': forms.card.errors.has('number')}">
+                <div class="form-group" :class="{'has-error': hasError(cardForm, 'number')}">
                     <label for="number" class="col-md-4 control-label">Card Number</label>
 
                     <div class="col-md-6">
-                        <input type="text" class="form-control spark-first-field" name="number" data-stripe="number" v-model="forms.card.number">
+                        <input type="text" class="form-control spark-first-field" name="number" data-stripe="number" v-model="cardForm.number">
 
-                        <span class="help-block" v-show="forms.card.errors.has('number')">
-                            <strong>@{{ forms.card.errors.get('number') }}</strong>
+                        <span class="help-block" v-show="hasError(cardForm, 'number')">
+                            <strong>@{{ getError(cardForm, 'number') }}</strong>
                         </span>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
                     <label for="cvc" class="col-md-4 control-label">Security Code</label>
 
                     <div class="col-md-6">
-                        <input type="text" class="form-control" name="cvc" data-stripe="cvc" v-model="forms.card.cvc">
+                        <input type="text" class="form-control" name="cvc" data-stripe="cvc" v-model="cardForm.cvc">
                     </div>
                 </div>
 
@@ -64,11 +64,11 @@
                     <label class="col-md-4 control-label">Expiration</label>
 
                     <div class="col-md-3">
-                        <input type="text" class="form-control" name="month" placeholder="MM" maxlength="2" data-stripe="exp-month" v-model="forms.card.month">
+                        <input type="text" class="form-control" name="month" placeholder="MM" maxlength="2" data-stripe="exp-month" v-model="cardForm.month">
                     </div>
 
                     <div class="col-md-3">
-                        <input type="text" class="form-control" name="year" placeholder="YYYY" maxlength="4" data-stripe="exp-year" v-model="forms.card.year">
+                        <input type="text" class="form-control" name="year" placeholder="YYYY" maxlength="4" data-stripe="exp-year" v-model="cardForm.year">
                     </div>
                 </div>
 
@@ -76,29 +76,29 @@
                     <label for="zip" class="col-md-4 control-label">ZIP / Postal Code</label>
 
                     <div class="col-md-6">
-                        <input type="text" class="form-control" name="zip" v-model="forms.card.zip">
+                        <input type="text" class="form-control" name="zip" v-model="cardForm.zip">
                     </div>
                 </div>
 
-                <div class="form-group" :class="{'has-error': forms.subscribe.errors.has('terms')}">
+                <div class="form-group" :class="{'has-error': hasError(subscribeForm, 'terms')}">
                     <div class="col-md-6 col-md-offset-4">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" v-model="forms.subscribe.terms">
+                                <input type="checkbox" v-model="subscribeForm.terms">
                                 I Accept The <a href="/terms" target="_blank">Terms Of Service</a>
                             </label>
                         </div>
 
-                        <span class="help-block" v-show="forms.subscribe.errors.has('terms')">
-                            <strong>@{{ forms.subscribe.errors.get('terms') }}</strong>
+                        <span class="help-block" v-show="hasError(subscribeForm, 'terms')">
+                            <strong>@{{ getError(subscribeForm, 'terms') }}</strong>
                         </span>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-md-6 col-md-offset-4">
-                        <button type="submit" class="btn btn-primary" @click.prevent="subscribe" :disabled="forms.subscribe.busy">
-                            <span v-if="forms.subscribe.busy">
+                        <button type="submit" class="btn btn-primary" @click.prevent="subscribe" :disabled="subscribeForm.busy">
+                            <span v-if="subscribeForm.busy">
                                 <i class="fa fa-btn fa-spinner fa-spin"></i> Subscribing
                             </span>
 

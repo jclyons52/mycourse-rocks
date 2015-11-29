@@ -69,17 +69,6 @@ class LessonController extends Controller {
 	{
 		$links = Link::all();
 
-//		foreach($links as $link){
-//			$re = "/src=\\\"(.*?)\\\"/";
-//			preg_match($re, $link->iframe, $matches);
-// 			if($matches){
-//				$link->iframe = $matches[1];
-//				$link->save();
-//			}
-//			array_push($all, $matches) ;
-//		}
-
-
         $lesson = Lesson::findOrFail($id);
 
 		$videos = $lesson->links->filter(function($item){
@@ -89,6 +78,15 @@ class LessonController extends Controller {
 
 			return $item;
 		});
+
+		foreach($videos as $link){
+			$re = "/src=\\\"(.*?)\\\"/";
+			preg_match($re, $link->iframe, $matches);
+			if($matches){
+				$link->iframe = $matches[1];
+				$link->save();
+			}
+		}
 
 
         return view('site.lessons.show')->with(['lesson' => $lesson, 'videos' => $videos]);

@@ -227,14 +227,7 @@
             <div class="col-md-12  text-center">
                 @foreach(App\Models\Product::popular()->get()->take(3) as $product)
                         <div class="col-sm-6 col-md-4">
-                            <div class="thumbnail">
-                                <img src="{{route('getentry',$product->file->filename )}}" class="img img-responsive" style="height:200px;" alt="...">
-                                <div class="caption">
-                                    <h3>{{$product->name}} - Rating: {{$product->rating()}}</h3>
-                                    <p>{{ str_limit($product->description, 35) }}</p>
-                                    <p><a href="{!! route('products.show', [$product->id]) !!}" class="btn btn-primary" role="button">View</a></p>
-                                </div>
-                            </div>
+                            @include('site.products.thumbnail')
                         </div>
 
                 @endforeach

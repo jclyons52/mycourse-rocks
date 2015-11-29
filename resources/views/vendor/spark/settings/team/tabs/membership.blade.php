@@ -1,29 +1,29 @@
 <!-- Main Content -->
 <spark-team-settings-membership-screen inline-template>
-    <div id="spark-team-settings-membership-screen">
+    <div>
         <div v-if="everythingIsLoaded">
             <!-- Invite New Members -->
             <div class="panel panel-default" v-if="userOwns(team)">
                 <div class="panel-heading">Send Invitation</div>
 
                 <div class="panel-body">
-                    <spark-error-alert :form="forms.sendInvite"></spark-error-alert>
+                    <spark-error-alert :form="sendInviteForm"></spark-error-alert>
 
                     <form method="POST" class="form-horizontal" role="form">
-                        <div class="alert alert-success" v-if="forms.sendInvite.successful">
+                        <div class="alert alert-success" v-if="sendInviteForm.successful">
                             <strong>Done!</strong> The invitation has been sent.
                         </div>
 
                         <spark-email :display="'E-Mail Address'"
-                                     :form="forms.sendInvite"
+                                     :form="sendInviteForm"
                                      :name="'email'"
-                                     :input.sync="forms.sendInvite.email">
+                                     :input.sync="sendInviteForm.email">
                         </spark-email>
 
                         <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary" @click.prevent="sendInvite" :disabled="forms.sendInvite.busy">
-                                    <span v-if="forms.sendInvite.busy">
+                            <div class="col-md-6 col-md-offset-3">
+                                <button type="submit" class="btn btn-primary" @click.prevent="sendInvite" :disabled="sendInviteForm.busy">
+                                    <span v-if="sendInviteForm.busy">
                                         <i class="fa fa-btn fa-spinner fa-spin"></i> Sending
                                     </span>
 

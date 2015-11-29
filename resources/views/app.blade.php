@@ -25,7 +25,9 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
         <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
         <!-- Styles -->
-        <link href="{{ elixir('css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        {{--<link href="{{ asset('css/all.css') }}" rel="stylesheet">--}}
+
         @yield('styles', '')
 
                 <!-- Spark Globals -->
@@ -69,16 +71,16 @@
         });
     </script>
     <script>
-        {{--var token = '{{ csrf_token() }}';--}}
-        {{--$(document).ready(function() {--}}
+        var token = '{{ csrf_token() }}';
+        $(document).ready(function() {
 
-            {{--$('#lp1').linkPreview();--}}
-            {{--// changing placeholder--}}
-            {{--$('#lp2').linkPreview({placeholder: "Second Field"});--}}
+            $('#lp1').linkPreview();
+            // changing placeholder
+            $('#lp2').linkPreview({placeholder: "Second Field"});
 
-            {{--// bind to a tag the results brought from database--}}
-            {{--$('#retrieveFromDatabase').linkPreviewRetrieve();--}}
-        {{--});--}}
+            // bind to a tag the results brought from database
+            $('#retrieveFromDatabase').linkPreviewRetrieve();
+        });
     </script>
 
 </div>

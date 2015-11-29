@@ -76,7 +76,10 @@
 						<div class="panel-body">
 							@foreach(Auth::user()->products as $product)
 								@if($product->pivot->owner == true)
-									@include('site.products.thumbnail')
+									<div class="col-sm-6 col-md-6">
+										@include('site.products.thumbnail')
+									</div>
+
 								@endif
 							@endforeach
 						</div>
@@ -89,7 +92,9 @@
 						<div class="panel-body">
 							@foreach(Auth::user()->products as $product)
 								@if($product->pivot->favorite == true)
+									<div class="col-sm-6 col-md-6">
 									@include('site.products.thumbnail')
+									</div>
 								@endif
 							@endforeach
 						</div>

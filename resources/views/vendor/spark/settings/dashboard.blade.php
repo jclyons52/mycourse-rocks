@@ -1,8 +1,9 @@
-@extends('app')
+@extends('spark::layouts.app')
 
 <!-- Scripts -->
 @section('scripts')
 	<script src="https://js.stripe.com/v2/"></script>
+
 	<script>
 		STRIPE_KEY = '{{ config('services.stripe.key') }}';
 	</script>
@@ -12,7 +13,7 @@
 @section('content')
 <!-- Your Settings Dashboard -->
 <spark-settings-screen inline-template>
-	<div id="spark-settings-screen" class="container spark-screen">
+	<div class="container spark-screen">
 		<div class="row">
 			<!-- Tabs -->
 			<div class="col-md-4">
