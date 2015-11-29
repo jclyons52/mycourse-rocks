@@ -34,7 +34,7 @@
 						</div>
 						<div class="col-xs-12 col-sm-8">
 							<h2>{{$user->name}}</h2>
-							<p><strong>About: </strong> Web Designer / UI. </p>
+							{{--<p><strong>About: </strong> Web Designer / UI. </p>--}}
 
 						</div>
 

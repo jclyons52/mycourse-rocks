@@ -10,10 +10,12 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
-Route::get('/', function () {
-	return view('spark::welcome');
+Route::group(['middleware' => 'guest'], function() {
+	Route::get('/', function () {
+		return view('spark::welcome');
+	});
 });
+
 
 
 include __DIR__.'/adminRoutes.php';

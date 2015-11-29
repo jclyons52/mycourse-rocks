@@ -32,7 +32,8 @@ trait FollowableTrait {
     {
         $idsWhoOtherUserFollows = $otherUser->followedUsers()->lists('followed_id');
 
-        return in_array($this->id, $idsWhoOtherUserFollows);
+        return $idsWhoOtherUserFollows->contains($this->id);
+
     }
 
 }

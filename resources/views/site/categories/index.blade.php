@@ -6,31 +6,30 @@
 
         @include('flash::message')
 
-        <div class="row">
-            <h1 class="pull-left">Categories</h1>
+        <div class="row text-center">
+            <h1>Categories</h1>
         </div>
 
         <div class="row">
             @if($categories->isEmpty())
                 <div class="well text-center">No Categories found.</div>
             @else
+                <div class="col-sm-6 col-sm-offset-3">
+                    <ul class="list-group">
                     @foreach($categories as $index => $category)
-                        @if($index % 4 == 0 && $index != 0)
-                            </div>
-                            <br/>
-                        @endif
-                        @if($index % 4 == 0)
-                            <div class="row">
-                                @endif
-                        <div class="col-sm-3">
                             <a href="{!! route('categories.show', [$category->id]) !!}">
-                            <button type="button" class="btn btn-info btn-circle btn-xl">
-                                {!! $category->name !!}
-                            </button>
+                            <li class="list-group-item">
+
+
+                                    {!! $category->name !!}
+
+                            </li>
                             </a>
-                        </div>
+
 
                     @endforeach
+                </ul>
+                </div>
             @endif
         </div>
 
