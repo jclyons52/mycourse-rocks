@@ -19,3 +19,5 @@ require('./spark/core/dependencies.js');
 require('./spark/components.js');
 
 new Vue(require('./spark/spark.js'));
+
+Vue.config.debug = true;

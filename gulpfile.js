@@ -39,7 +39,7 @@ elixir(function(mix) {
         'googleAnalytics.js'
 
     ])
-       //.version(['css/app.css', 'js/app.js']);
+       .version(['css/app.css', 'js/app.js']);
         //.phpUnit();
 
 });
