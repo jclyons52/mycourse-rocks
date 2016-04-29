@@ -21,7 +21,7 @@
                             <li class="list-group-item">
 
 
-                                    {!! $category->name !!}
+                                   <h3>{!! $category->name !!}</h3>
 
                             </li>
                             </a>

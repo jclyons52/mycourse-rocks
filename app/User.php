@@ -7,14 +7,12 @@ use Laravel\Spark\Teams\CanJoinTeams;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Foundation\Auth\Access\Authorizable;
-use Laravel\Cashier\Contracts\Billable as BillableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Laravel\Spark\Auth\TwoFactor\Authenticatable as TwoFactorAuthenticatable;
 use Laravel\Spark\Contracts\Auth\TwoFactor\Authenticatable as TwoFactorAuthenticatableContract;
 
 class User extends Model implements AuthorizableContract,
-    BillableContract,
     CanResetPasswordContract,
     TwoFactorAuthenticatableContract
 {

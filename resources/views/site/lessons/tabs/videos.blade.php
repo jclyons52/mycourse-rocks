@@ -1,17 +1,5 @@
 {{--<vue-videos>--}}
 <div class="row">
-    <!-- Nav tabs -->
-    <ul class="pagination pagination-sm" role="tablist">
-        <?php $count = 0; ?>
-        @foreach($videos as $index => $link)
-            <li role="presentation" class="{{($count == 0 ? 'active' : null )}}">
-                <a href="#iframe-link-panel{{$index}}" aria-controls="iframe-link-panel{{$index}}" role="tab" data-toggle="tab">{{$count}}</a>
-            </li>
-            <?php $count++ ?>
-        @endforeach
-    </ul>
-</div>
-<div class="row">
     {{--<div class="col-xs-1">--}}
         {{--<div class="row">--}}
             {{--<i class="glyphicon glyphicon-plus"></i>--}}
@@ -53,8 +41,16 @@
     </div>
 </div>
 
-<nav>
-    <ul class="pagination pagination-sm">
+<div class="row">
+    <!-- Nav tabs -->
+    <ul class="pagination pagination-sm" role="tablist">
+        <?php $count = 0; ?>
+        @foreach($videos as $index => $link)
+            <li role="presentation" class="{{($count == 0 ? 'active' : null )}}">
+                <a href="#iframe-link-panel{{$index}}" aria-controls="iframe-link-panel{{$index}}" role="tab" data-toggle="tab">{{$count}}</a>
+            </li>
+            <?php $count++ ?>
+        @endforeach
     </ul>
-</nav>
+</div>
 {{--</vue-videos>--}}

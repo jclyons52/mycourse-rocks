@@ -30,6 +30,14 @@ return [
 
     'model' => App\User::class,
 
+    'providers' =>
+        [
+            'users' =>
+                [
+                    'model' =>  App\User::class
+                ]
+        ],
+
     /*
     |--------------------------------------------------------------------------
     | Authentication Table
@@ -59,9 +67,9 @@ return [
     */
 
     'password' => [
-        'email'  => 'spark::emails.auth.password.email',
-        'table'  => 'password_resets',
-        'expire' => 60,
-    ],
+    'email'  => 'spark::emails.auth.password.email',
+    'table'  => 'password_resets',
+    'expire' => 60,
+],
 
 ];
